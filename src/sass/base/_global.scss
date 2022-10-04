@@ -1,0 +1,67 @@
+html,
+body {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+
+	* {
+		box-sizing: inherit;
+	}
+}
+
+
+html {
+	font-family: $sansSerif, sans-serif;
+	font-weight: normal;
+	color: $black;
+	line-height: $baseLineHeight;
+	font-size: 14px;
+
+	@media only screen and (min-width: $smallBreakpoint) {
+		font-size: 15px;
+	}
+
+	@media only screen and (min-width: $largeBreakpoint) {
+		font-size: $baseFontSize;
+	}
+}
+
+/* Global tags */
+a {
+    text-decoration: none;
+}
+
+ul {
+    list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+.main {
+    margin-left: $sidebar-width;
+}
+
+
+// Header Styles
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-weight: bold;
+	margin: 0;
+	// margin-bottom: $pad;
+	// line-height: $headingLineHeight;
+
+	a {
+		font-weight: inherit;
+	}
+}
+
+
+// Text Styles
+
+.uppercase {
+	text-transform: uppercase;
+}

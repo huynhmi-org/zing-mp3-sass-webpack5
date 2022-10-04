@@ -1,0 +1,90 @@
+// Fonts
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
+$sansSerif: 'Roboto', sans-serif;
+
+// Font Sizing
+$x-smallFontSize: 14px;
+$smallFontSize: 15px;
+$baseFontSize: 16px;
+$largeFontSize: 20px;
+
+$baseLineHeight: 1.5;
+$headingLineHeight: 1.2;
+
+// Colors
+$black: rgba(51, 51, 51, 1);
+
+$yellow: #ffdb00;
+
+$grey: #f2f2f2;
+$grey-1: #e6e6e6;
+$grey-2: #ccc;
+$grey-3: #dadada;
+$grey-4: #a7a7a7;
+$grey-5: #f5f5f5;
+$grey-6: #c0c0c0;
+$grey-7: #474747;
+
+$grey-transparent-1: rgb(204, 204, 204, 0.25);
+$grey-transparent-2: rgb(204, 204, 204, 0.2);
+$grey-transparent-3: rgb(204, 204, 204, 0.5);
+$grey-transparent-4: rgb(204, 204, 204, 0.15);
+$grey-transparent-5: rgb(204, 204, 204, 0.3);
+
+$black: #000;
+$black-1: #49494d;
+$black-2: #797979;
+$black-3: #858585;
+
+$black-transparent: rgb(0, 0, 0, 0.5);
+$black-transparent-1: rgb(0, 0, 0, 0.15);
+$black-transparent-2: rgb(0, 0, 0, 0.1);
+$black-transparent-3: rgb(0, 0, 0, 0.3);
+$black-transparent-4: rgb(0, 0, 0, 0.4);
+$black-transparent-5: rgb(0, 0, 0, 0.05);
+$black-transparent-6: rgb(0, 0, 0, 0.55);
+
+
+
+$primary: #6b3483;
+$primary-1: #7a4a8f;
+$primary-2: #a763c4;
+$primary-3: #9157aa;
+$primary-3-transparent: rgba(107, 52, 131, 0.15);
+
+$white: #fff;
+$white-transparent-1: rgb(255, 255, 255, 0.9);
+$white-transparent-2: rgb(255, 255, 255, 0.2);
+$white-transparent-3: rgb(255, 255, 255, 0.4);
+$white-transparent-4: rgb(255, 255, 255, 0.1);
+$white-transparent-5: rgb(255, 255, 255, 0.17);
+
+$blue: #00a1de;
+$blue-1: #5F5ED8;
+
+$red: #FF0A0A;
+$red-1: #E35050;
+
+$green: #53D0BB;
+// Spacing
+$sidebar-width: 240px;
+$header-height: 70px;
+
+
+// Breakpoints
+$smallBreakpoint: 600px;
+$largeBreakpoint: 1080px;
+
+$border-radius: 20px;
+$small-border-radius: 5px;
+
+
+@mixin transition($time) {
+    transition: all linear $time;
+}
+
+
+// btn
+$btn-height: 29px;
+
+$tooltip-arrow-height: 7px;

@@ -1,0 +1,41 @@
+.section {
+    margin-bottom: 48px;
+
+    &-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        margin-bottom: 22px;
+
+        &__heading {
+            font-size: $largeFontSize;
+            text-transform: capitalize;
+        }
+        
+        &-link {
+            font-size: 12px;
+            text-transform: uppercase;
+            color: $black-2;
+
+            &:hover,&:hover &__icon {
+                color: $primary-2;
+            }
+        }
+        
+        &-link__icon {
+            font-size: 18px;
+            color: $grey-6;
+
+            position: relative;
+            top: 2px;
+
+        }
+    }
+    
+        
+    &-body {
+    
+    }
+}
+

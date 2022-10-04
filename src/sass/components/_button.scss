@@ -1,0 +1,54 @@
+.btn {
+    height: $btn-height;
+    min-width: 150px;
+    display: block;
+    margin: 0 auto;
+
+    border: 1px solid $grey-1;
+    border-radius: $btn-height;
+
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    text-align: center;
+
+    color: $black-1;
+    background-color: transparent;
+
+    cursor: pointer;
+
+    &:hover {
+        filter: brightness(90%);
+    }
+    
+    &--login {
+        border-color: $white;
+        color: $white;
+        line-height: calc($btn-height - 3px);
+    }
+    
+    &--upgrade {
+        background-color: $yellow;
+        border-color: $yellow;
+        color: $black-1;
+        line-height: calc($btn-height - 2px);
+        max-width: 160px;
+    }
+    
+    &--primary {
+        color: $white;
+        background-color: $primary;
+        border-color: $primary;
+    }
+    
+}
+
+
+@keyframes fadeOut {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}

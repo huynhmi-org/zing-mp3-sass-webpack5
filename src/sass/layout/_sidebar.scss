@@ -1,0 +1,186 @@
+.sidebar {
+	position: fixed;
+	top: 0;
+	left: 0;
+	bottom: 0;
+
+	width: $sidebar-width;
+	background-color: $grey;
+
+	display: flex;
+	flex-direction: column;
+}
+
+.logo {
+	padding: 15px 28px 0px;
+	display: block;
+	&:hover {
+		filter: brightness(95%);
+	}
+	
+	&__img {
+		height: 36px;
+	}
+}
+
+
+.nav {
+	padding: 10px 0px;
+
+	&-item {
+		display: flex;
+		align-items: center;
+	
+		padding: 10px 26px;
+		border-left: 3px solid transparent;
+	
+		color: $black-1;
+		cursor: pointer;
+	
+		&:hover {
+			color: $primary-1;
+		}
+		&:hover &__icon--play {
+			display: block;
+		}
+		
+		&--active {
+			color: $primary-1;
+			background-color: $grey-1;
+			border-left-color: $primary;
+		}
+		
+		&__icon {
+			font-size: $largeFontSize;
+			margin-top: -1px;
+			width: 40px;
+		}
+		
+		&__icon--play {
+			margin-left: auto;
+			display: none;
+		}
+		
+		&__title {
+			font-size: $x-smallFontSize;
+			font-weight: 700;
+			text-transform: capitalize;
+		}
+	}
+}
+
+
+
+.sidebar-separate {
+	position: relative;
+	height: 15px;
+
+	margin-left: 20px;
+	margin-right: 20px;
+
+	border-top: 1px solid $grey-2;
+	box-shadow: -15px 15px 20px 5px $grey;
+
+	z-index: 1;
+}
+
+.radio-label {
+	font-size: 8px;
+	font-weight: 600;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+	color: $white;
+
+	background-color: $red;
+	border-radius: 3px;
+
+	padding: 3px 6px 2px;
+	margin-left: 8px;
+}
+
+.sidebar-scrolldown {
+	--width: 4px;
+	overflow-y: auto;
+	margin-right: 3px;
+	&::-webkit-scrollbar {
+		-webkit-appearance: none;
+		width: var(--width);
+		border-radius: var(--width);
+	
+		background: transparent;
+	}
+	
+	&::-webkit-scrollbar-thumb {
+		-webkit-appearance: none;
+	
+		width: var(--width);
+		border-radius: var(--width);
+	
+		background-color: $grey-3;
+	}
+}
+
+
+.sidebar-banner {
+	padding: 15px 10px;
+	margin: 5px auto 10px;
+	max-width: 200px;
+	
+	background-color: $red;
+	border-radius: 8px;
+
+	&--login {
+		background-color: #6b3483;
+	}
+	
+	&--upgrade {
+		background-image: linear-gradient(to bottom right, #654ee5, #c16bd8);
+	}
+	
+	& .btn {
+		margin: 10px auto 0px;
+	}
+	
+	&__desc {
+		font-size: 13px;
+		font-weight: 600;
+		text-align: center;
+		color: $white;
+	
+		display: block;
+	}
+}
+
+
+.sidebar-button {
+	$height: 54px;
+	height: $height;
+	width: 100%;
+	
+	line-height: $height;
+	font-size: $x-smallFontSize;
+	font-weight: 600;
+	text-align: center;
+
+	border: none;
+	border-top: 1px solid $grey-2;
+
+	background: transparent;
+	color: $black-1;
+
+	cursor: pointer;
+
+	&__icon {
+		font-size: 20px;
+		color: $black-3;
+		margin-right: 7px;
+
+		position: relative;
+		top: 1px;
+	}
+	
+	&:hover {
+		color: $primary-1;
+	}
+}
+

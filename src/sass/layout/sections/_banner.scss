@@ -1,0 +1,19 @@
+.banner {
+    border-radius: $small-border-radius;
+    overflow: hidden;
+    display: block;
+
+    &:hover &__img {
+        transform: scale(1.05);
+    }
+    &__img {
+        height: 90px;
+
+        transform: scale(1);
+        @include transition(300ms);
+
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+}

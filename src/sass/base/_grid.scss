@@ -1,0 +1,39 @@
+
+.row {
+	display: flex;
+	flex-wrap: wrap;
+	margin-left: -14px;
+	margin-right: -14px;
+}
+
+.col {
+	padding-left: 14px;
+	padding-right: 14px;
+}
+
+.c-2,
+.c-4,
+.c-5,
+.c-7 {
+    display: block;
+}
+
+.c-2 {
+	flex-basis: 20%;
+}
+
+.c-4 {
+	flex-basis: 33.33333%;
+}
+
+.c-5 {
+	flex-basis: 41.66667%;
+}
+
+.c-7 {
+    flex-basis: 58.33333%;
+}
+// .m-3 {
+// 	display: block;
+// 	flex-basis: 25%;
+// }

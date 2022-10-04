@@ -1,0 +1,465 @@
+.header {
+    position: fixed;
+    top: 0;
+    left: $sidebar-width;
+    right: 0;
+
+    height: $header-height;
+
+    background-color: $white;
+    box-shadow: 2px 2px 6px 0px $grey-1;
+
+    display: flex;
+    align-items: center;
+    padding: 0 40px;
+
+    z-index: 3;
+}
+
+.header-with-arrow-button {
+    margin-right: 10px;
+}
+
+.header-arrow-button {
+    border: none;
+    background: none;
+
+    padding: 5px 10px;
+    &__icon {
+        font-size: 24px;
+        color: $black-2;
+        opacity: 0.5;
+    }
+    &--active &__icon {
+        opacity: 1;
+        cursor: pointer; 
+    }
+}
+
+.search-bar {
+    --border-radius: 20px;
+    height: 40px;
+    width: 550px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    position: relative;
+
+    &-button {
+        display: block;
+        padding: 0 15px;
+        cursor: pointer;
+
+        position: relative;
+        z-index: 1;
+
+        &__icon {
+            color: $black-2;
+        }
+
+        &--clean {
+            display: none;
+
+            &.active {
+                display: block;
+            }
+        }
+    } 
+    
+    &__input {
+        font-size: $smallFontSize;
+        
+        position: absolute;
+        top: 0;
+        left: 0;
+        
+        width: 100%;
+        height: 100%;
+        padding: 0 40px;
+        
+        background-color: $grey;
+        border-radius: $border-radius;
+        border: none;
+        outline: none;
+
+        &:focus {
+            box-shadow: 0px 0px 10px $grey;
+            background-color: $white;
+            border-top-right-radius: $border-radius;
+            border-top-left-radius: $border-radius;
+            border-bottom-left-radius: 0px;
+            border-bottom-right-radius: 0px;
+        }
+
+        &:focus ~ .search-bar-wrap {
+            display: block;
+        }
+    }
+
+    &-wrap {
+        position: absolute;
+        top: 100%;
+        left: 0;
+
+        display: none;
+        width: 100%;
+        padding: 10px 10px;
+
+        background-color: $white;
+        box-shadow: 0px 2px 4px 1px $grey;
+        border-radius: 0px 0px $border-radius $border-radius;
+    }
+
+    &-inner {
+        max-height: 70vh;
+        overflow-y: auto;
+
+        $size-scroll: 6px;
+
+        &::-webkit-scrollbar {
+            appearance: none;
+            width: $size-scroll;
+            border-radius: $size-scroll;
+            background-color: transparent;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            appearance: none;
+            width: $size-scroll;
+            background-color: $grey-1;
+            border-radius: $size-scroll;
+            box-shadow: inset 0px 0px 2px 2px $grey-6;
+        }
+    }
+
+
+    &-group + &-group {
+        border-top: 1px solid $grey-1;
+        padding-top: 5px;
+        margin-top: 8px;
+    }
+
+    &-header {
+        display: flex;
+        justify-content: space-between;
+        padding: 10px 10px;
+    }
+
+    &__title {
+        font-size: $smallFontSize;
+        color: $black-1;
+    }
+
+    &__clean-btn {
+        background: none;
+        border: none;
+        cursor: pointer;
+
+        font-size: 10px;
+        text-transform: uppercase;
+        color: $primary-2;
+    }
+
+    
+}
+
+.search-suggest {
+    &__item {
+        display: flex;
+        padding: 7px 10px;
+        cursor: pointer;
+
+        &:hover {
+            background-color: $grey-transparent-1;
+            border-radius: 4px;
+        }
+    }
+
+    &__icon {
+        margin-right: 10px;
+
+        font-size: $x-smallFontSize;
+        color: $grey-4;
+    }
+
+    &__text {
+        font-size: $smallFontSize;
+        color: $black-1;
+
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        
+    }
+}
+
+.search-history {
+    &-item {
+    }
+
+}
+
+
+.header-area-login {
+    margin-left: auto;
+}
+
+
+.header-buttons-list {
+    display: flex;
+    align-items: center;
+}
+
+.header-button {
+    $height: 40px;
+    height: $height;
+    width: $height;
+
+    border-radius: 100%;
+    border: none;
+    outline: none;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 6px;
+    
+    background-color: $grey;
+    cursor: pointer;
+
+    &__icon {
+        font-size: 18px;
+        color: $black-2;
+    }
+    &__img {
+        display: block;
+        width: 20px;
+    }
+    &__avatar {
+        height: 100%;
+        border-radius: 100%;
+    }
+}
+
+.header-button-item.has-avatar:hover {
+    filter: brightness(90%)
+}
+
+.header-button-item.has-menu-setting {
+    position: relative;
+}
+
+.menu-setting {
+    position: absolute;
+    top: calc(100% + 10px);
+    right: 0;
+
+    display: none;
+    width: 240px;
+
+    background-color: $white;
+    box-shadow: 0px 0px 4px 1px $grey-3;
+    border-radius: 10px;
+
+    &.show {
+        display: block;
+    }
+
+    &-list {
+        padding: 10px 0px;
+        
+    }
+
+    &-list:last-child {
+        color: $grey-1;
+        border-top: 1px solid $black-transparent-1;
+        padding-bottom: unset;
+        opacity: 0.7;
+    }
+
+    &-list:last-child &-item:last-child {
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+    }
+    
+    &-item {
+        display: flex;
+        align-items: center;
+        padding: 9px 15px;
+        cursor: pointer;
+
+        &__icon {
+            color: $black-2;
+            
+            margin: -1px 10px 0px 0px;
+
+            &--pull-right {
+                margin-left: auto;
+                margin-right: 0px;
+            }
+        }
+
+        &__title {
+            font-size: $smallFontSize;
+            color: $black-1;
+        }
+
+        &__link {
+            display: flex;
+            align-items: center;
+        }
+
+        &:hover {
+            background-color: $grey;
+        }
+
+        &:hover &__title,
+        &:hover &__icon {
+            color: $primary-3;
+        }
+
+        &.has-quality-setting, &.has-display-setting {
+            position: relative;
+        }
+
+        &.has-quality-setting:hover .quality-setting {
+            display: block;
+        }
+
+        &.has-display-setting:hover .display-setting {
+            display: block;
+        }
+    }
+
+    
+}
+
+
+.quality-setting,
+.display-setting {
+    position: absolute;
+
+    right: calc(100% - 5px);
+    min-width: 300px;
+
+    background-color: $white;
+    box-shadow: 0px 0px 5px 1px $grey-3;
+    border-radius: 10px;
+
+    padding: 10px 0px;
+    z-index: 1;
+}
+
+.quality-setting {
+    top: -25px;
+    min-width: 300px;
+    display: none;
+
+    &-item {
+        padding: 10px 15px;
+
+        &__title {
+            font-size: $baseFontSize;
+        }
+        &-desc {
+            font-size: $x-smallFontSize;
+            display: flex;
+            align-items: flex-start;
+            margin-top: 7px;
+        }
+        &__text {
+            color: $black-transparent;
+        }
+        &__icon {
+            font-size: 2rem;
+            color: $grey-2;
+
+            margin-left: 10px;
+            margin-top: -5px;
+
+            display: none;
+        }
+
+        &:hover {
+            background-color: $grey;
+        }
+
+        &--active &__icon {
+            display: block;
+        }
+    }
+}
+
+
+.display-setting {
+    top: -10px;
+    display: none;
+
+    &-item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        padding: 10px 15px;
+
+        &__desc {
+            font-size: $smallFontSize;
+            color: $black-1;
+        }
+
+        &:hover {
+            background-color: $grey;
+        }
+    }
+}
+
+
+.switch-btn {
+    $height: 15px;
+    height: $height;
+    width: calc($height * 1.7);
+
+    border-radius: $height;
+    position: relative;
+    
+    &__input {
+        appearance: none;
+
+        width: 100%;
+        height: 100%;
+
+        border-radius: $height;
+        border: none;
+        background-color: $grey-4;
+
+        cursor: pointer;
+        outline: none;
+        position: absolute;
+
+        &:checked {
+            background-color: $primary-1;
+        }
+        &:checked ~ .switch-btn__ball {
+            left: unset;
+            right: 1px;
+        }
+    }
+    
+    &__ball {
+        $size: calc($height - 2px);
+        display: block;
+        width: $size;
+        height: $size;
+        
+        border-radius: 100%;
+        background-color: $white;
+
+        position: absolute;
+        top: 1px;
+        left: 1px;
+
+        cursor: pointer;
+    }
+}
