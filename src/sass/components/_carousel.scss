@@ -1,3 +1,4 @@
+
 .carousel {
 
         overflow: hidden;
@@ -6,6 +7,19 @@
 
         position: relative;
     
+    &-header {
+        display: flex;
+        justify-content: flex-end;
+        & .carousel-btn {
+            position: unset;
+            box-shadow: unset;
+            transform: unset;
+
+            &:hover {
+                background-color: unset;
+            }
+        }
+    }
     &-btn {
         position: absolute;
         top: 50%;
@@ -46,6 +60,10 @@
 
         &--right {
             right: 10px;
+        }
+
+        &--no-pos {
+            position: unset;
         }
     }
     &-list {

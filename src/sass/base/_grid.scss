@@ -6,6 +6,16 @@
 	margin-right: -14px;
 }
 
+.row.small-gutter {
+	margin-left: -10px;
+	margin-right: -10px;
+}
+
+.row.small-gutter .col {
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
 .col {
 	padding-left: 14px;
 	padding-right: 14px;
@@ -14,7 +24,8 @@
 .c-2,
 .c-4,
 .c-5,
-.c-7 {
+.c-7,
+.c-12-5 {
     display: block;
 }
 
@@ -32,6 +43,10 @@
 
 .c-7 {
     flex-basis: 58.33333%;
+}
+
+.c-12-5 {
+	flex-basis: 12.5%;
 }
 // .m-3 {
 // 	display: block;
