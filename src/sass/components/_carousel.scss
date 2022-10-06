@@ -8,16 +8,22 @@
         position: relative;
     
     &-header {
-        display: flex;
-        justify-content: flex-end;
+        position: relative;
         & .carousel-btn {
-            position: unset;
             box-shadow: unset;
-            transform: unset;
+            background-color: unset;
+            left: unset;
+            top: -25px;
 
             &:hover {
                 background-color: unset;
             }
+
+            &--left {
+                right: 50px;
+            }
+
+
         }
     }
     &-btn {
@@ -68,7 +74,7 @@
     }
     &-list {
         display: flex;
-        transition: transform linear 200ms;
+        @include transition(250ms)
 
     }
     
