@@ -49,14 +49,15 @@
 
     &-button {
         display: block;
-        padding: 0 15px;
+        padding: 0 10px;
         cursor: pointer;
 
+        font-size: $largeFontSize;
         position: relative;
         z-index: 1;
 
         &__icon {
-            color: $black-2;
+            color: $black-4;
         }
 
         &--clean {

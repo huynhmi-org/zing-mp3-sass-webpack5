@@ -62,7 +62,7 @@
 		}
 		
 		&__title {
-			font-size: $x-smallFontSize;
+			font-size: $xx-smallFontSize;
 			font-weight: 700;
 			text-transform: capitalize;
 		}
@@ -94,7 +94,7 @@
 	background-color: $red;
 	border-radius: 3px;
 
-	padding: 3px 6px 2px;
+	padding: 2px 6px 2px;
 	margin-left: 8px;
 
 	&--center {

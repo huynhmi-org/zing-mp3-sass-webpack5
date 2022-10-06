@@ -1,8 +1,9 @@
 // Fonts
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400&display=swap');
-$sansSerif: 'Roboto', sans-serif;
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+$sansSerif: 'Inter', sans-serif;
 
 // Font Sizing
+$xx-smallFontSize: 13px;
 $x-smallFontSize: 14px;
 $smallFontSize: 15px;
 $baseFontSize: 16px;
@@ -32,9 +33,10 @@ $grey-transparent-4: rgb(204, 204, 204, 0.15);
 $grey-transparent-5: rgb(204, 204, 204, 0.3);
 
 $black: #000;
-$black-1: #49494d;
+$black-1: #32323D;
 $black-2: #797979;
 $black-3: #858585;
+$black-4: #999999;
 
 $black-transparent: rgb(0, 0, 0, 0.5);
 $black-transparent-1: rgb(0, 0, 0, 0.15);
