@@ -79,7 +79,7 @@
 	margin-right: 20px;
 
 	border-top: 1px solid $grey-2;
-	box-shadow: -15px 15px 20px 5px $grey;
+	box-shadow: 0px 0px 8px 5px $grey;
 
 	z-index: 1;
 }
@@ -111,13 +111,12 @@
 }
 
 .sidebar-scrolldown {
-	--width: 4px;
 	overflow-y: auto;
 	margin-right: 3px;
 	&::-webkit-scrollbar {
 		-webkit-appearance: none;
-		width: var(--width);
-		border-radius: var(--width);
+		width: 4px;
+		border-radius: 4px;
 	
 		background: transparent;
 	}
@@ -125,8 +124,8 @@
 	&::-webkit-scrollbar-thumb {
 		-webkit-appearance: none;
 	
-		width: var(--width);
-		border-radius: var(--width);
+		width: 4px;
+		border-radius: 4px;
 	
 		background-color: $grey-3;
 	}

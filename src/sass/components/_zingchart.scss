@@ -113,9 +113,9 @@
     }
 
     & .btn {
-        --height: 33px;
+        height: $btn-height-large;
         color: $white;
-        line-height: 26px;
+        line-height: 29px;
         text-transform: unset;
         font-weight: unset;
         font-size: $x-smallFontSize;
