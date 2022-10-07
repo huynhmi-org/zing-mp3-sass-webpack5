@@ -1,4 +1,3 @@
-
 .row {
 	display: flex;
 	flex-wrap: wrap;
@@ -25,34 +24,30 @@
 	padding-right: 14px;
 }
 
-.c-2,
-.c-4,
-.c-5,
-.c-7,
-.c-12-5 {
+.l-2,
+.l-4,
+.l-5,
+.l-7,
+.l-12-5 {
     display: block;
 }
 
-.c-2 {
+.l-2 {
 	flex-basis: 20%;
 }
 
-.c-4 {
+.l-4 {
 	flex-basis: 33.33333%;
 }
 
-.c-5 {
+.l-5 {
 	flex-basis: 41.66667%;
 }
 
-.c-7 {
+.l-7 {
     flex-basis: 58.33333%;
 }
 
-.c-12-5 {
+.l-12-5 {
 	flex-basis: 12.5%;
 }
-// .m-3 {
-// 	display: block;
-// 	flex-basis: 25%;
-// }

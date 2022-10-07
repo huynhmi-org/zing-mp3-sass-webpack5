@@ -1,0 +1,16 @@
+.top-artist {
+    padding-top: 100%;
+    position: relative;
+    &__link {
+        position: absolute;
+        top: 0;
+        left: 0;
+
+        height: 100%;
+        width: 100%;
+        
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: contain;
+    }
+}
