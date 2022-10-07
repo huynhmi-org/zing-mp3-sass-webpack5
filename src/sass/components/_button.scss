@@ -40,6 +40,13 @@
         background-color: $primary;
         border-color: $primary;
     }
+
+    &--order {
+        height: 37px;
+        min-width: 110px;
+        margin-right: 0px;
+        @include text(14px, $white);
+    }
     
 }
 

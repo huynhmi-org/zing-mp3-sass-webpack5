@@ -1,4 +1,3 @@
-
 .row {
 	display: flex;
 	flex-wrap: wrap;
@@ -6,34 +5,49 @@
 	margin-right: -14px;
 }
 
+.row.small-gutter {
+	margin-left: -10px;
+	margin-right: -10px;
+}
+
+.row.small-gutter .col {
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+.row.center {
+	justify-content: center;
+}
+
 .col {
 	padding-left: 14px;
 	padding-right: 14px;
 }
 
-.c-2,
-.c-4,
-.c-5,
-.c-7 {
+.l-2,
+.l-4,
+.l-5,
+.l-7,
+.l-12-5 {
     display: block;
 }
 
-.c-2 {
+.l-2 {
 	flex-basis: 20%;
 }
 
-.c-4 {
+.l-4 {
 	flex-basis: 33.33333%;
 }
 
-.c-5 {
+.l-5 {
 	flex-basis: 41.66667%;
 }
 
-.c-7 {
+.l-7 {
     flex-basis: 58.33333%;
 }
-// .m-3 {
-// 	display: block;
-// 	flex-basis: 25%;
-// }
+
+.l-12-5 {
+	flex-basis: 12.5%;
+}

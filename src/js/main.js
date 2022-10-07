@@ -89,24 +89,23 @@ btnTabs.forEach((btn, index) => {
 //**************** Handle Carousel of New Song **************** */
 import carousel from "./carousel.js";
 
-const newSongCarousel = $('#new-song-carousel');
-const carousel1 = carousel(newSongCarousel,3);
+const newSongCarousel = carousel($('#top-new-song-release'));
 
-const newSongCarousel2  = $('#new-song-carousel-has-card');
-const carousel2 = carousel(newSongCarousel2, 5);
+const newSongCarousel2 = carousel($('#new-song-release'));
 
-const topArtistCarousel = $('#top-artist-carousel');
-const btnNextTopArtistCarousel = $('#carousel-next-btn');
-const btnPreTopArtistCarousel = $('#carousel-pre-btn');
-const carousel3 = carousel(topArtistCarousel,7,btnNextTopArtistCarousel,btnPreTopArtistCarousel);
+const topArtistCarousel = carousel($('#top-artist-carousel'));
+topArtistCarousel.handleBtnEvent();
 
-btnNextTopArtistCarousel.onclick = carousel3.handleCarouselNext;
-btnPreTopArtistCarousel.onclick = carousel3.handleCarouselPre;
+const topRadioCarousel = carousel($('#top-radio'));
+topRadioCarousel.handleBtnEvent();
+
+const eventCarousel = carousel($('#events'));
+eventCarousel.handleBtnEvent();
 
 setInterval(() => {
-	carousel1.handleCarouselNext();
-	carousel2.handleCarouselNext();
-	carousel3.handleCarouselNext();
+	newSongCarousel.handleCarouselNext();
+	newSongCarousel2.handleCarouselNext();
+	topArtistCarousel.handleCarouselNext();
 }, 5000);
 
 

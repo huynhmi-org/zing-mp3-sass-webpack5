@@ -1,10 +1,31 @@
 // Footer Styles
 footer {
-  background: $blue;
-  color: white;
-  // padding: $pad * 2;
   
-  div {
-    // @extend .container
+  padding: 0px 40px 0px;
+
+}
+
+.footer__heading {
+  color: $black-2;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-align: center;
+  margin-bottom: 30px
+}
+
+.partner {
+  
+  &-logo {
+    @include size(null, 100%, 57px);
+    background-color: $grey-transparent-2;
+    border-radius: 8px;
+    padding: 11px 0px;
+    margin-bottom: 30px;
+
+    &__img {
+      @include size;
+      object-fit: contain;
+    }
   }
 }

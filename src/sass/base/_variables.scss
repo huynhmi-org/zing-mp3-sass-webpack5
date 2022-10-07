@@ -1,8 +1,9 @@
 // Fonts
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
-$sansSerif: 'Roboto', sans-serif;
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+$sansSerif: 'Inter', sans-serif;
 
 // Font Sizing
+$xx-smallFontSize: 13px;
 $x-smallFontSize: 14px;
 $smallFontSize: 15px;
 $baseFontSize: 16px;
@@ -32,9 +33,10 @@ $grey-transparent-4: rgb(204, 204, 204, 0.15);
 $grey-transparent-5: rgb(204, 204, 204, 0.3);
 
 $black: #000;
-$black-1: #49494d;
+$black-1: #32323D;
 $black-2: #797979;
 $black-3: #858585;
+$black-4: #999999;
 
 $black-transparent: rgb(0, 0, 0, 0.5);
 $black-transparent-1: rgb(0, 0, 0, 0.15);
@@ -43,8 +45,6 @@ $black-transparent-3: rgb(0, 0, 0, 0.3);
 $black-transparent-4: rgb(0, 0, 0, 0.4);
 $black-transparent-5: rgb(0, 0, 0, 0.05);
 $black-transparent-6: rgb(0, 0, 0, 0.55);
-
-
 
 $primary: #6b3483;
 $primary-1: #7a4a8f;
@@ -63,6 +63,7 @@ $blue: #00a1de;
 $blue-1: #5F5ED8;
 
 $red: #FF0A0A;
+$red-2: #ff8787;
 $red-1: #E35050;
 
 $green: #53D0BB;
@@ -83,8 +84,32 @@ $small-border-radius: 5px;
     transition: all linear $time;
 }
 
+@mixin size($all : 100%,$width: $all, $height : $all) {
+    height: $height;
+    width: $width;
+}
+
+@mixin config-border($radius: 100%, $size: 1px, $type: solid, $color: $white) {
+    border-radius: $radius;
+    border: $size $type $color;
+}
+
+@mixin text($size: $baseFontSize, $color: $black, $line-height: 1.5, $align: center, $weight: 300) {
+    font-size: $size;
+    color: $color;
+    line-height: $line-height;
+    font-weight: $weight;
+    text-align: $align;
+}
+
+@mixin backgroundImage ($position: center, $size: cover, $repeat: no-repeat) {
+    background-repeat: $repeat;
+    background-size: $size;
+    background-position: $position;
+}
+
 
 // btn
 $btn-height: 29px;
-
+$btn-height-large: 33px;
 $tooltip-arrow-height: 7px;

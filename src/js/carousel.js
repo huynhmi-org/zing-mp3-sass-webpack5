@@ -1,47 +1,65 @@
-export default function carousel(carousel, changeAmount, nextBtn, preBtn) {
+export default function carousel(carouselWrap) {
     let index = 0;
-    const carouselItems = carousel.querySelectorAll('.carousel-item').length;
+    let percentItem,maxIndex,totalItemRendering, carousel;
+    
+    let btnNext = carouselWrap.querySelector('.carousel-btn--right');
+    let btnPre = carouselWrap.querySelector('.carousel-btn--left');
 
-    let offset = carouselItems  % changeAmount;
-    const width = 100 / changeAmount;
-    const maxIndex = carouselItems - changeAmount;
+    let isNext, isPre;
 
-    function handleBtn() {
-        if (nextBtn && preBtn) {
-            if (index <= 0) {
-                preBtn.classList.add('carousel-btn--disabled');
-                nextBtn.classList.remove('carousel-btn--disabled');
-            } else if (index >= carouselItems - changeAmount) {
-                nextBtn.classList.add('carousel-btn--disabled');
-                preBtn.classList.remove('carousel-btn--disabled');
-            } else {
-                preBtn.classList.remove('carousel-btn--disabled');
-                nextBtn.classList.remove('carousel-btn--disabled');
-            }
-        }
+    function getChange() {
+        carousel = carouselWrap.querySelector('.carousel');
+        const widthCarousel= carousel.clientWidth;
+        const items = carousel.querySelectorAll('.carousel-item');
+        const widthItem = items[0].clientWidth;
+        
+        totalItemRendering = (widthCarousel / widthItem).toFixed(0)*1;
+        percentItem = 100 / totalItemRendering;
+        maxIndex = items.length - totalItemRendering;
     }
+
+    function updateBtn() {
+        if (btnNext) {
+            isNext = index === maxIndex ? false : true;
+            isNext ? btnNext.classList.remove('carousel-btn--disabled') : btnNext.classList.add('carousel-btn--disabled') ;
+        }
+
+        if (btnPre) {
+            isPre = index === 0 ? false: true;
+            isPre ? btnPre.classList.remove('carousel-btn--disabled') : btnPre.classList.add('carousel-btn--disabled');
+        } 
+    }
+    
+    updateBtn();
 
     return {
         handleCarouselNext() {
-            let increase = changeAmount;
-
-            if (offset != 0) {
-                increase = maxIndex - index >= changeAmount ? changeAmount : offset;
-            }
-
-            index === maxIndex ? (index = 0, increase = changeAmount) : index = index + increase;
-            carousel.style.transform = `translateX(${index * width * -1}%)`;
-            handleBtn();
+            getChange();
+            const offset = maxIndex - index;
+            const increase = offset < totalItemRendering ? offset : totalItemRendering;
+            
+            index = index >= maxIndex ? 0 : index + increase;
+            carousel.querySelector('.carousel-list').style.transform = `translateX(${index * percentItem * -1}%)`;
+            updateBtn();
         },
 
         handleCarouselPre() {
-            let decrease = changeAmount;
-            if (offset  != 0) {
-                decrease = index >= changeAmount ? changeAmount : offset;
-            }
-            index > 0 ? index -= decrease : (index = 0, decrease = changeAmount);
-            carousel.style.transform = `translateX(${index * width * -1}%)`;
-            handleBtn();
+            getChange();
+            const decrease = index < totalItemRendering ? index : totalItemRendering;
+            
+            index = index > 0 ? index - decrease : 0;
+            carousel.querySelector('.carousel-list').style.transform = `translateX(${index * percentItem * -1}%)`;
+            updateBtn();
+        },
+
+        handleBtnEvent() {
+            btnNext.onclick = () => {
+                isNext && this.handleCarouselNext();
+            };
+
+            btnPre.onclick = () => {
+                isPre && this.handleCarouselPre();
+            };
         }
         
     }
