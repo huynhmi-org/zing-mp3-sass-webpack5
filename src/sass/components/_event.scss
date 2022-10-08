@@ -42,7 +42,13 @@
 
         &__title {
             font-size: $baseFontSize;
+            text-transform: capitalize;
             margin-top: 2px;
+            @include limitText(30px, 1);
+        }
+
+        &__multiply {
+            text-transform: lowercase;
         }
         &__subtitle {
             font-size: $x-smallFontSize;

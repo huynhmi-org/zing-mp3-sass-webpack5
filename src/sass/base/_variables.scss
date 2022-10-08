@@ -108,6 +108,15 @@ $small-border-radius: 5px;
     background-position: $position;
 }
 
+@mixin limitText ($height, $line) {
+    overflow: hidden;
+    max-height: $height;
+    text-overflow: ellipsis;
+
+    display: -webkit-box;
+    -webkit-line-clamp: $line;
+    -webkit-box-orient: vertical;
+}
 
 // btn
 $btn-height: 29px;
