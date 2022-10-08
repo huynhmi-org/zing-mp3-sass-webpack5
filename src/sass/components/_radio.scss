@@ -1,6 +1,16 @@
 .radio {
-
+    &-item &-label {
+        display: none;
+    }
     
+    &-item--live &-label {
+        display: block;
+    }
+
+    &-item--live &-cover-inner {
+        @include config-border(100%,3px, solid, $red);
+    }
+
     &-cover-inner, &-cover__img, &-controls {
         position: absolute;
         top: 0;
@@ -12,7 +22,7 @@
 
         &-inner {
             @include size;
-            @include config-border(100%,3px, solid, $red);
+            @include config-border(100%,3px, solid, transition);
             overflow: hidden;
 
         }
@@ -85,5 +95,32 @@
 
     & .carousel-btn {
         top: 35%;
+    }
+
+    &-label {
+        font-size: 8px;
+        font-weight: 600;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        color: $white;
+    
+        background-color: $red;
+        border-radius: 3px;
+    
+        padding: 2px 6px 2px;
+        margin-left: 8px;
+    
+        
+        &--center {
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            margin-left: 0px;
+        }
+    
+        &--small {
+            font-size: 6px;
+        }
     }
 }
