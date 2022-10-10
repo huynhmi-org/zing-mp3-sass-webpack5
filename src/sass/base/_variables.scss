@@ -1,5 +1,5 @@
 // Fonts
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
 $sansSerif: 'Inter', sans-serif;
 
 // Font Sizing
@@ -45,6 +45,7 @@ $black-transparent-3: rgb(0, 0, 0, 0.3);
 $black-transparent-4: rgb(0, 0, 0, 0.4);
 $black-transparent-5: rgb(0, 0, 0, 0.05);
 $black-transparent-6: rgb(0, 0, 0, 0.55);
+$black-transparent-7: rgb(0, 0, 0, 0.01);
 
 $primary: #6b3483;
 $primary-1: #7a4a8f;
@@ -70,6 +71,7 @@ $green: #53D0BB;
 // Spacing
 $sidebar-width: 240px;
 $header-height: 70px;
+$player-height: 90px;
 
 
 // Breakpoints

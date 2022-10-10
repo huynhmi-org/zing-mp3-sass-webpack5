@@ -1,0 +1,243 @@
+.player {
+    position: fixed;
+    bottom: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    width: 100%;
+    height: 90px;
+    
+    background-color: $white;
+    border-top: 1px solid $grey;
+    z-index: 2;
+
+    &-between {
+        flex: 1;
+
+        & .player-progress {
+            margin-top: 8px;
+        }
+    }
+
+    & .media:hover {
+        background-color: unset;
+    }
+
+    & .media {
+        max-width: 400px;
+    }
+
+    & .media-options {
+        display: block;
+    }
+
+    &-controls, &-button, &-progress {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    &-controls-with-play &-button {
+        margin: 0 10px;
+        @include size(32px);
+        font-size: 16px;
+
+        & .tooltip {
+            top: -100%;
+        }
+
+        
+    }
+
+    
+
+    &-button {
+        @include size(30px);
+        margin: 0 3px;
+
+        border: none;
+        border-radius: 100%;
+        background-color: transparent;
+
+        font-size: 13px;
+        color: $black;
+
+        cursor: pointer;
+
+        &:hover {
+            background-color: $black-transparent-7;
+        }
+
+        &.has-mv {
+            cursor: not-allowed;
+
+            border: 1px solid $black;
+            border-radius: 5px;
+            @include size(null, 20px, 16px);
+
+            text-transform: uppercase;
+            font-size: 8px;
+
+            opacity: 0.5;
+            margin-right: 13px;
+        }
+
+        &__text {
+            position: relative;
+            margin-top: 1px;
+        }
+
+        &.shuffle-btn.shuffle-btn--act, 
+        &.repeat-btn.repeat-btn--one .player-button__icon,  
+        &.repeat-btn.repeat-btn--all .player-button__icon {
+            color: $primary-1;
+        }
+
+        &.repeat-btn--one .player-button__number {
+            display: block;
+        }
+
+
+
+
+        &.play-btn {
+            @include size(36px);
+            @include config-border(100%, 1px, solid, $black-transparent-6);
+            
+            line-height: 34px;
+
+            &:hover {
+                background-color: transparent;
+                color: $primary-1;
+            }
+        }
+
+        &__icon--play {
+            display: none;
+        }
+
+        &__icon--pause {
+            display: block;
+        }
+
+        &__icon {
+    
+        }
+
+        &__number {
+            position: absolute;
+            top: 7px;
+            left: 1px;
+
+            font-size: 10px;
+            line-height: 1;
+
+            display: none;
+        }
+    }
+
+    &-progress {
+
+        &__time {
+            font-size: 14px;
+            margin: 0 10px;
+
+            &.current-time {
+                opacity: 0.6;
+            }
+        }
+        &__bar {
+            -webkit-appearance: none;
+            height: 3px;
+            border-radius: 3px;
+            width: 100%;
+            background-color: $grey;
+            max-width: 420px;
+
+            &:hover {
+                height: 5px;
+                border-radius: 5px;
+
+
+            }
+
+            &::-webkit-slider-thumb {
+                appearance: none;
+                height: 12px;
+                width: 12px;
+                border-radius: 100%;
+                background-color: $primary-1;
+                cursor: pointer;
+            }
+
+        }
+    }
+
+    &-separate {
+        width: 1px;
+        height: 33px;
+        background-color: $grey;
+
+        display: block;
+        margin: 0px 10px 0px 20px;
+    }
+
+    &--playing &-button__icon--play {
+        display: block;
+    }
+
+    &--playing &-button__icon--pause {
+        display: none;
+    }
+
+    & .media-options {
+        height: 32px;
+        width: 32px;
+        line-height: 32px;
+
+        & .tooltip {
+            right: 50%;
+            transform: translateX(50%);
+        }
+
+        &:hover {
+            background-color: $black-transparent-7;
+        }
+    }
+
+
+}
+
+.volume-wrap {
+    & .player-progress__bar {
+        max-width: 70px;
+    }
+}
+.volume-btn {
+    & .player-button__icon {
+        &--unmute {
+            display: block;
+        }
+
+        &-mute {
+            display: none;
+        }
+    }
+
+    &.volume-btn--mute .player-button__icon {
+        &--unmute {
+            display: none;
+        }
+
+        &-mute {
+            display: block;
+        }
+    }
+}
+
+
+.playlist-btn {
+    margin-right: 10px;
+}

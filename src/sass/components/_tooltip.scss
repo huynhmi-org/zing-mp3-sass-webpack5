@@ -24,8 +24,17 @@
         top: 100%;
     }
 
+    &--touch-right {
+        right: 0;
+
+        & .tooltip__content::before {
+            left: 88%;
+        }
+    }
+
 
 }
+
 
 .tooltip__content {
     position: relative;

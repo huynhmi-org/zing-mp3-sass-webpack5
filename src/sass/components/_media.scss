@@ -230,4 +230,34 @@
         display: block;
         padding: 0px 20px 0px 10px;
     }
+
+    &-favorite-btn {
+        border: none;
+        outline: none;
+
+        background: none;
+        cursor: pointer;
+
+        & .media-favorite-btn__icon--love {
+            display: none;
+        }
+
+        & .media-favorite-btn__icon--unlove {
+            display: block;
+        }
+
+        &__icon {
+            color: $primary-1;
+        }
+    }
+
+    &--favorite {
+        & .media-favorite-btn__icon--love {
+            display: block;
+        }
+
+        & .media-favorite-btn__icon--unlove {
+            display: none;
+        }
+    }
 } 
