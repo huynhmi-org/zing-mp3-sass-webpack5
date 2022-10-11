@@ -1,0 +1,19 @@
+.side-playlist {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+
+    width: 330px;
+    z-index: 3;
+    
+    background-color: $white;
+    box-shadow: -1px 0px 4px 1px $grey-1;
+
+    transform: translateX(100%);
+    @include transition(300ms);
+
+    &--open {
+        transform: translateX(0%);
+    }
+}

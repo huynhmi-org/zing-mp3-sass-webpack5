@@ -3252,8 +3252,8 @@
                         </div>
                     </div>
                 </section>
-
             </div>
+
             <footer>
                 <h3 class="footer__heading">đối tác âm nhạc</h3>
                 <div class="partner">
@@ -3312,8 +3312,11 @@
                 </div>
             </footer>
         </div>
-        <div class="player player--playing">
-            <div class="media media--favorite">
+
+        <!-- Player -->
+        <!-- player--playing -->
+        <div class="player">
+            <div class="media">
                 <div class="media-cover media-cover--medium">
                     <img src="https://photo-resize-zmp3.zmdcdn.me/w240_r1x1_webp/cover/5/7/5/e/575e6664486827d431cf8dce47312ee3.jpg" alt="Cover" class="media-cover__img">
                 </div>
@@ -3414,7 +3417,8 @@
                     <input type="range" name="" id="" class="player-progress__bar" value=0 min="0" max="100" step="1">
                 </div>
                 <span class="player-separate"></span>
-                <button class="player-button playlist-btn has-tooltip">
+                <!-- playlist-btn--active -->
+                <button class="player-button playlist-btn has-tooltip ">
                     <i class="player-button__icon fa-solid fa-sliders"></i>
                     <span class="tooltip tooltip--above tooltip--touch-right">
                         <span class="tooltip__content">
@@ -3424,6 +3428,19 @@
                 </button>
             </div>
         </div>
+
+        <!-- Playlist -->
+        <div class="side-playlist">
+
+        </div>
+
+        <!-- Toast Message -->
+        <!-- <div class="toast-message">
+            <span class="toast-message__text">Đã thêm bài hát vào thư viện</span>
+            <button class="toast-message-btn">
+                <i class="toast-message-btn__icon fa-solid fa-xmark"></i>
+            </button>
+        </div> -->
     </div>
 </body>
 

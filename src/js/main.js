@@ -86,7 +86,7 @@ btnTabs.forEach((btn, index) => {
 	}
 })
 
-//**************** Handle Carousel of New Song **************** */
+//**************** Handle Carousel **************** */
 import carousel from "./carousel.js";
 
 const newSongCarousel = carousel($('#top-new-song-release'));
@@ -107,5 +107,31 @@ setInterval(() => {
 	newSongCarousel2.handleCarouselNext();
 	topArtistCarousel.handleCarouselNext();
 }, 5000);
+
+
+//**************** Handle Player **************** */
+import createToastMessage from "./_toastMessage.js";
+const favoriteToast = createToastMessage({
+	position: 'fixed',
+    left: '20px',
+    bottom: 'calc($player-height + 30px)'
+}, 2000);
+
+const btnFavorites = $$('.media-favorite-btn');
+btnFavorites.forEach( btn => {
+	btn.onclick = function() {
+		const media = this.closest('.media');
+
+		if (media.classList.contains('media--favorite')) {
+			media.classList.remove('media--favorite');
+			favoriteToast('Đã xóa bài hát khỏi thư viện');
+		} else {
+			media.classList.add('media--favorite');
+			favoriteToast('Đã thêm bài hát vào thư viện');
+		}
+
+		
+	}
+})
 
 

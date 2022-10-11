@@ -11,7 +11,7 @@
     
     background-color: $white;
     border-top: 1px solid $grey;
-    z-index: 2;
+    z-index: 4;
 
     &-between {
         flex: 1;
@@ -240,4 +240,15 @@
 
 .playlist-btn {
     margin-right: 10px;
+    border-radius: 4px;
+
+    &--active {
+        background-color: $primary-1;
+        color: $white;
+
+        &:hover {
+            background-color: $primary-1;
+            filter: brightness(85%);
+        }
+    }
 }

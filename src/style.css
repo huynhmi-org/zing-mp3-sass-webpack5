@@ -664,7 +664,7 @@ footer {
   height: 90px;
   background-color: #fff;
   border-top: 1px solid #f2f2f2;
-  z-index: 2;
+  z-index: 4;
 }
 .player-between {
   flex: 1;
@@ -828,6 +828,22 @@ footer {
 
 .playlist-btn {
   margin-right: 10px;
+}
+
+.side-playlist {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 330px;
+  z-index: 3;
+  background-color: #fff;
+  box-shadow: -1px 0px 4px 1px #e6e6e6;
+  transform: translateX(100%);
+  transition: all linear 300ms;
+}
+.side-playlist--open {
+  transform: translateX(0%);
 }
 
 .carousel {
