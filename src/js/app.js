@@ -9,8 +9,15 @@ const audio = $('.player-audio');
 const timer = $('#current-time');
 const duration = $('#duration');
 
+const preBtn = $('#btn-pre-song');
+const nextBtn = $('#btn-next-song');
+const shuffleBtn = $('.shuffle-btn');
+const repeatBtn = $('.repeat-btn');
+
+
 const App = {
     isPlay: false,
+    isRandom: shuffleBtn.classList.contains('shuffle-btn--act'),
     songs : [
         {
             name: 'Until you',
@@ -44,39 +51,99 @@ const App = {
     },
     handleEvent() {
         const playBtn = player.querySelector('.play-btn');
-        audio.onloadedmetadata = () => {
+        
+        audio.onloadeddata = () => {
             playBtn.onclick = () => {
                 this.isPlay ? audio.pause() : audio.play();
             }
 
             duration.textContent = this.formatTime(audio.duration);
+            console.log(audio.duration);
             
+        }
+
+        
+
+        progress.oninput = function() {
+            const timeChange =this.value / 100 * audio.duration;
+            audio.currentTime = timeChange;
+        }
+
+        nextBtn.onclick = () => {
+            this.currentIndex = this.currentIndex === this.songs.length - 1 ? 0 : this.currentIndex + 1;
+            this.renderCurrentSong();
+            this.updateSongActive();
+            this.isPlay = false;
+            playBtn.click();
+        }
+
+        preBtn.onclick = () => {
+            this.currentIndex = this.currentIndex === 0 ? this.songs.length - 1 : this.currentIndex - 1;
+            this.renderCurrentSong();
+            this.updateSongActive();
+            this.isPlay = false;
+            playBtn.click();
+        }
+
+        shuffleBtn.onclick = () => {
+            shuffleBtn.classList.toggle('shuffle-btn--act');
+            this.isRandom = !this.isRandom;
+            shuffleBtn.querySelector('.tooltip__content').textContent = this.isRandom ? 'Tắt phát xáo trộn' : 'Bật phát xáo trộn';  
         }
 
         audio.onplay = () => {
             this.isPlay = true;
             player.classList.add('player--playing');
+            this.updateMediaCurrent();
         }
 
         audio.onpause = () => {
             this.isPlay = false;
             player.classList.remove('player--playing');
+            this.updateMediaCurrent();
         }
 
         audio.ontimeupdate = () => {
             const time = audio.currentTime;
             progress.value = time/audio.duration * 100 || 0;
             timer.textContent = this.formatTime(time);
+
         }
 
-        progress.oninput = function() {
-            const timeChange = this.value/100 * audio.duration;
-            audio.currentTime = timeChange;
+        audio.onended = () => {
+            if (this.isRandom) {
+                this.handleRandom();
+                this.renderCurrentSong();
+                this.updateSongActive();
+                playBtn.click();
+            }
         }
 
     },
+    handleRandom() {
+        const totalSong = this.songs.length;
+        let numberRandom;
+        do {
+            numberRandom = Math.floor(Math.random() * totalSong);
+        } while (numberRandom === this.currentIndex);
+        this.currentIndex = numberRandom;
+       
+    },
+    updateMediaCurrent() {
+        const mediaCurrent = $('.media-current .media');
+        this.isPlay ? mediaCurrent.classList.add('media--active') : mediaCurrent.classList.remove('media--active');
+    },
+    updateSongActive() {
+        let mediaCurrent = $('.media-current');
+        mediaCurrent.querySelector('.media').classList.remove('media--active');
+        mediaCurrent.classList.remove('media-current');
+
+        const medias = playlist.querySelectorAll('.media');
+        [mediaCurrent] = [...medias].filter(media => media.dataset.id == this.currentIndex);
+        mediaCurrent.parentElement.className = 'media-current';
+    },
     formatTime(time = 1000) {
-        let [m,s] = [(time/60).toFixed(0)*1, (time%60).toFixed(0)*1];
+        let [m,s] = [parseInt(time/60), (time%60).toFixed(0)*1];
         m = m < 10 ? '0' + m : m;
         s = s < 10 ? '0' + s : s;
         return m + ':' + s;

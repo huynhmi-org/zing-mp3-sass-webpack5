@@ -3348,15 +3348,16 @@
             </div> -->
             <div class="player-between">
                 <div class="player-controls player-controls-with-play">
-                    <button class="player-button has-tooltip shuffle-btn shuffle-btn--act">
+                    <!-- shuffle-btn--act -->
+                    <button class="player-button has-tooltip shuffle-btn">
                         <i class="player-button__icon fa-solid fa-shuffle"></i>
                         <span class="tooltip tooltip--above">
                             <span class="tooltip__content">
-                                Tắt phát ngẫu nhiên
+                                Bật phát ngẫu nhiên
                             </span>
                         </span>
                     </button>
-                    <button class="player-button has-tooltip ">
+                    <button class="player-button has-tooltip " id="btn-pre-song">
                         <i class="player-button__icon fa-solid fa-backward-step"></i>
                         <span class="tooltip tooltip--above">
                             <span class="tooltip__content">
@@ -3368,7 +3369,7 @@
                         <i class="player-button__icon player-button__icon--pause fa-solid fa-play"></i>
                         <i class="player-button__icon player-button__icon--play fa-solid fa-pause"></i>
                     </button>
-                    <button class="player-button has-tooltip">
+                    <button class="player-button has-tooltip" id="btn-next-song">
                         <i class="player-button__icon fa-solid fa-forward-step"></i>
                         <span class="tooltip tooltip--above">
                             <span class="tooltip__content">
