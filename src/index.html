@@ -42,7 +42,7 @@
                 </ul>
             </nav>
             <span class="sidebar-separate"></span>
-            <div class="sidebar-scrolldown">
+            <div class="sidebar-scrolldown has-scroll">
                 <nav class="nav">
                     <ul class="nav-list">
                         <li class="nav-item">
@@ -3417,8 +3417,7 @@
                     <input type="range" name="" id="" class="player-progress__bar" value=0 min="0" max="100" step="1">
                 </div>
                 <span class="player-separate"></span>
-                <!-- playlist-btn--active -->
-                <button class="player-button playlist-btn has-tooltip ">
+                <button class="player-button playlist-toggle-btn playlist-toggle-btn--active has-tooltip ">
                     <i class="player-button__icon fa-solid fa-sliders"></i>
                     <span class="tooltip tooltip--above tooltip--touch-right">
                         <span class="tooltip__content">
@@ -3430,17 +3429,138 @@
         </div>
 
         <!-- Playlist -->
-        <div class="side-playlist">
+        <div class="side-playlist side-playlist--open">
+            <div class="playlist-header">
+                <div class="playlist-switch">
+                    <button class="playlist-switch-btn playlist-switch-btn--active">Danh sách phát</button>
+                    <button class="playlist-switch-btn ">Nghe gần đây</button>
+                </div>
+                <button class="playlist-btn has-tooltip">
+                    <i class="playlist-btn__icon fa-solid fa-stopwatch"></i>
+                    <span class="tooltip tooltip--touch-right">
+                        <span class="tooltip__content">
+                            Hẹn giờ dừng phát nhạc
+                        </span>
+                    </span>
+                </button>
+                <button class="playlist-btn has-tooltip">
+                    <i class="playlist-btn__icon fa-solid fa-ellipsis"></i>
+                    <span class="tooltip">
+                        <span class="tooltip__content">
+                            Khác
+                        </span>
+                    </span>
+                </button>
+            </div>
+            <div class="playlist-body has-scroll">
+                <div class="playlist-container playlist-container--active">
+                    <div class="media-current">
+                        <div class="media media--active media--s">
+                            <div class="media-cover">
+                                <img src="https://photo-resize-zmp3.zmdcdn.me/w240_r1x1_webp/cover/5/7/5/e/575e6664486827d431cf8dce47312ee3.jpg" alt="Cover" class="media-cover__img">
+                                <button class="media-play-btn">
+                                    <i class="media-play-btn__icon media-play-btn__icon--pause fa-solid fa-play"></i>
+                                    <i class="media-play-btn__icon media-play-btn__icon--play fa-solid fa-pause"></i>
+                                </button>
+                            </div>
+                            <div class="media-content">
+                                <div class="media-content-header">
+                                    <span class="media__title">One Last Time</span>
+                                    <span class="media__vip-label">vip</span>
+                                </div>
+                                <div class="media-list-subtitle">
+                                    <a href="" class="media__subtitle media__subtitle--link">VIZE,</a>
+                                    <a href="" class="media__subtitle media__subtitle--link">R3hab</a>
+                                </div>
+                            </div>
+                            <button class="media-favorite-btn">
+                                <i class="media-favorite-btn__icon media-favorite-btn__icon--love fa-solid fa-heart"></i>
+                                <i class="media-favorite-btn__icon media-favorite-btn__icon--unlove fa-regular fa-heart"></i>
+                            </button>
+                            <div class="media-options has-tooltip">
+                                <i class="media-options__icon fa-solid fa-ellipsis"></i>
+                                <span class="tooltip">
+                                    <span class="tooltip__content">
+                                        Khác
+                                    </span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+    
+                    <div class="media media--s">
+                        <div class="media-cover">
+                            <img src="https://photo-resize-zmp3.zmdcdn.me/w240_r1x1_webp/cover/5/7/5/e/575e6664486827d431cf8dce47312ee3.jpg" alt="Cover" class="media-cover__img">
+                            <button class="media-play-btn">
+                                <i class="media-play-btn__icon media-play-btn__icon--pause fa-solid fa-play"></i>
+                                <i class="media-play-btn__icon media-play-btn__icon--play fa-solid fa-pause"></i>
+                            </button>
+                        </div>
+                        <div class="media-content">
+                            <div class="media-content-header">
+                                <span class="media__title">One Last Time</span>
+                                <span class="media__vip-label">vip</span>
+                            </div>
+                            <div class="media-list-subtitle">
+                                <a href="" class="media__subtitle media__subtitle--link">VIZE,</a>
+                                <a href="" class="media__subtitle media__subtitle--link">R3hab</a>
+                            </div>
+                        </div>
+                        <button class="media-favorite-btn">
+                            <i class="media-favorite-btn__icon media-favorite-btn__icon--love fa-solid fa-heart"></i>
+                            <i class="media-favorite-btn__icon media-favorite-btn__icon--unlove fa-regular fa-heart"></i>
+                        </button>
+                        <div class="media-options has-tooltip">
+                            <i class="media-options__icon fa-solid fa-ellipsis"></i>
+                            <span class="tooltip">
+                                <span class="tooltip__content">
+                                    Khác
+                                </span>
+                            </span>
+                        </div>
+                    </div>
+    
+                    <div class="media media--s">
+                        <div class="media-cover">
+                            <img src="https://photo-resize-zmp3.zmdcdn.me/w240_r1x1_webp/cover/5/7/5/e/575e6664486827d431cf8dce47312ee3.jpg" alt="Cover" class="media-cover__img">
+                            <button class="media-play-btn">
+                                <i class="media-play-btn__icon media-play-btn__icon--pause fa-solid fa-play"></i>
+                                <i class="media-play-btn__icon media-play-btn__icon--play fa-solid fa-pause"></i>
+                            </button>
+                        </div>
+                        <div class="media-content">
+                            <div class="media-content-header">
+                                <span class="media__title">One Last Time</span>
+                                <span class="media__vip-label">vip</span>
+                            </div>
+                            <div class="media-list-subtitle">
+                                <a href="" class="media__subtitle media__subtitle--link">VIZE,</a>
+                                <a href="" class="media__subtitle media__subtitle--link">R3hab</a>
+                            </div>
+                        </div>
+                        <button class="media-favorite-btn">
+                            <i class="media-favorite-btn__icon media-favorite-btn__icon--love fa-solid fa-heart"></i>
+                            <i class="media-favorite-btn__icon media-favorite-btn__icon--unlove fa-regular fa-heart"></i>
+                        </button>
+                        <div class="media-options has-tooltip">
+                            <i class="media-options__icon fa-solid fa-ellipsis"></i>
+                            <span class="tooltip">
+                                <span class="tooltip__content">
+                                    Khác
+                                </span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
 
+                <div class="playlist-container">
+                    Listen recently
+                </div>
+
+                
+            </div>
         </div>
 
-        <!-- Toast Message -->
-        <!-- <div class="toast-message">
-            <span class="toast-message__text">Đã thêm bài hát vào thư viện</span>
-            <button class="toast-message-btn">
-                <i class="toast-message-btn__icon fa-solid fa-xmark"></i>
-            </button>
-        </div> -->
     </div>
 </body>
 

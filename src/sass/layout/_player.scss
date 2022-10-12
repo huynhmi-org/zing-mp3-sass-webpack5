@@ -17,7 +17,7 @@
         flex: 1;
 
         & .player-progress {
-            margin-top: 8px;
+            margin-top: 6px;
         }
     }
 
@@ -197,11 +197,6 @@
         width: 32px;
         line-height: 32px;
 
-        & .tooltip {
-            right: 50%;
-            transform: translateX(50%);
-        }
-
         &:hover {
             background-color: $black-transparent-7;
         }
@@ -235,10 +230,16 @@
             display: block;
         }
     }
+
+    
+}
+
+.player .media-favorite-btn {
+    display: block;
 }
 
 
-.playlist-btn {
+.playlist-toggle-btn {
     margin-right: 10px;
     border-radius: 4px;
 

@@ -129,9 +129,29 @@ btnFavorites.forEach( btn => {
 			media.classList.add('media--favorite');
 			favoriteToast('Đã thêm bài hát vào thư viện');
 		}
-
-		
 	}
 })
 
 
+
+
+//**************** Handle Playlist **************** */
+const btnTogglePlayList = $('.playlist-toggle-btn');
+const sidePlayList = $('.side-playlist');
+btnTogglePlayList.onclick = function() {
+	sidePlayList.classList.toggle('side-playlist--open');
+	this.classList.toggle('playlist-toggle-btn--active');
+}
+
+
+const btnSwitchPlayList = $$('.playlist-switch-btn');
+const containerPlaylist = $$('.playlist-container');
+btnSwitchPlayList.forEach( (btn, index) => {
+	btn.onclick = function() {
+		$('.playlist-switch-btn.playlist-switch-btn--active').classList.remove('playlist-switch-btn--active');
+		this.classList.add('playlist-switch-btn--active');
+
+		$('.playlist-container.playlist-container--active').classList.remove('playlist-container--active');
+		containerPlaylist[index].classList.add('playlist-container--active');
+	}
+})

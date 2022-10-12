@@ -4,8 +4,38 @@
     padding: 10px 10px;
     border-radius: 4px;
     
+    &--active {
+        background-color: $grey-transparent-1;
+    }
+
+    &--playing {
+        & .media-play-btn {
+            &__icon {
+                &--play {
+                    display: block;
+                }
+                &--pause {
+                    display: none;
+                }
+            }
+        }
+    }
+
     &--rotate &-cover__img {
         transform: translateX(10%);
+    }
+
+    &--s {
+        padding: 5px 8px;
+
+        & .media-cover {
+            @include size(40px);
+        }
+
+        & .media-options {
+            @include size(26px);
+            line-height: 26px;
+        }
     }
     &-cover {
         width: 52px;
@@ -20,11 +50,11 @@
         border-radius: 4px;
         transition: all linear 300ms;
 
-        
-        &--medium {
-            width: 60px;
-            height: 60px;
+        &--small {
+            @include size(40px);
         }
+        
+        
 
         &--large {
             width: 87px;
@@ -88,27 +118,44 @@
         font-size: 18px;
 
         color: $white;
-        background-color: $black-transparent-4;
+        background-color: $black-transparent-3;
 
         border: none;
         outline: none;
         cursor: pointer;
 
         z-index: 2;
-        display: none;
 
-        &__icon:hover {
-            filter: brightness(90%);
+        display: none;
+        justify-content: center;
+        align-items: center;
+
+        &__icon  {
+
+            &:hover {
+                filter: brightness(90%);
+            }
+
+            &--pause {
+                display: block
+            }
+
+            &--play {
+                display: none;
+            }
         }
+
+
     }
 
     &:hover &-play-btn {
-        display: block;
+        display: flex;
     }
 
-    &:hover &-options {
+    &:hover &-options,
+    &:hover &-favorite-btn {
         display: block;
-    }
+    } 
 
     &:hover {
         background-color: $grey-transparent-1;
@@ -234,6 +281,8 @@
     &-favorite-btn {
         border: none;
         outline: none;
+        
+        display: none;
 
         background: none;
         cursor: pointer;
@@ -261,3 +310,31 @@
         }
     }
 } 
+
+
+.media-current .media {
+    &--active {
+        background-color: $primary-5;
+        
+        & .media__title,
+        & .media__subtitle, 
+        & .media-options__icon, 
+        & .media-favorite-btn__icon {
+            color: $white;
+        }
+
+        & .media__subtitle {
+            opacity: 0.7
+        }
+
+        & .media-play-btn {
+            display: flex;
+        }
+
+        &:hover {
+            background-color: $primary-5;
+        }
+
+        
+    }
+}

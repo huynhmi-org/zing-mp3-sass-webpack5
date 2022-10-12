@@ -5,15 +5,105 @@
     bottom: 0;
 
     width: 330px;
+    padding: 18px 8px;
     z-index: 3;
     
     background-color: $white;
-    box-shadow: -1px 0px 4px 1px $grey-1;
+    box-shadow: -1px 0px 4px 2px $black-transparent-2;
 
     transform: translateX(100%);
-    @include transition(300ms);
+    @include transition(500ms);
 
     &--open {
         transform: translateX(0%);
     }
+
 }
+
+.playlist {
+
+    &-header {
+        height: 34px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        
+        top: 0;
+    }
+
+
+
+    &-switch {
+        height: 100%;
+        padding: 3px 3px;
+
+        border-radius: 34px;
+        background-color: $grey;
+
+
+        &-btn {
+            font-size: 13px;
+
+            height: 100%;
+            padding: 0px 15px;
+
+            background: none;
+            border-radius: inherit;
+            border: none;
+
+            cursor: pointer;
+
+
+            &--active {
+                background-color: $white;
+                color: $primary-4;
+            }
+
+            &:hover {
+                color: $primary-4;
+            }
+        }
+    }
+
+    &-btn {
+        @include size(34px);
+        border-radius: 100%;
+        border: none;
+        background-color: $grey-transparent-2;
+
+        cursor: pointer;
+        
+        &__icon {
+
+        }
+    }
+
+    &-body {
+        margin-top: 18px;
+        max-height: 100%;
+    }
+
+    
+
+}
+
+.side-playlist .tooltip  {
+
+    &--touch-right {
+        right: -120%;
+    
+    
+        & .tooltip__content::before {
+            left: 61%;
+        }
+    }
+
+}
+
+.playlist-container {
+    display: none;
+    &--active {
+        display: block;
+    }
+}
+
