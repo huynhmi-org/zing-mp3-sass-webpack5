@@ -13,6 +13,10 @@
     border-top: 1px solid $grey;
     z-index: 4;
 
+    &-audio {
+        display: none;
+    }
+
     &-between {
         flex: 1;
 
@@ -148,6 +152,7 @@
                 opacity: 0.6;
             }
         }
+
         &__bar {
             -webkit-appearance: none;
             height: 3px;
