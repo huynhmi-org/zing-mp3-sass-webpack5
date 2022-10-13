@@ -43,7 +43,29 @@ const App = {
             cover: 'https://photo-resize-zmp3.zmdcdn.me/w240_r1x1_webp/covers/f/3/f3ccdd27d2000e3f9255a7e3e2c48800_1365321047.jpg',
             artist: ['Fiona Fung'],
             vip: false
+        },
+        {
+            name: 'Xuân thì',
+            url: 'https://x2convert.com/vi/Thankyou?token=U2FsdGVkX18YrXGL4K4eie5zSURaebGEt2QGDFXchrpde%2fm%2b1HYe15H2R1l%2bctZd7%2fbLDAqbgyIALvVdcLOIdD1entbsHfvWuztVm%2fMqr58Xw7H32eQJ6h9ilMF61DQsT6rjKa87YyhnToG5pam8AK86xQCYJ%2byzFrIHHtf5UUModKMxmZbxsWwiII9yF02J&s=youtube&id=&h=2519495004921941764',
+            cover: 'https://i.ytimg.com/vi/3s1r_g_jXNs/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLC9oK-imzQGAmd9s9YxNDtQhboqWQ',
+            artist: ['Phan Mạnh Quỳnh'],
+            vip: false
+        },
+        {
+            name: 'Đúng cũng thành sai',
+            url: 'https://x2convert.com/vi/Thankyou?token=U2FsdGVkX182X8rv52B3NTeN61S3ZvhPS36lGsfsQtV9Ndhif38Qa4Ygf34wT8YI8liBP7wInmLKRbnJmGMBWL%2fDm4pTdHMIe7SSxhZcwoQbx29yFITYJsgn7VL%2bBlqoZCUOKbhk35Aty4kerVBR%2fXnsvGdtm4WEdLAzmnCv8x21s5yDM6NHmsWIeW674Poz&s=youtube&id=&h=2519495004921941765',
+            cover: 'https://i.ytimg.com/vi/5_ozB0ImkYA/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLADYBPAJZ_AAFQCmB0By4FUjWqqiA',
+            artist: ['Mỹ Tâm'],
+            vip: false
+        },
+        {
+            name: 'Đừng hỏi em',
+            url: 'https://x2convert.com/vi/Thankyou?token=U2FsdGVkX1%2b9LKGJVgld1I2RY6zGLEeRpMqpqxstzjheOy2ssfWJ7jdG48%2fk%2b9oa5LHh9b5xMj5R23bYVJZwbQPclx598MLT1xY2OIe7uD2caf2om9zjiSRgH8Jnh3PFZGkWm%2fPFpRWGoyA8WgKj4Wv1zwiwlY91a6pHpMgox5k%3d&s=youtube&id=&h=2519495004921941765',
+            cover: 'https://i.ytimg.com/vi/Z4HivEWoXGE/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLC7b5WjFz-C5iQCMVwYFVRl9cwUrQ',
+            artist: ['Mỹ Tâm'],
+            vip: false
         }
+
     ],
     currentIndex : 0,
     properties() {
@@ -54,7 +76,6 @@ const App = {
         })
     },
     handleEvent() {
-
         audio.onloadeddata = () => {
             playBtn.onclick = () => {
                 this.isPlay ? audio.pause() : audio.play();
@@ -65,7 +86,7 @@ const App = {
         }
 
         progress.oninput = function() {
-            const timeChange =this.value / 100 * audio.duration;
+            const timeChange = this.value/100 * audio.duration;
             audio.currentTime = timeChange;
         }
 
@@ -123,7 +144,7 @@ const App = {
             const btnPlay = e.target.closest('.media-play-btn');
             if (btnPlay) {
                 const media = btnPlay.closest('.media');
-                this.currentIndex = media.dataset.id;
+                this.currentIndex = media.dataset.id*1;
                 this.updateSongActive();
                 this.renderCurrentSong();
                 this.isPlay = false;
