@@ -46,6 +46,13 @@
             @include size(64px);
         }
     }
+
+    &--cd {
+        & .media-cover {
+            @include size(87px);
+        }
+    }
+    
     &-cover {
         width: 52px;
         height: 52px;
@@ -98,6 +105,7 @@
             z-index: 0;
 
 
+            
         }
 
         &-with-cd {
@@ -205,7 +213,7 @@
     }
 
     &-list-subtitle, &__subtitle {
-        font-size: 13px;
+        font-size: 12px;
         text-transform: capitalize;
         color: $grey-4;
     }
