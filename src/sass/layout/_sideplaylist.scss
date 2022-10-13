@@ -105,5 +105,9 @@
     &--active {
         display: block;
     }
+
+    & .media {
+        margin-bottom: 10px;
+    }
 }
 

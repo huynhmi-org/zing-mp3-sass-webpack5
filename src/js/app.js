@@ -273,8 +273,8 @@ const App = {
     },
     renderCurrentSong() {
         const media = `
-            <div class="media ${this.currentSong.vip ? 'media--vip' : ''}">
-                <div class="media-cover media-cover--medium">
+            <div class="media ${this.currentSong.vip ? 'media--vip' : ''} media--l">
+                <div class="media-cover">
                     <img src="${this.currentSong.cover}" alt="Cover" class="media-cover__img">
                 </div>
                 <div class="media-content">
