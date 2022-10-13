@@ -5,6 +5,7 @@ const playlist = $('#playlist-list');
 const player = $('#player');
 const progress = $('#progress-song');
 const volume = $('#progress-volume');
+const volumeBtn = $('.volume-btn');
 const audio = $('.player-audio');
 const timer = $('#current-time');
 const duration = $('#duration');
@@ -19,6 +20,8 @@ const App = {
     isPlay: false,
     isRandom: randomBtn.classList.contains('shuffle-btn--act'),
     isRepeat: false,
+    isMute: volumeBtn.classList.contains('volume-btn--mute'),
+    volumePre: volume.value/100,
     songs : [
         {
             name: 'Until you',
@@ -88,8 +91,9 @@ const App = {
             randomBtn.classList.toggle('shuffle-btn--act');
             this.isRandom = !this.isRandom;
 
-            this.isRandom ? this.setContentTooltip(randomBtn, 'Tắt phát xáo trộn') :  
-            this.setContentTooltip(randomBtn, 'Bật phát xáo trộn');
+            this.isRandom ? 
+                this.setContentTooltip(randomBtn, 'Tắt phát xáo trộn') : 
+                this.setContentTooltip(randomBtn, 'Bật phát xáo trộn');
             
         }
 
@@ -115,6 +119,28 @@ const App = {
             }
         }
 
+        volumeBtn.onclick = () => {
+            audio.volume = this.isMute ? this.volumePre : 0;
+        }
+
+        volume.oninput = () => {
+            const val = volume.value/100;
+            audio.volume = val;
+            this.volumePre = val;
+        }
+        
+        audio.onvolumechange = () => {
+            if (audio.volume == 0) {
+                this.isMute = true;
+                volumeBtn.classList.add('volume-btn--mute');
+            } else {
+                this.isMute = false;
+                volumeBtn.classList.remove('volume-btn--mute');
+            }
+            volume.value = audio.volume * 100;
+        }
+        
+
         audio.onplay = () => {
             this.isPlay = true;
             player.classList.add('player--playing');
@@ -135,19 +161,7 @@ const App = {
         }
 
         audio.onended = () => {
-            console.group();
-            if (this.isRandom) {
-                this.handleRandom();
-                console.log('random', this.isRandom);
-            }
-
-            if (this.isRepeat) {
-                this.handleRepeat();
-                console.log('repeat', this.isRepeat);
-            }
-            console.groupEnd();
-
-            
+            this.isRandom ? this.handleRandom() : this.isRepeat ? this.handleRepeat() : false;
         }
 
     },
