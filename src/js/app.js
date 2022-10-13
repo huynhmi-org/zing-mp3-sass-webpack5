@@ -119,6 +119,18 @@ const App = {
             }
         }
 
+        playlist.onclick = (e) => {
+            const btnPlay = e.target.closest('.media-play-btn');
+            if (btnPlay) {
+                const media = btnPlay.closest('.media');
+                this.currentIndex = media.dataset.id;
+                this.updateSongActive();
+                this.renderCurrentSong();
+                this.isPlay = false;
+                playBtn.click();
+            }
+        }
+
         volumeBtn.onclick = () => {
             audio.volume = this.isMute ? this.volumePre : 0;
         }
