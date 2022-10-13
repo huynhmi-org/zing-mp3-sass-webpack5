@@ -11,13 +11,14 @@ const duration = $('#duration');
 
 const preBtn = $('#btn-pre-song');
 const nextBtn = $('#btn-next-song');
-const shuffleBtn = $('.shuffle-btn');
+const randomBtn = $('.shuffle-btn');
 const repeatBtn = $('.repeat-btn');
-
+const playBtn = player.querySelector('.play-btn');
 
 const App = {
     isPlay: false,
-    isRandom: shuffleBtn.classList.contains('shuffle-btn--act'),
+    isRandom: randomBtn.classList.contains('shuffle-btn--act'),
+    isRepeat: false,
     songs : [
         {
             name: 'Until you',
@@ -50,19 +51,15 @@ const App = {
         })
     },
     handleEvent() {
-        const playBtn = player.querySelector('.play-btn');
-        
+
         audio.onloadeddata = () => {
             playBtn.onclick = () => {
                 this.isPlay ? audio.pause() : audio.play();
             }
 
             duration.textContent = this.formatTime(audio.duration);
-            console.log(audio.duration);
             
         }
-
-        
 
         progress.oninput = function() {
             const timeChange =this.value / 100 * audio.duration;
@@ -85,10 +82,37 @@ const App = {
             playBtn.click();
         }
 
-        shuffleBtn.onclick = () => {
-            shuffleBtn.classList.toggle('shuffle-btn--act');
+        randomBtn.onclick = () => {
+            this.cleanRepeat();
+
+            randomBtn.classList.toggle('shuffle-btn--act');
             this.isRandom = !this.isRandom;
-            shuffleBtn.querySelector('.tooltip__content').textContent = this.isRandom ? 'Tắt phát xáo trộn' : 'Bật phát xáo trộn';  
+
+            this.isRandom ? this.setContentTooltip(randomBtn, 'Tắt phát xáo trộn') :  
+            this.setContentTooltip(randomBtn, 'Bật phát xáo trộn');
+            
+        }
+
+        repeatBtn.onclick = () => {
+            this.cleanRandom();
+            
+            switch (true) {
+                case repeatBtn.classList.contains('repeat-btn--one'):
+                    this.isRepeat = false;
+                    repeatBtn.className = 'player-button has-tooltip repeat-btn';
+                    this.setContentTooltip(repeatBtn, 'Bật phát lại tất cả bài hát')
+                    break;
+                case repeatBtn.classList.contains('repeat-btn--all'):
+                    this.isRepeat = 1;
+                    repeatBtn.className = 'player-button has-tooltip repeat-btn repeat-btn--one';
+                    this.setContentTooltip(repeatBtn, 'Tắt phát lại bài hát');
+                    break;
+                default:
+                    this.isRepeat = 'all';
+                    repeatBtn.className = 'player-button has-tooltip repeat-btn repeat-btn--all';
+                    this.setContentTooltip(repeatBtn, 'Bật phát lại một bài hát');
+                    break;
+            }
         }
 
         audio.onplay = () => {
@@ -111,22 +135,61 @@ const App = {
         }
 
         audio.onended = () => {
+            console.group();
             if (this.isRandom) {
                 this.handleRandom();
-                this.renderCurrentSong();
-                this.updateSongActive();
-                playBtn.click();
+                console.log('random', this.isRandom);
             }
+
+            if (this.isRepeat) {
+                this.handleRepeat();
+                console.log('repeat', this.isRepeat);
+            }
+            console.groupEnd();
+
+            
         }
 
     },
+    cleanRandom() {
+        if (this.isRandom) {
+            this.isRandom = false;
+            randomBtn.classList.remove('shuffle-btn--act');
+            randomBtn.className = 'player-button has-tooltip shuffle-btn';
+            this.setContentTooltip(randomBtn, 'Bật phát xáo trộn')
+        }
+    },
+    cleanRepeat() {
+        if (this.isRepeat) {
+            this.isRepeat = false;
+            repeatBtn.className = 'player-button has-tooltip repeat-btn';
+            this.setContentTooltip(repeatBtn,'Bật phát lại tất cả bài hát');
+        }
+    },
+    setContentTooltip(element, content) {
+        element.querySelector('.tooltip__content').textContent = content;
+    },
+    handleRepeat() {
+        switch (this.isRepeat) {
+            case 1:
+                playBtn.click();                
+                break;
+            default:
+                nextBtn.click();
+                break;
+
+        }
+    },
     handleRandom() {
-        const totalSong = this.songs.length;
         let numberRandom;
         do {
-            numberRandom = Math.floor(Math.random() * totalSong);
+            numberRandom = Math.floor(Math.random() * this.songs.length);
         } while (numberRandom === this.currentIndex);
+        
         this.currentIndex = numberRandom;
+        this.renderCurrentSong();
+        this.updateSongActive();
+        playBtn.click();
        
     },
     updateMediaCurrent() {
