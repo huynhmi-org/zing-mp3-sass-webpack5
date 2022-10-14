@@ -21,6 +21,11 @@
         }
     }
 
+    &-right {
+        height: 100%;
+        display: flex;
+    }
+
     & .media {
         height: 100%;
     }
@@ -164,7 +169,8 @@
 
         &__time {
             font-size: 14px;
-            margin: 0 10px;
+            text-align: center;
+            width: 60px;
 
             &.current-time {
                 opacity: 0.6;

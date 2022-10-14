@@ -3336,7 +3336,7 @@
                 </div>
                 <div class="col l-6">
                     <div class="player-between">
-                        <div class="player-controls player-controls-with-play">
+                        <div class="player-controls">
                             <!-- shuffle-btn--act -->
                             <button class="player-button has-tooltip shuffle-btn shuffle-btn--act">
                                 <i class="player-button__icon fa-solid fa-shuffle"></i>
@@ -3387,42 +3387,44 @@
                     </div>
                 </div>
                 <div class="col l-3">
-                    <div class="player-controls">
-                        <button class="player-button has-mv">
-                            <span class="player-button__text">mv</span>
-                        </button>
-                        <button class="player-button has-tooltip">
-                            <i class="player-button__icon fa-solid fa-microphone-lines"></i>
-                            <span class="tooltip tooltip--above">
-                                <span class="tooltip__content">
-                                    Xem lời bài hát
-                                </span>
-                            </span>
-                        </button>
-                        <button class="player-button has-tooltip">
-                            <i class="player-button__icon fa-regular fa-window-restore"></i>
-                            <span class="tooltip tooltip--above">
-                                <span class="tooltip__content">
-                                    Chế độ cửa sổ
-                                </span>
-                            </span>
-                        </button>
-                        <div class="player-progress volume-wrap">
-                            <button class="player-button volume-btn">
-                                <i class="player-button__icon player-button__icon--unmute fa-solid fa-volume-high"></i>
-                                <i class="player-button__icon player-button__icon--mute fa-solid fa-volume-xmark"></i>
+                    <div class="player-right">
+                        <div class="player-controls">
+                            <button class="player-button has-mv">
+                                <span class="player-button__text">mv</span>
                             </button>
-                            <input type="range" name="" class="player-progress__bar" value=100 min="0" max=100 step=1 id="progress-volume">
-                        </div>
-                        <span class="player-separate"></span>
-                        <button class="player-button playlist-toggle-btn playlist-toggle-btn--active has-tooltip ">
-                            <i class="player-button__icon fa-solid fa-sliders"></i>
-                            <span class="tooltip tooltip--above tooltip--touch-right">
-                                <span class="tooltip__content">
-                                    Danh sách phát
+                            <button class="player-button has-tooltip">
+                                <i class="player-button__icon fa-solid fa-microphone-lines"></i>
+                                <span class="tooltip tooltip--above">
+                                    <span class="tooltip__content">
+                                        Xem lời bài hát
+                                    </span>
                                 </span>
-                            </span>
-                        </button>
+                            </button>
+                            <button class="player-button has-tooltip">
+                                <i class="player-button__icon fa-regular fa-window-restore"></i>
+                                <span class="tooltip tooltip--above">
+                                    <span class="tooltip__content">
+                                        Chế độ cửa sổ
+                                    </span>
+                                </span>
+                            </button>
+                            <div class="player-progress volume-wrap">
+                                <button class="player-button volume-btn">
+                                    <i class="player-button__icon player-button__icon--unmute fa-solid fa-volume-high"></i>
+                                    <i class="player-button__icon player-button__icon--mute fa-solid fa-volume-xmark"></i>
+                                </button>
+                                <input type="range" name="" class="player-progress__bar" value=100 min="0" max=100 step=1 id="progress-volume">
+                            </div>
+                            <span class="player-separate"></span>
+                            <button class="player-button playlist-toggle-btn playlist-toggle-btn--active has-tooltip ">
+                                <i class="player-button__icon fa-solid fa-sliders"></i>
+                                <span class="tooltip tooltip--above tooltip--touch-right">
+                                    <span class="tooltip__content">
+                                        Danh sách phát
+                                    </span>
+                                </span>
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
