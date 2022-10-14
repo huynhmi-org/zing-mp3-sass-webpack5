@@ -84,43 +84,7 @@ $border-radius: 20px;
 $small-border-radius: 5px;
 
 
-@mixin transition($time) {
-    transition: all linear $time;
-}
 
-@mixin size($all : 100%,$width: $all, $height : $all) {
-    height: $height;
-    width: $width;
-}
-
-@mixin config-border($radius: 100%, $size: 1px, $type: solid, $color: $white) {
-    border-radius: $radius;
-    border: $size $type $color;
-}
-
-@mixin text($size: $baseFontSize, $color: $black, $line-height: 1.5, $align: center, $weight: 300) {
-    font-size: $size;
-    color: $color;
-    line-height: $line-height;
-    font-weight: $weight;
-    text-align: $align;
-}
-
-@mixin backgroundImage ($position: center, $size: cover, $repeat: no-repeat) {
-    background-repeat: $repeat;
-    background-size: $size;
-    background-position: $position;
-}
-
-@mixin limitText ($height, $line) {
-    overflow: hidden;
-    max-height: $height;
-    text-overflow: ellipsis;
-
-    display: -webkit-box;
-    -webkit-line-clamp: $line;
-    -webkit-box-orient: vertical;
-}
 
 // btn
 $btn-height: 29px;

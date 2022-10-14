@@ -134,6 +134,7 @@ const App = {
             const btnPlay = e.target.closest('.media-play-btn');
             if (btnPlay) {
                 const media = btnPlay.closest('.media');
+                this.tempIndex = this.currentIndex;
                 this.currentIndex = media.dataset.id*1;
                 this.renderCurrentSong();
                 audio.play();
@@ -171,7 +172,7 @@ const App = {
             player.classList.add('player--playing');
             this.updatePlayBtnOfMedia();
             
-            this.updateNewPreviousIndex();
+            this.addNewPreviousIndex();
         }
 
         audio.onpause = () => {
@@ -252,14 +253,23 @@ const App = {
             this.renderCurrentSong();
             audio.play();
         }
+
+        if (this.previousIndexs.length == 0) {
+            preBtn.classList.add('play-btn--disabled');
+        }
     },
-    updateNewPreviousIndex() {
+    addNewPreviousIndex() {
         if (this.tempIndex || this.tempIndex === 0) {
             this.previousIndexs.unshift(this.tempIndex);
             this.tempIndex = false;
+            
+        }
+
+        if (this.previousIndexs.length > 0 && preBtn.classList.contains('play-btn--disabled')) {
+            preBtn.classList.remove('play-btn--disabled');
+            console.log('remove disabled');
         }
     },
-    // btn play of player and media must be sync
     updatePlayBtnOfMedia() {
         const mediaCurrent = $('.media-current .media');
         this.isPlay ? mediaCurrent.classList.add('media--active') : mediaCurrent.classList.remove('media--active');

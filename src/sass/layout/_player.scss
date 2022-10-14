@@ -1,52 +1,64 @@
 .player {
-    position: fixed;
-    bottom: 0;
+    @include position (fixed, $bottom: 0, $zIndex: 4);
+    @include size(null, 100%, 90px);
 
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    width: 100%;
-    height: 90px;
-    
     background-color: $white;
     border-top: 1px solid $grey;
-    z-index: 4;
 
     &-audio {
         display: none;
     }
 
-    &-between {
-        flex: 1;
+    & .player-song {
+        height: $player-height;
+    }
 
+    &-between {
+        height: 100%;
+        @include flex-horiz(column);
         & .player-progress {
             margin-top: 6px;
         }
+    }
+
+    & .media {
+        height: 100%;
+    }
+    & .media-content {
+
+    }
+    & .media__title {
+        white-space: unset;
+        @include limitText(42px, 2);
     }
 
     & .media:hover {
         background-color: unset;
     }
 
-    & .media {
-        max-width: 400px;
+    & .media-options {
+        margin-left: unset;
+        display: block;
+
+        @include size(32px);
+        line-height: 32px;
+
+        &:hover {
+            background-color: $black-transparent-7;
+        }
     }
 
-    & .media-options {
-        display: block;
+    &-controls {
     }
 
     &-controls, &-button, &-progress {
-        display: flex;
-        align-items: center;
-        justify-content: center;
+        @include flex-center;
     }
 
     &-controls-with-play &-button {
-        margin: 0 10px;
-        @include size(32px);
         font-size: 16px;
+        @include size(32px);
+        margin: 0 10px;
 
         & .tooltip {
             top: -100%;
@@ -117,6 +129,11 @@
                 background-color: transparent;
                 color: $primary-1;
             }
+
+            &--disabled {
+                opacity: 0.5;
+                pointer-events: none;
+            }
         }
 
         &__icon--play {
@@ -156,9 +173,7 @@
 
         &__bar {
             appearance: none;
-            height: 3px;
-            width: 100%;
-            max-width: 420px;
+           @include size(null, 100%, 3px, $max-w: 420px);
 
             border-radius: 3px;
             outline: none;
@@ -167,14 +182,11 @@
             &:hover {
                 height: 5px;
                 border-radius: 5px;
-
-
             }
 
             &::-webkit-slider-thumb {
                 appearance: none;
-                height: 12px;
-                width: 12px;
+                @include size(12px);
                 border-radius: 100%;
                 background-color: $primary-1;
                 cursor: pointer;
@@ -184,8 +196,7 @@
     }
 
     &-separate {
-        width: 1px;
-        height: 33px;
+        @include size(null, 1px, 33px);
         background-color: $grey;
 
         display: block;
@@ -200,15 +211,7 @@
         display: none;
     }
 
-    & .media-options {
-        height: 32px;
-        width: 32px;
-        line-height: 32px;
-
-        &:hover {
-            background-color: $black-transparent-7;
-        }
-    }
+    
 
 
 }
