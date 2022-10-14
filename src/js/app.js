@@ -17,7 +17,7 @@ const repeatBtn = $('.repeat-btn');
 const playBtn = player.querySelector('.play-btn');
 
 const App = {
-    isPlay: false,
+    isPlay: player.classList.contains('player--playing'),
     isRandom: randomBtn.classList.contains('shuffle-btn--act'),
     isRepeat: false,
     isMute: volumeBtn.classList.contains('volume-btn--mute'),
@@ -68,6 +68,8 @@ const App = {
 
     ],
     currentIndex : 0,
+    previousIndexs: [],
+    tempIndex: false,
     properties() {
         Object.defineProperty(this, 'currentSong', {
             get() {
@@ -76,35 +78,23 @@ const App = {
         })
     },
     handleEvent() {
-        audio.onloadeddata = () => {
-            playBtn.onclick = () => {
-                this.isPlay ? audio.pause() : audio.play();
-            }
-
-            duration.textContent = this.formatTime(audio.duration);
-            
+        playBtn.onclick = () => {
+            this.isPlay ? audio.pause() : audio.play();
         }
-
+        
         progress.oninput = function() {
             const timeChange = this.value/100 * audio.duration;
             audio.currentTime = timeChange;
         }
 
         nextBtn.onclick = () => {
-            this.currentIndex = this.currentIndex === this.songs.length - 1 ? 0 : this.currentIndex + 1;
-            this.renderCurrentSong();
-            this.updateSongActive();
-            this.isPlay = false;
-            playBtn.click();
-        }
+            /* lưu current index đến  tempotary, sau khi bài hát next loaded, 
+            current index này được add đến list previous song*/
+            this.tempIndex = this.isRepeat !== 1 && this.currentIndex;
+            this.isRandom ? this.handleRandom() : this.isRepeat ? this.handleRepeat() : this.handleNext();
+        };
 
-        preBtn.onclick = () => {
-            this.currentIndex = this.currentIndex === 0 ? this.songs.length - 1 : this.currentIndex - 1;
-            this.renderCurrentSong();
-            this.updateSongActive();
-            this.isPlay = false;
-            playBtn.click();
-        }
+        preBtn.onclick = () => this.handlePrevious();
 
         randomBtn.onclick = () => {
             this.cleanRepeat();
@@ -133,7 +123,7 @@ const App = {
                     this.setContentTooltip(repeatBtn, 'Tắt phát lại bài hát');
                     break;
                 default:
-                    this.isRepeat = 'all';
+                    this.isRepeat = true;
                     repeatBtn.className = 'player-button has-tooltip repeat-btn repeat-btn--all';
                     this.setContentTooltip(repeatBtn, 'Bật phát lại một bài hát');
                     break;
@@ -145,10 +135,8 @@ const App = {
             if (btnPlay) {
                 const media = btnPlay.closest('.media');
                 this.currentIndex = media.dataset.id*1;
-                this.updateSongActive();
                 this.renderCurrentSong();
-                this.isPlay = false;
-                playBtn.click();
+                audio.play();
             }
         }
 
@@ -173,17 +161,23 @@ const App = {
             volume.value = audio.volume * 100;
         }
         
+        audio.onloadeddata = () => {
+            this.isPlay ? audio.play() : audio.pause();
+            duration.textContent = this.formatTime(audio.duration);
+        }
 
         audio.onplay = () => {
             this.isPlay = true;
             player.classList.add('player--playing');
-            this.updateMediaCurrent();
+            this.updatePlayBtnOfMedia();
+            
+            this.updateNewPreviousIndex();
         }
 
         audio.onpause = () => {
             this.isPlay = false;
             player.classList.remove('player--playing');
-            this.updateMediaCurrent();
+            this.updatePlayBtnOfMedia();
         }
 
         audio.ontimeupdate = () => {
@@ -219,38 +213,56 @@ const App = {
     handleRepeat() {
         switch (this.isRepeat) {
             case 1:
-                playBtn.click();                
+                audio.load();
                 break;
-            default:
-                nextBtn.click();
+            default: 
+                this.handleIncreaseIndex();
                 break;
-
         }
+        this.renderCurrentSong();
+        audio.play();
     },
     handleRandom() {
-        let numberRandom;
-        do {
-            numberRandom = Math.floor(Math.random() * this.songs.length);
-        } while (numberRandom === this.currentIndex);
-        
-        this.currentIndex = numberRandom;
+        this.currentIndex = this.getRandom();
         this.renderCurrentSong();
-        this.updateSongActive();
-        playBtn.click();
-       
+        audio.play();
     },
-    updateMediaCurrent() {
+    getRandom() {
+        let number;
+        do {
+            number = Math.floor(Math.random() * this.songs.length);
+        } while (
+            number === this.currentIndex || 
+            number === (this.currentIndex === this.songs.length - 1 ? 0 : this.currentIndex + 1) ||
+            number === (this.currentIndex === 0 ? this.songs.length - 1 : this.currentIndex - 1)
+        );
+        return number;
+    },
+    handleNext() {
+        this.handleIncreaseIndex();
+        this.renderCurrentSong();
+        audio.play();
+    },
+    handleIncreaseIndex() {
+        this.currentIndex = this.currentIndex === this.songs.length - 1 ? 0 : this.currentIndex + 1;
+    },
+    handlePrevious() {
+        if ( this.previousIndexs.length ) {
+            this.currentIndex = this.previousIndexs.shift();
+            this.renderCurrentSong();
+            audio.play();
+        }
+    },
+    updateNewPreviousIndex() {
+        if (this.tempIndex || this.tempIndex === 0) {
+            this.previousIndexs.unshift(this.tempIndex);
+            this.tempIndex = false;
+        }
+    },
+    // btn play of player and media must be sync
+    updatePlayBtnOfMedia() {
         const mediaCurrent = $('.media-current .media');
         this.isPlay ? mediaCurrent.classList.add('media--active') : mediaCurrent.classList.remove('media--active');
-    },
-    updateSongActive() {
-        let mediaCurrent = $('.media-current');
-        mediaCurrent.querySelector('.media').classList.remove('media--active');
-        mediaCurrent.classList.remove('media-current');
-
-        const medias = playlist.querySelectorAll('.media');
-        [mediaCurrent] = [...medias].filter(media => media.dataset.id == this.currentIndex);
-        mediaCurrent.parentElement.className = 'media-current';
     },
     formatTime(time = 1000) {
         let [m,s] = [parseInt(time/60), (time%60).toFixed(0)*1];
@@ -262,7 +274,7 @@ const App = {
     renderList() {
         const html = this.songs.map((song, index) => {
                 return `
-                    <div class="${index == this.currentIndex ? 'media-current': ''}">
+                    <div>
                         <div 
                             class="
                                 media media--s 
@@ -337,10 +349,24 @@ const App = {
         `
         player.querySelector('.player-song').innerHTML = media;
         audio.src = this.currentSong.url;
+
+        this.updateSongActive();
+    },
+    updateSongActive() {
+        let mediaCurrent = $('.media-current');
+        if (mediaCurrent) {
+            mediaCurrent.querySelector('.media').classList.remove('media--active');
+            mediaCurrent.classList.remove('media-current');
+        }
+       
+
+        const medias = playlist.querySelectorAll('.media');
+        [mediaCurrent] = [...medias].filter(media => media.dataset.id == this.currentIndex);
+        mediaCurrent.parentElement.className = 'media-current';
     },
     start() {
-        this.renderList();
         this.properties();
+        this.renderList();
         this.renderCurrentSong();
         this.handleEvent();
     }

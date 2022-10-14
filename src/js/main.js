@@ -111,7 +111,7 @@ setInterval(() => {
 
 //**************** Handle Player **************** */
 import createToastMessage from "./_toastMessage.js";
-const favoriteToast = createToastMessage({
+export const favoriteToast = createToastMessage({
 	position: 'fixed',
     left: '20px',
     bottom: 'calc($player-height + 30px)'
@@ -138,6 +138,7 @@ btnFavorites.forEach( btn => {
 //**************** Handle Playlist **************** */
 const btnTogglePlayList = $('.playlist-toggle-btn');
 const sidePlayList = $('.side-playlist');
+
 btnTogglePlayList.onclick = function() {
 	sidePlayList.classList.toggle('side-playlist--open');
 	this.classList.toggle('playlist-toggle-btn--active');

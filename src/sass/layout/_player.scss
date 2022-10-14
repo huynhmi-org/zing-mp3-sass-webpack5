@@ -110,6 +110,7 @@
             @include size(36px);
             @include config-border(100%, 1px, solid, $black-transparent-6);
             
+            outline: none;
             line-height: 34px;
 
             &:hover {
@@ -154,12 +155,14 @@
         }
 
         &__bar {
-            -webkit-appearance: none;
+            appearance: none;
             height: 3px;
-            border-radius: 3px;
             width: 100%;
-            background-color: $grey;
             max-width: 420px;
+
+            border-radius: 3px;
+            outline: none;
+            background-color: $grey;
 
             &:hover {
                 height: 5px;
