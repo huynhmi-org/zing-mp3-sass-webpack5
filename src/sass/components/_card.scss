@@ -1,5 +1,17 @@
 .card {
 
+    &--active {
+        & .card-controls {
+            display: flex;
+            & .card-control-btn__icon--pause {
+                display: none;
+            }
+
+            & .card-control-btn__icon--play {
+                display: block;
+            }
+        }
+    }
 
     &-content {
         position: absolute;
@@ -97,6 +109,7 @@
         background-color: $black-transparent-6;
         border-radius: inherit;
 
+
         
 
     }
@@ -130,10 +143,10 @@
         }
 
         &__icon {
-            &--like {
+            &--like, &--play {
                 display: none;
             }
-            &--unlike {
+            &--unlike, &--pause {
                 display: block;
             }
         }

@@ -50,14 +50,20 @@
     z-index: $zIndex;
 }
 
-@mixin flex-center () {
+@mixin flex-custom ($display: flex, $justify: center, $align: center) {
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content: $justify;
+    align-items: $align;
 }
 
 @mixin flex-horiz ($direction: row, $justify: center) {
     display: flex;
     flex-direction: $direction;
     justify-content: $justify;
+}
+
+@mixin flex-vert ($direction: row, $align: center) {
+    display: flex;
+    flex-direction: $direction;
+    align-items: $align;
 }

@@ -57,7 +57,7 @@
     }
 
     &-controls, &-button, &-progress {
-        @include flex-center;
+        @include flex-custom;
     }
 
     &-controls-with-play &-button {
@@ -154,13 +154,10 @@
         }
 
         &__number {
-            position: absolute;
-            top: 7px;
-            left: 1px;
+            @include position(absolute,1px, $top: 7px);
 
             font-size: 10px;
             line-height: 1;
-
             display: none;
         }
     }

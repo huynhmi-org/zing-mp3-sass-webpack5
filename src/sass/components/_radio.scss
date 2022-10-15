@@ -1,13 +1,29 @@
 .radio {
+    &--active {
+        & .radio-controls {
+            display: flex;
+        }
+        & .radio-btn {
+            &__icon {
+                &--pause {
+                    display: none;
+                }
+                &--play {
+                    display: block;
+                }
+            }
+        }
+    }
+
     &-item &-label {
         display: none;
     }
     
-    &-item--live &-label {
+    &--live &-label {
         display: block;
     }
 
-    &-item--live &-cover-inner {
+    &--live &-cover-inner {
         @include config-border(100%,3px, solid, $red);
     }
 
@@ -22,7 +38,7 @@
 
         &-inner {
             @include size;
-            @include config-border(100%,3px, solid, transition);
+            @include config-border(100%,3px, solid);
             overflow: hidden;
 
         }
@@ -52,6 +68,7 @@
     &-btn {
         @include size(43px);
         @include text(22px,$white,40px);
+        @include flex-custom;
         
         @include config-border;
         background: none;
@@ -59,6 +76,14 @@
         margin: auto;
         cursor: pointer;
 
+        &__icon {
+            &--pause {
+                display: block;
+            }
+            &--play {
+                display: none;
+            }
+        }
         &:hover &__icon {
             filter:  brightness(85%)
         }

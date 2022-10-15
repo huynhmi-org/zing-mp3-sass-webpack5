@@ -1,11 +1,7 @@
 .side-playlist {
-    position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 0;
+    @include position(fixed,null,0,0,0);
 
     width: 330px;
-    padding: 18px 8px;
     z-index: 3;
     
     background-color: $white;
@@ -21,17 +17,25 @@
 }
 
 .playlist {
-
+    display: flex;
+    flex-direction: column;
     &-header {
+        &-wrap {
+            padding: 18px 8px;
+        }
+
         height: 34px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        
         top: 0;
+        @include flex-custom($justify: space-between);
+
     }
 
 
+    &__heading {
+        font-size: $x-smallFontSize;
+        margin-top: 15px;
+        margin-bottom: 5px;
+    }
 
     &-switch {
         height: 100%;
@@ -79,8 +83,10 @@
     }
 
     &-body {
-        margin-top: 18px;
+        padding-left: 8px;
+        margin-right: 2px;
         max-height: 100%;
+        overflow: auto;
     }
 
     
@@ -102,12 +108,14 @@
 
 .playlist-container {
     display: none;
+    margin-bottom: calc($player-height + 75px);
+    margin-right: 2px;
     &--active {
         display: block;
     }
 
     & .media {
-        margin-bottom: 10px;
+        margin-bottom: 5px;
     }
 }
 

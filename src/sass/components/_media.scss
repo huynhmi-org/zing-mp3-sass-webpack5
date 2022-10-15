@@ -4,26 +4,65 @@
     padding: 10px 10px;
     border-radius: 4px;
     
-    &--active {
-        background-color: $grey-transparent-1;
+    &--active, &--active-primary {
         & .media-play-btn {
+            display: flex;
             &__icon {
                 &--play {
-                    display: block;
+                    display: none;
                 }
                 &--pause {
-                    display: none;
+                    display: block;
                 }
             }
         }
+
+        &.is-playing {
+            & .media-play-btn {
+                display: flex;
+                &__icon {
+                    &--play {
+                        display: block;
+                    }
+                    &--pause {
+                        display: none;
+                    }
+                }
+            }
+        }
+
+        
     }
 
-    &--rotate &-cover__img {
-        transform: translateX(10%);
+    &--active {
+        background-color: $grey-transparent-1;
+
+        
+        
     }
+
+    &.media--active-primary {
+        background-color: $primary-5;
+        color: $white;
+
+        & .media__title,
+        & .media__subtitle, 
+        & .media-options__icon, 
+        & .media-favorite-btn__icon {
+            color: $white;
+        }
+        & .media__subtitle {
+            opacity: 0.7
+        }
+
+        &:hover {
+            background-color: $primary-5;
+        }
+    }
+
 
     &--s {
-        padding: 5px 5px;
+        padding: 8px 8px;
 
         & .media-cover {
             @include size(40px);
@@ -47,10 +86,18 @@
         }
     }
 
+    &--previous {
+        opacity: 0.5;
+    }
+
     &--cd {
         & .media-cover {
             @include size(87px);
         }
+    }
+
+    &--rotate &-cover__img {
+        transform: translateX(10%);
     }
     
     &-cover {
@@ -124,6 +171,7 @@
     }
 
 
+
     &-play-btn {
         position: absolute;
         top: 0;
@@ -174,9 +222,12 @@
         display: block;
     } 
 
+    &:hover.media--previous {
+        opacity: unset;
+    }
+
     &:hover {
         background-color: $grey-transparent-1;
-
     }
 
     &--cd:hover &-cover {
@@ -329,24 +380,7 @@
 } 
 
 
-.media-current .media {
-    background-color: $primary-5;
-    
-    & .media__title,
-    & .media__subtitle, 
-    & .media-options__icon, 
-    & .media-favorite-btn__icon {
-        color: $white;
-    }
-    & .media__subtitle {
-        opacity: 0.7
-    }
-    & .media-play-btn {
-        display: flex;
-    }
-    &:hover {
-        background-color: $primary-5;
-    }
+
 
         
-}
+// }

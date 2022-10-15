@@ -16,7 +16,7 @@ const randomBtn = $('.shuffle-btn');
 const repeatBtn = $('.repeat-btn');
 const playBtn = player.querySelector('.play-btn');
 
-const App = {
+const PLAYER = {
     isPlay: player.classList.contains('player--playing'),
     isRandom: randomBtn.classList.contains('shuffle-btn--act'),
     isRepeat: false,
@@ -91,7 +91,7 @@ const App = {
             /* lưu current index đến  tempotary, sau khi bài hát next loaded, 
             current index này được add đến list previous song*/
             this.tempIndex = this.isRepeat !== 1 && this.currentIndex;
-            this.isRandom ? this.handleRandom() : this.isRepeat ? this.handleRepeat() : this.handleNext();
+            this.isRandom ? this.handleRandom() : this.handleNext();
         };
 
         preBtn.onclick = () => this.handlePrevious();
@@ -173,6 +173,7 @@ const App = {
             this.updatePlayBtnOfMedia();
             
             this.addNewPreviousIndex();
+
         }
 
         audio.onpause = () => {
@@ -189,7 +190,10 @@ const App = {
         }
 
         audio.onended = () => {
-            this.isRandom ? this.handleRandom() : this.isRepeat ? this.handleRepeat() : false;
+            this.isRepeat ? this.handleRepeat() : nextBtn.click();
+            
+            
+            
         }
 
     },
@@ -383,4 +387,4 @@ const App = {
 }
 
 
-App.start();
+PLAYER.start();
