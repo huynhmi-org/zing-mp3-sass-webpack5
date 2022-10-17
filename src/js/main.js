@@ -156,3 +156,18 @@ btnSwitchPlayList.forEach( (btn, index) => {
 		containerPlaylist[index].classList.add('playlist-container--active');
 	}
 })
+
+
+
+// sidebar toggle
+const sidebar = $('.sidebar');
+const btnOpenSidebar = $('#btn-open-sidebar');
+const btnCloseSidebar = $('#btn-close-sidebar');
+
+btnOpenSidebar.onclick = () => {
+	sidebar.classList.add('sidebar--open');
+}
+
+btnCloseSidebar.onclick = () => {
+	sidebar.classList.remove('sidebar--open');
+}

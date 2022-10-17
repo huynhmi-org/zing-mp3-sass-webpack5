@@ -4,13 +4,12 @@
 	background-color: $grey;
 	
 	&-pc {
-		@include flex-column;
 		height: 100%;
+		@include flex-column;
 	}
 
 	&-tablet {
 		display: none;
-
 		& .sidebar-button {
 		}
 	}
@@ -132,6 +131,7 @@
 .sidebar-footer {
 	padding: 15px 0px;
 	border-top: 1px solid $grey-2;
+	margin-top: auto
 }
 
 .sidebar-button {
@@ -143,6 +143,15 @@
 	background: unset;
 
 	cursor: pointer;
+
+	&-toggle {
+		@include size(40px);
+		border-radius: 100%;
+		background: $grey-transparent-1;
+		margin: auto;
+
+		display: none;
+	}
 
 	&__icon {
 		font-size: $baseFontSize;
@@ -163,33 +172,80 @@
 @media screen and (max-width: $mediumBreakpoint) {
 	.sidebar {
 		width: $sidebar-width-on-tablet;
-		&-pc {
-			display: none;
-		}
-
-		&-tablet {
-			@include flex-column;
-			height: 100%;
-		}
-
-		&-separate {
-			margin-top: 10px;
-		}
-
-		&-scrolldown {
-		}
+		@include transition(150ms);
+		z-index: 5;
 
 		&-footer {
 			border-top: unset;
 			padding: 10px 0px;
 		}
 
-		&-button {
-			@include size(40px);
-			border-radius: 100%;
-			background: $grey-transparent-1;
-			margin: auto;
+		&--open {
+			width: $sidebar-width-on-pc;
+			
+			& .sidebar-tablet {
+				display: none;
+			}
+			
+			& .sidebar-pc {
+				display: flex;
+
+				& .nav-item__title {
+					overflow: hidden;
+					white-space: nowrap;
+				}
+			}
+
+
 		}
+
+		&-pc {
+			display: none;
+			box-shadow: 0px 0px 5px 0px $black-transparent-2;
+
+			& .sidebar-banner {
+				display: none;
+			}
+
+			& .sidebar-button {
+					display: none;
+					&-toggle {
+						display: block;
+						margin-right: 15px;
+					}
+					
+				}
+		}
+
+		&-tablet {
+			@include flex-column;
+			height: 100%;
+
+			& .sidebar-separate {
+				margin-top: 10px;
+			}
+
+			& .nav {
+				padding: unset;
+		
+				&-item {
+					display: block;
+					padding: 15px 0px;
+					text-align: center;
+					border: unset;
+			
+					&__icon {
+						font-size: 20px;
+					}
+				}
+		
+			}
+
+			& .sidebar-button-toggle {
+				display: block;
+			}
+		}
+
 
 	}
 
@@ -204,20 +260,6 @@
 		}
 	}
 
-	.nav {
-		padding: unset;
-
-		&-item {
-			display: block;
-			padding: 15px 0px;
-			text-align: center;
-			border: unset;
 	
-			&__icon {
-				font-size: 20px;
-			}
-		}
-
-	}
 
 }
