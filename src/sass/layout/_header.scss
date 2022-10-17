@@ -1,5 +1,5 @@
 .header {
-    @include position(fixed,$sidebar-width, 0, 0, $zIndex: 3);
+    @include position(fixed,$sidebar-width-on-pc, 0, 0, $zIndex: 3);
     
     background-color: $white;
     box-shadow: 2px 2px 6px 0px $grey-1;
@@ -9,17 +9,20 @@
     height: $header-height;
 }
 
+
+
 .header-with-arrow-button {
     margin-right: 10px;
+    display: flex;
 }
 
 .header-arrow-button {
     border: none;
     background: none;
+    padding: 5px 13px 5px 9px;
 
-    padding: 5px 10px;
     &__icon {
-        font-size: 24px;
+        font-size: $largeFontSize;
         color: $black-2;
         opacity: 0.5;
     }
@@ -436,4 +439,20 @@
 
         cursor: pointer;
     }
+}
+
+
+
+
+@media screen and (min-width: $x-largeBreakpoint) {
+    .header {
+        margin-right: $side-playlist-width;
+    }
+}
+
+@media screen and (max-width: $mediumBreakpoint) {
+    .header {
+        left: $sidebar-width-on-tablet;
+    }
+
 }

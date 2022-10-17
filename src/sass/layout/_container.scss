@@ -1,4 +1,10 @@
-// Container styles
 .container {
-	margin: 6rem 2rem 0rem;
+	margin-top: 6rem;
+	padding: 0 60px;
+}
+
+@media screen and (max-width: $mediumBreakpoint) {
+	.container {
+		padding: 0px 30px;
+	}
 }

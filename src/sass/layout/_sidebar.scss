@@ -1,15 +1,23 @@
 .sidebar {
-	position: fixed;
-	top: 0;
-	left: 0;
-	bottom: $player-height;
-
+	@include position(fixed, 0, null, 0, $player-height);
 	width: $sidebar-width;
 	background-color: $grey;
+	
+	&-pc {
+		@include flex-column;
+		height: 100%;
+	}
 
-	display: flex;
-	flex-direction: column;
+	&-tablet {
+		display: none;
+
+		& .sidebar-button {
+		}
+	}
 }
+
+
+
 
 .logo {
 	padding: 15px 28px 0px;
@@ -121,31 +129,29 @@
 }
 
 
+.sidebar-footer {
+	padding: 15px 0px;
+	border-top: 1px solid $grey-2;
+}
+
 .sidebar-button {
-	$height: 54px;
-	height: $height;
-	width: 100%;
-	
-	line-height: $height;
-	font-size: $x-smallFontSize;
-	font-weight: 600;
-	text-align: center;
+	@include size(100%);
+	@include text($x-smallFontSize, $black-1, $weight: 600);
+	@include flex-custom;
 
 	border: none;
-	border-top: 1px solid $grey-2;
-
-	background: transparent;
-	color: $black-1;
+	background: unset;
 
 	cursor: pointer;
 
 	&__icon {
-		font-size: 20px;
+		font-size: $baseFontSize;
 		color: $black-3;
-		margin-right: 7px;
 
-		position: relative;
-		top: 1px;
+	}
+
+	&__text {
+		margin-left: 7px;
 	}
 	
 	&:hover {
@@ -153,3 +159,65 @@
 	}
 }
 
+
+@media screen and (max-width: $mediumBreakpoint) {
+	.sidebar {
+		width: $sidebar-width-on-tablet;
+		&-pc {
+			display: none;
+		}
+
+		&-tablet {
+			@include flex-column;
+			height: 100%;
+		}
+
+		&-separate {
+			margin-top: 10px;
+		}
+
+		&-scrolldown {
+		}
+
+		&-footer {
+			border-top: unset;
+			padding: 10px 0px;
+		}
+
+		&-button {
+			@include size(40px);
+			border-radius: 100%;
+			background: $grey-transparent-1;
+			margin: auto;
+		}
+
+	}
+
+	
+
+	.logo {
+		padding: 10px 0px;
+		text-align: center;
+
+		&__img {
+			height: 48px;
+		}
+	}
+
+	.nav {
+		padding: unset;
+
+		&-item {
+			display: block;
+			padding: 15px 0px;
+			text-align: center;
+			border: unset;
+	
+			&__icon {
+				font-size: 20px;
+			}
+		}
+
+	}
+
+}

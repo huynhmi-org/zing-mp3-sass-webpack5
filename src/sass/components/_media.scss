@@ -258,9 +258,13 @@
         text-transform: capitalize;
         color: $black-1;
         font-weight: 500;
-        overflow: hidden;
-        white-space: nowrap;        
-        text-overflow: ellipsis;
+        // overflow: hidden;
+        // white-space: nowrap;        
+        // text-overflow: ellipsis;
+    }
+
+    &__title, &-list-subtitle,&__subtitle {
+        @include limitText(21px, 1);
     }
 
     &-list-subtitle, &__subtitle {

@@ -1,4 +1,18 @@
 .main {
-    margin-left: $sidebar-width;
+    margin-left: $sidebar-width-on-pc;
     margin-bottom: $player-height;
 }
+
+@media screen and (min-width: $x-largeBreakpoint) {
+    .main {
+        margin-right: $side-playlist-width;
+    }
+}
+
+@media screen and (max-width: $mediumBreakpoint) {
+    .main {
+        margin-left: $sidebar-width-on-tablet;
+    }
+}
+
+

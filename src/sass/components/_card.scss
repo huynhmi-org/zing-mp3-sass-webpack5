@@ -31,13 +31,19 @@
             display: flex;
             justify-content: space-between;
             margin-top: 10px;
+            margin: 10px -6px 0px;
 
-            & img {
-                height: 42px;
-                width: 42px;
-                border-radius: $small-border-radius;
-
+            & .card-img {
+                @include size(33.3333%);
+                display: flex;
+                margin: 0 6px;
+                
+                & img {
+                    @include size(100%);
+                    border-radius: $small-border-radius;
+                }
             }
+
         }
     }
 
@@ -242,3 +248,4 @@
     }
 
 }
+

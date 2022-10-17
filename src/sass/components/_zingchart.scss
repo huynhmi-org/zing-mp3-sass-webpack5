@@ -138,3 +138,10 @@
         height: 100%;
     }
 }
+
+
+@media screen and (max-width: $mediumBreakpoint) {
+    .zingchart-list {
+        margin-top: 25px;
+    }
+}

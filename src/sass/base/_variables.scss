@@ -72,13 +72,20 @@ $red-1: #E35050;
 $green: #53D0BB;
 // Spacing
 $sidebar-width: 240px;
+$sidebar-width-on-pc: 240px;
+$sidebar-width-on-tablet: 70px;
 $header-height: 70px;
 $player-height: 90px;
+$side-playlist-width: 330px;
 
 
 // Breakpoints
-$smallBreakpoint: 600px;
-$largeBreakpoint: 1080px;
+$x-largeBreakpoint: 1591px;
+$largeBreakpoint: 1024px;
+$mediumBreakpoint: 1024px;
+$smallBreakpoint: 768px;
+
+
 
 $border-radius: 20px;
 $small-border-radius: 5px;
