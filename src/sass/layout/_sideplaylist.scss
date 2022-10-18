@@ -15,11 +15,6 @@
 }
 
 
-@media (min-width : $x-largeBreakpoint) {
-    .side-playlist {
-        transform: translateX(0%);
-    }
-}
 
 .playlist {
     @include flex-column;
@@ -123,3 +118,9 @@
     }
 }
 
+
+@media (min-width : $x-largeBreakpoint) {
+    .side-playlist {
+        transform: translateX(0%);
+    }
+}
