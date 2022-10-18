@@ -21,11 +21,11 @@
     }
 
     & .player-song {
-        height: $player-height;
+        height: 100%;
     }
 
     &-between {
-        height: 100%;
+        height: $player-height;
         @include flex-horiz(column);
         & .player-progress {
             margin-top: 6px;
@@ -233,8 +233,11 @@
 
 
 .volume-wrap {
-    & .player-progress__bar {
-        max-width: 70px;
+    & .player-progress__bar { 
+        &-wrap {
+            width: 70px;
+            display: flex;
+        }
     }
 }
 .volume-btn {
@@ -277,21 +280,6 @@
         &:hover {
             background-color: $primary-1;
             filter: brightness(85%);
-        }
-    }
-}
-
-
-@media screen and (min-width: $x-largeBreakpoint) {
-    .playlist-toggle-btn {
-        display: none;
-    }
-}
-
-@media screen and (max-width: $mediumBreakpoint) {
-    .volume-wrap {
-        & .player-progress__bar {
-            display: none;
         }
     }
 }

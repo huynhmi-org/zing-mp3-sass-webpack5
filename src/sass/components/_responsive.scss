@@ -11,11 +11,19 @@
     .side-playlist {
         transform: translateX(0%);
     }
+
+	.playlist-toggle-btn {
+        display: none;
+    }
 }
 
 
 // TABLET AND MOBILE
 @media screen and (max-width: $mediumBreakpoint) {
+	.hide-on-tablet-mobile {
+		display: none;
+	}
+	
     .header {
         left: $sidebar-width-on-tablet;
     }
@@ -117,13 +125,50 @@
 			height: 48px;
 		}
 	}
+
+	
+
+	.volume-wrap {
+		position: relative;
+
+		&:hover .player-progress__bar-wrap {
+			display: flex;
+		}
+
+        & .player-progress__bar {
+			height: 5px;
+			&-wrap {
+				@include position(absolute, 50%, $top: -30px);
+				transform: translateX(-50%);
+
+				background-color: $black;
+				border-radius: $small-border-radius;
+
+				padding: 7px 15px;
+				width: 145px;
+
+				display: none;
+
+				&::before {
+					content: "";
+					@include size(null, 100%, 12px);
+					@include position(absolute, 0, $top: 100%);
+					background-color: transparent;
+
+				}
+				
+			}
+        }
+    }
     
 }
 
 
 // TABLET
 @media screen  and (max-width: $mediumBreakpoint) and (min-width: $smallBreakpoint) {
-    
+    .hide-on-tablet {
+		display: none;
+	}
     
     .slider {
         padding-top: 25%;
@@ -159,6 +204,10 @@
 
 // MOBILE
 @media screen  and (max-width: 739px) {
+	.hide-on-mobile {
+		display: none;
+	}
+
     .slider {
         padding-top: 50%;
     }

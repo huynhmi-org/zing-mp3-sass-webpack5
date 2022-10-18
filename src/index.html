@@ -3689,10 +3689,10 @@
 
         <div class="player player--open" id="player">
             <div class="row">
-                <div class="col l-3 m-3">
+                <div class="col l-3 m-3 c-0">
                     <div class="player-song"></div>
                 </div>
-                <div class="col l-6 m-5">
+                <div class="col l-6 m-5 c-12">
                     <div class="player-between">
                         <div class="player-controls">
                             <!-- shuffle-btn--act -->
@@ -3744,7 +3744,7 @@
                         
                     </div>
                 </div>
-                <div class="col l-3 m-4">
+                <div class="col l-3 m-4 c-0">
                     <div class="player-right">
                         <div class="player-controls">
                             <button class="player-button has-mv">
@@ -3771,7 +3771,9 @@
                                     <i class="player-button__icon player-button__icon--unmute fa-solid fa-volume-high"></i>
                                     <i class="player-button__icon player-button__icon--mute fa-solid fa-volume-xmark"></i>
                                 </button>
-                                <input type="range" name="" class="player-progress__bar" value=100 min="0" max=100 step=1 id="progress-volume">
+                                <div class="player-progress__bar-wrap">
+                                    <input type="range" name="" class="player-progress__bar" value=100 min="0" max=100 step=1 id="progress-volume">
+                                </div>
                             </div>
                             <span class="player-separate"></span>
                             <button class="player-button playlist-toggle-btn has-tooltip ">
