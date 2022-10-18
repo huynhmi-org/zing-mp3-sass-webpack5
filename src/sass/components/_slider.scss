@@ -1,6 +1,6 @@
 .slider {
     position: relative;
-    min-height: 185px;
+    padding-top: calc(33.33333%/2);
     
     &-button {
         height: 55px;
@@ -50,6 +50,7 @@
     &-list {
         position: absolute;
         width: calc(100% + 30px);
+        top: 0;
 
         margin-left: -15px;
     }
@@ -59,6 +60,7 @@
         left: 50%;
 
         width: 33.33333%;
+        padding-top: calc(33.33333%/2);
 
         transform: translateX(-50%);
         transition: all linear 300ms;
@@ -67,7 +69,12 @@
         opacity: 0;
         z-index: -1;
 
+
+
         &__link {
+            position: absolute;
+            top: 0;
+
             display: block;
             margin: 0 15px;
 
@@ -80,6 +87,7 @@
         }
 
         &-cover {
+            
             &__img {
                 width: 100%;
                 object-fit: contain;
@@ -112,13 +120,17 @@
 }
 
 
-@media (max-width: 1024px) and (min-width: 768px) {
+@media screen and (max-width: $mediumBreakpoint) {
+    .slider {
+        padding-top: 25%;
+    }
     .slide {
-        
         &-item {
             width: 50%;
             left: 50%;
             transform: translateX(-50%);
+
+            padding-top: 25%;
             
             &--right {
                 opacity: 0;
@@ -138,4 +150,9 @@
             }
         }
     }
+}
+
+
+@media screen and (max-width: $smallBreakpoint) {
+    
 }

@@ -35,9 +35,9 @@ btnPrevious.onclick = () => {
 	addSlidesCurrent(increaseIndex, leftIndex, centerIndex);
 };
 
-setInterval(function () {
-	btnNext.click();
-}, 6000);
+// setInterval(function () {
+// 	btnNext.click();
+// }, 6000);
 
 
 function getCurrentSlideIndex() {
