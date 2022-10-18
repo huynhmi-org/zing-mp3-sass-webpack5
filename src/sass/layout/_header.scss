@@ -444,15 +444,4 @@
 
 
 
-@media screen and (min-width: $x-largeBreakpoint) {
-    .header {
-        margin-right: $side-playlist-width;
-    }
-}
 
-@media screen and (max-width: $mediumBreakpoint) {
-    .header {
-        left: $sidebar-width-on-tablet;
-    }
-
-}
