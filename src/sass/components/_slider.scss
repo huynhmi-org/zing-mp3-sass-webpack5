@@ -76,12 +76,10 @@
 
             display: block;
             margin: 0 15px;
-
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: cover;
-
-            border-radius: 5px;
+            & img {
+                @include size(100%);
+                border-radius: $small-border-radius;
+            }
 
         }
 

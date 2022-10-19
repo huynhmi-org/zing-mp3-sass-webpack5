@@ -494,6 +494,10 @@
     .row.touch-on-mobile {
         flex-wrap: nowrap;
         overflow-x: auto;
+
+        &::-webkit-scrollbar {
+            appearance: none;
+        }
     }
 
     

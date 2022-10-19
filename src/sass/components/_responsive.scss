@@ -294,6 +294,10 @@
 				border: unset;
 			}
 
+			&:hover {
+				color: $black-1;
+			}
+
 			
 
 			&__icon--play {
@@ -385,6 +389,12 @@
 
 	.card-control-btn + .card-control-btn {
 		margin-left: 3px;
+	}
+
+
+	.media:hover .media-play-btn,
+	.card-cover-link:hover .card-controls {
+		display: none;
 	}
 
 }
