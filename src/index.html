@@ -10,9 +10,9 @@
 
 <body>
     <div class="app">
-        <div class="sidebar ">
+        <div class="sidebar">
             <div class="sidebar-pc">
-                <a href="" class="logo">
+                <a href="" class="logo hide-on-mobile">
                     <img src="https://zmp3-static.zmdcdn.me/skins/zmp3-v6.1/images/backgrounds/logo-light.svg" alt="logo image" class="logo__img">
                 </a>
                 <nav class="nav">
@@ -33,7 +33,7 @@
                         <li class="nav-item has-radio">
                             <i class="nav-item__icon fa-solid fa-radio"></i> 
                             <span class="nav-item__title" title="Radio">Radio</span>
-                            <span class="radio-label">Live</span>
+                            <span class="radio-label hide-on-mobile">Live</span>
                             <i class="nav-item__icon nav-item__icon--play fa-regular fa-circle-play"></i>
                         </li>
                         <li class="nav-item">
@@ -42,8 +42,8 @@
                         </li>
                     </ul>
                 </nav>
-                <span class="sidebar-separate"></span>
-                <div class="sidebar-scrolldown has-scroll">
+                <span class="sidebar-separate hide-on-mobile"></span>
+                <div class="sidebar-scrolldown has-scroll hide-on-mobile">
                     <nav class="nav">
                         <ul class="nav-list">
                             <li class="nav-item">
@@ -78,7 +78,7 @@
                         <a class="btn btn--upgrade">Nâng cấp vip</a>
                     </div>
                 </div>
-                <div class="sidebar-footer">
+                <div class="sidebar-footer hide-on-mobile">
                     <button class="sidebar-button">
                         <i class="sidebar-button__icon fa-solid fa-plus"></i>
                         <span class="sidebar-button__text">
@@ -90,7 +90,7 @@
                     </button>
                 </div>
             </div>
-            <div class="sidebar-tablet">
+            <div class="sidebar-tablet hide-on-mobile">
                 <a href="" class="logo">
                     <img src="https://zjs.zmdcdn.me/zmp3-desktop/releases/v1.7.42/static/media/icon_zing_mp3_60.f6b51045.svg" alt="logo image" class="logo__img">
                 </a>
@@ -142,7 +142,12 @@
         </div>
         <div class="main">
                 <header class="header">
-                    <div class="header-with-arrow-button">
+                    <div class="header-button-item has-avatar">
+                        <button class="header-button">
+                            <img src="" alt="user" class="header-button__avatar" id="user_icon">
+                        </button>
+                    </div>
+                    <div class="header-with-arrow-button hide-on-mobile">
                         <button class="header-arrow-button" id="backward-btn">
                             <i class="header-arrow-button__icon fa-solid fa-arrow-left"></i>
                         </button>
@@ -155,7 +160,7 @@
                             <i class="search-bar-button__icon fa-solid fa-magnifying-glass"></i>
                         </span>
                         <input type="text" class="search-bar__input" placeholder="Tìm kiếm bài hát, nghệ sĩ, lời bài hát,...">
-                        <div class="search-bar-wrap">
+                        <div class="search-bar-wrap hide-on-mobile">
                             <div class="search-bar-inner">
                                 <div class="search-bar-group">
                                     <header class="search-bar-header">
@@ -212,7 +217,7 @@
                         </span>
                     </div>
     
-                    <div class="header-area-login">
+                    <div class="header-area-login hide-on-mobile">
                         <ul class="header-buttons-list">
                             <li class="header-button-item">
                                 <button class="header-button has-tooltip">
@@ -1592,7 +1597,7 @@
                                 </header>
                                 <div class="zingchart-body">
                                     <div class="row revert">
-                                        <div class="col l-5 m-12">
+                                        <div class="col l-5 m-12 c-12">
                                             <div class="zingchart-list">
                                                 <div class="media media--m zingchart-item zingchart-item--first">
                                                     <span class="media__index">1</span>
@@ -1666,7 +1671,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col l-7 m-12">
+                                        <div class="col l-7 m-12 c-12">
                                             <div class="zingchart-chart">
                                                 <canvas id="zingchart"></canvas>
                                             </div>
@@ -3689,14 +3694,43 @@
 
         <div class="player player--open" id="player">
             <div class="row">
-                <div class="col l-3 m-3 c-0">
-                    <div class="player-song"></div>
+                <div class="col l-3 m-4 c-9">
+                    <div class="player-song">
+                        <!-- <div class="media ${this.currentSong.vip ? 'media--vip' : ''} media--l">
+                            <div class="media-cover">
+                                <img src="${this.currentSong.cover}" alt="Cover" class="media-cover__img">
+                            </div>
+                            <div class="media-content">
+                                <div class="media-content-header">
+                                    <a href="" class="media__title">${this.currentSong.name}</a>
+                                    <span class="media__vip-label">vip</span>
+                                </div>
+                                <div class="media-list-subtitle">
+                                    ${this.currentSong.artist.map(
+                                        name => `<a href="" class="media__subtitle media__subtitle--link">${name}</a>`
+                                    ).join()}
+                                </div>
+                            </div>
+                            <button class="media-favorite-btn">
+                                <i class="media-favorite-btn__icon media-favorite-btn__icon--love fa-solid fa-heart"></i>
+                                <i class="media-favorite-btn__icon media-favorite-btn__icon--unlove fa-regular fa-heart"></i>
+                            </button>
+                            <div class="media-options has-tooltip">
+                                <i class="media-options__icon fa-solid fa-ellipsis"></i>
+                                <span class="tooltip tooltip--above">
+                                    <span class="tooltip__content">
+                                        Xem thêm
+                                    </span>
+                                </span>
+                            </div>
+                        </div> -->
+                    </div>
                 </div>
-                <div class="col l-6 m-5 c-12">
+                <div class="col l-6 m-4 c-3">
                     <div class="player-between">
                         <div class="player-controls">
                             <!-- shuffle-btn--act -->
-                            <button class="player-button has-tooltip shuffle-btn shuffle-btn--act">
+                            <button class="player-button has-tooltip shuffle-btn shuffle-btn--act hide-on-mobile">
                                 <i class="player-button__icon fa-solid fa-shuffle"></i>
                                 <span class="tooltip tooltip--above">
                                     <span class="tooltip__content">
@@ -3704,7 +3738,7 @@
                                     </span>
                                 </span>
                             </button>
-                            <button class="player-button has-tooltip play-btn--disabled" id="btn-pre-song">
+                            <button class="player-button has-tooltip play-btn--disabled hide-on-mobile" id="btn-pre-song">
                                 <i class="player-button__icon fa-solid fa-backward-step"></i>
                                 <span class="tooltip tooltip--above">
                                     <span class="tooltip__content">
@@ -3724,7 +3758,7 @@
                                     </span>
                                 </span>
                             </button>
-                            <button class="player-button has-tooltip repeat-btn">
+                            <button class="player-button has-tooltip repeat-btn hide-on-mobile">
                                 <sup class="player-button__number">1</sup>
                                 <i class="player-button__icon fa-solid fa-repeat"></i>
                                 <span class="tooltip tooltip--above">
@@ -3734,7 +3768,7 @@
                                 </span>
                             </button>
                         </div>
-                        <div class="player-progress">
+                        <div class="player-progress hide-on-mobile">
                             <span class="player-progress__time current-time" id="current-time">0:00</span>
                             <input type="range" name="" class="player-progress__bar" value="0" max="100" step="1" id="progress-song">
                             <audio src="" class="player-audio"></audio>
