@@ -72,8 +72,7 @@
 
 
         &__link {
-            position: absolute;
-            top: 0;
+            @include position(absolute, 0, 0, 0, 0);
 
             display: block;
             margin: 0 15px;
@@ -84,15 +83,6 @@
 
             border-radius: 5px;
 
-        }
-
-        &-cover {
-            
-            &__img {
-                width: 100%;
-                object-fit: contain;
-                border-radius: 8px;
-            }
         }
 
         &--left, &--right, &--center {
