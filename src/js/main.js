@@ -101,12 +101,22 @@ topRadioCarousel.handleBtnEvent();
 
 const eventCarousel = carousel($('#events'));
 eventCarousel.handleBtnEvent();
+let intCarousel;
+addEventListener('resize', resetIntCarousel);
+addEventListener('load', resetIntCarousel);
+function resetIntCarousel() {
+	intCarousel ? clearInterval(intCarousel) : false;
+ 	const w = window.innerWidth;
+	if (w > 740) {
+		intCarousel = setInterval(() => {
+			newSongCarousel.handleCarouselNext();
+			newSongCarousel2.handleCarouselNext();
+			topArtistCarousel.handleCarouselNext();
+		}, 5000);
+	} 
 
-setInterval(() => {
-	newSongCarousel.handleCarouselNext();
-	newSongCarousel2.handleCarouselNext();
-	topArtistCarousel.handleCarouselNext();
-}, 5000);
+}
+
 
 
 //**************** Handle Player **************** */

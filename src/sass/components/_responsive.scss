@@ -371,7 +371,7 @@
 		width: 100%;
 	}
 
-	.carousel,
+	// .carousel,
 	.search-bar__input:focus ~ .search-bar-wrap
 	// .search-bar__input 
 	{
@@ -397,4 +397,23 @@
 		display: none;
 	}
 
+	.carousel {
+		margin-left: unset;
+		margin-right: unset;
+
+		&-btn {
+			display: none;
+		}
+	}
+
+	.section-header-link {
+		display: none;
+	}
+
+	.btn--order {
+		white-space: nowrap;
+		font-size: 12px;
+		height: 30px;
+		padding: 0px 12px;
+	}
 }
