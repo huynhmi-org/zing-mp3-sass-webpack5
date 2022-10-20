@@ -19,7 +19,7 @@
 
 
 // TABLET AND MOBILE
-@media screen and (max-width: $mediumBreakpoint) {
+@media screen and (max-width: $largeBreakpoint) {
 	.hide-on-tablet-mobile {
 		display: none;
 	}
@@ -84,7 +84,7 @@
 
 
 // TABLET
-@media screen  and (max-width: $mediumBreakpoint) and (min-width: $smallBreakpoint) {
+@media screen  and (max-width: $largeBreakpoint) and (min-width: $smallBreakpoint) {
     .hide-on-tablet {
 		display: none;
 	}
@@ -322,7 +322,9 @@
 	.player {
 		bottom: $sidebar-height-on-mobile;
 		height: $sidebar-height-on-mobile;
+		border-top-width: $progress-bar-on-mobile;
 		padding: 0px 15px;
+		// position: relative;
 
 		& .media {
 			padding: unset;
@@ -331,7 +333,7 @@
 				position: relative;
 				left: 2%;
 			}
-			
+
 			&-cover {
 				@include size(40px);
 				border-radius: 100%;
@@ -351,7 +353,7 @@
 		}
 
 		& .player-song{
-			height: calc($sidebar-height-on-mobile - 2px);
+			height: calc($sidebar-height-on-mobile - $progress-bar-on-mobile - 2px);
 		}
 
 		& .player-between  {
@@ -365,6 +367,15 @@
 		}
 		&-button.play-btn {
 			border: unset;
+		}
+
+		// &::before {
+		// 	content: "";
+		
+		// }
+
+		&-progress-on-mobile {
+			display: block;
 		}
 	}
 
@@ -441,4 +452,21 @@
 		top: $header-height;
 		height: 100%;
 	}
+}
+
+
+@media screen and (max-width: $x-smallBreakpoint) {
+	.nav-item {
+		padding: 0px 0px;
+		&__title {
+			font-size: 0.8rem;
+			margin-top: 4px;
+		}
+	
+		&__icon {
+			font-size: 1.5rem;
+		}
+	}
+	
+	
 }

@@ -187,6 +187,10 @@ const PLAYER = {
             progress.value = time/audio.duration * 100 || 0;
             timer.textContent = this.formatTime(time);
 
+            const progressMobile = player.querySelector('.player-progress-on-mobile');
+            if (getComputedStyle(progressMobile).display === 'block') {
+                progressMobile.style.width =  `${time/audio.duration * 100 || 0}%`;
+            }
         }
 
         audio.onended = () => {

@@ -85,9 +85,11 @@ $red-2: #ff8787;
 $red-1: #E35050;
 
 $green: #53D0BB;
+
+
 // Spacing
 $sidebar-width: 240px;
-$sidebar-height-on-mobile: 50px;
+$sidebar-height-on-mobile: 55px;
 $sidebar-width-on-pc: 240px;
 $sidebar-width-on-tablet: 70px;
 $header-height: 70px;
@@ -95,19 +97,19 @@ $player-height: 90px;
 $side-playlist-width: 330px;
 
 
+$progress-bar-on-mobile: 3px;
+
 // Breakpoints
 $x-largeBreakpoint: 1591px;
 $largeBreakpoint: 1024px;
-$mediumBreakpoint: 1024px;
 $smallBreakpoint: 740px;
+$x-smallBreakpoint: 375px;
 
 
 
+// border-radius
 $border-radius: 20px;
 $small-border-radius: 5px;
-
-
-
 
 // btn
 $btn-height: 29px;

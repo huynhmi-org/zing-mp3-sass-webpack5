@@ -492,7 +492,7 @@
 }
 
 
-@media (max-width: $mediumBreakpoint) {
+@media (max-width: $largeBreakpoint) {
     .row.revert {
         flex-direction: column-reverse;
     }

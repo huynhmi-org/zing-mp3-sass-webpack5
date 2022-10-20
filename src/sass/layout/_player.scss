@@ -8,6 +8,14 @@
 
     display: none;
 
+
+    &-progress-on-mobile {
+        @include size(null, 0, $progress-bar-on-mobile);
+		@include position(absolute, 0, 0, calc(-1 * $progress-bar-on-mobile));
+		background-color: $primary-3;
+        display: none;
+    }
+
     &--open {
         display: block;
         
