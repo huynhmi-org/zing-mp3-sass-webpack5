@@ -15,14 +15,14 @@ html {
 	font-weight: normal;
 	color: $black;
 	line-height: $baseLineHeight;
-	font-size: 14px;
+	font-size: 11px;
 
 	@media only screen and (min-width: $smallBreakpoint) {
-		font-size: 15px;
+		font-size: 11px;
 	}
 
 	@media only screen and (min-width: $largeBreakpoint) {
-		font-size: $baseFontSize;
+		font-size: 10px;
 	}
 }
 

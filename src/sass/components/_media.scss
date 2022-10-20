@@ -161,7 +161,7 @@
         }
 
         &-with-cd .media-play-btn {
-            font-size: 24px;
+            font-size: 2.4rem;
             background-color: $black-transparent-3;
         }
 
@@ -180,7 +180,7 @@
         width: 100%;
         height: 100%;
 
-        font-size: 18px;
+        font-size: 1.8rem;
 
         color: $white;
         background-color: $black-transparent-3;
@@ -268,7 +268,7 @@
     }
 
     &-list-subtitle, &__subtitle {
-        font-size: 12px;
+        font-size: $media-FontSize;
         text-transform: capitalize;
         color: $grey-4;
     }
@@ -301,7 +301,7 @@
         display: none;
         
         &__icon {
-            font-size: 12px;
+            font-size: $media-FontSize;
             color: $black-2;
         }
         
@@ -311,7 +311,7 @@
     }
 
     &__vip-label {
-        font-size: 8px;
+        font-size: 0.8rem;
         font-weight: 800;
         line-height: 12px;
         text-transform: uppercase;
@@ -335,13 +335,13 @@
     }
 
     &__percent {
-        font-size: 16px;
+        font-size: $baseFontSize;
         font-weight: 800;
         color: $white;
     }
 
     &__index {
-        font-size: 32px;
+        font-size: 3.2rem;
         font-weight: 1000;
         font-family: fantasy;
         color: transparent;

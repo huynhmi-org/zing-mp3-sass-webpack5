@@ -3,12 +3,27 @@
 $sansSerif: 'Inter', sans-serif;
 
 // Font Sizing
-$xx-smallFontSize: 13px;
-$x-smallFontSize: 14px;
-$smallFontSize: 15px;
-$baseFontSize: 16px;
-$largeFontSize: 20px;
+$xx-smallFontSize: 1.3rem;
+$x-smallFontSize: 1.4rem;
+$smallFontSize: 1.5rem;
+$baseFontSize: 1.6rem;
+$largeFontSize: 2.0rem;
 
+// btn
+$btn-FontSize: 1.2rem;
+
+// card
+$btn-card-control-FontSize: 1.8rem;
+$card-FontSize: 2.2rem;
+
+// carousel
+$btn-carousel-FontSize: 1.8rem;
+
+// media
+$media-FontSize: 1.2rem;
+
+// event
+$event-FontSize: 0.9rem;
 $baseLineHeight: 1.5;
 $headingLineHeight: 1.2;
 

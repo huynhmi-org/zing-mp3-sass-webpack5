@@ -28,10 +28,6 @@
         left: $sidebar-width-on-tablet;
     }
 
-	.container {
-		padding: 0px 30px;
-	}
-
     .main {
         margin-left: $sidebar-width-on-tablet;
     }
@@ -91,6 +87,11 @@
 @media screen  and (max-width: $mediumBreakpoint) and (min-width: $smallBreakpoint) {
     .hide-on-tablet {
 		display: none;
+	}
+
+	.container {
+		padding-left: 30px;
+		padding-right: 30px;
 	}
     
     .slider {
@@ -188,7 +189,7 @@
 					border: unset;
 			
 					&__icon {
-						font-size: 20px;
+						font-size: $largeFontSize;
 					}
 				}
 		
@@ -215,13 +216,18 @@
 	}
 
 	.container {
-		padding: 0px 10px;
+		padding-left: 10px;
+		padding-right: 10px;
 	}
 
     .slider {
         padding-top: unset;
 		position: unset;
+		&:hover .slider-button {
+			display: none;
+		}
     }
+
     .slide {
         &-item {
             transform: unset;
@@ -278,20 +284,27 @@
 
 		&-item {
 			@include flex-column;
-			padding: 5px 8px;
+			padding: 0px 8px;
 			border: unset;
+			opacity: 0.9;
 			&__title {
 				margin-top: 3px;
-				font-size: 8px;
+				font-size: 1rem;
+				font-weight: 500;
 			}
 
 			&__icon {
-				font-size: 15px;
+				font-size: $baseFontSize;
 			}
 
 			&--active {
 				background: unset;
 				border: unset;
+				opacity: 1;
+
+				& .nav-item__title {
+					font-weight: 700;
+				}
 			}
 
 			&:hover {
@@ -313,13 +326,19 @@
 
 		& .media {
 			padding: unset;
+
+			& .media-favorite-btn {
+				position: relative;
+				left: 2%;
+			}
+			
 			&-cover {
 				@include size(40px);
 				border-radius: 100%;
 			}
 
 			&-favorite-btn .media-favorite-btn__icon {
-				font-size: 20px;
+				font-size: $largeFontSize;
 			}
 
 			& .media-options {
@@ -332,7 +351,7 @@
 		}
 
 		& .player-song{
-			height: $sidebar-height-on-mobile;
+			height: calc($sidebar-height-on-mobile - 2px);
 		}
 
 		& .player-between  {
@@ -341,7 +360,7 @@
 
 		&-button {
 			&__icon {
-				font-size: 20px;
+				font-size: $largeFontSize;
 			}
 		}
 		&-button.play-btn {
@@ -371,13 +390,6 @@
 		width: 100%;
 	}
 
-	// .carousel,
-	.search-bar__input:focus ~ .search-bar-wrap
-	// .search-bar__input 
-	{
-		display: none;
-	}
-
 	.search-bar__input:focus {
 		border-radius: 20px;
 	}
@@ -396,6 +408,9 @@
 	.card-cover-link:hover .card-controls {
 		display: none;
 	}
+	.card-cover-link:hover .card-cover__img {
+		transform: unset;
+	}
 
 	.carousel {
 		margin-left: unset;
@@ -412,8 +427,18 @@
 
 	.btn--order {
 		white-space: nowrap;
-		font-size: 12px;
+		font-size: 1.2rem;
 		height: 30px;
 		padding: 0px 12px;
+	}
+
+	.has-tooltip:hover .tooltip {
+		display: none;
+	}
+
+	.search-bar-wrap {
+		position: fixed;
+		top: $header-height;
+		height: 100%;
 	}
 }

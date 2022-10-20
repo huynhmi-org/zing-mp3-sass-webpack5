@@ -55,7 +55,7 @@
         }
 
         &__label {
-            font-size: 9px;
+            font-size: $event-FontSize;
             color: $red-2;
 
             text-transform: uppercase;
@@ -71,7 +71,7 @@
         align-items: center;
         
         &__title {
-            font-size: 15px;
+            font-size: $smallFontSize;
             color: $black-2;
         }
         
