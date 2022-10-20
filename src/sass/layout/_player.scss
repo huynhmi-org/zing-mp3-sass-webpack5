@@ -6,8 +6,41 @@
     background-color: $white;
     border-top: 1px solid $grey;
 
-    display: none;
+    transform: translateY(100%);
+    @include transition(200ms);
 
+    
+    &-toggle-btn {
+        @include position(absolute, null, 10px, -45px);
+        @include size(40px);
+        cursor: pointer;
+        background: unset;
+        border: unset;
+        padding: 5px 10px;
+        &__icon {
+            font-size: 3rem;
+            color: $primary-1;
+
+            &--close {
+                display: block;
+            }
+
+            &--open {
+                display: none;
+            }
+        }
+
+        &--open &__icon {
+                &--close {
+                    display: none;
+                }
+    
+                &--open {
+                    display: block;
+                }
+            }
+        
+    }
 
     &-progress-on-mobile {
         @include size(null, 0, $progress-bar-on-mobile);
@@ -17,8 +50,7 @@
     }
 
     &--open {
-        display: block;
-        
+        transform: translateY(0%);
     }
 
 

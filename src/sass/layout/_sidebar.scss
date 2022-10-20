@@ -2,6 +2,7 @@
 	@include position(fixed, 0, null, 0, $player-height);
 	width: $sidebar-width;
 	background-color: $grey;
+	@include transition(200ms);
 	
 	&-pc {
 		height: 100%;

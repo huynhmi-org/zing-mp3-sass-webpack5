@@ -12,12 +12,14 @@
     &--open {
         transform: translateX(0%);
     }
+
 }
 
 
 
 .playlist {
     @include flex-column;
+    position: relative;
     &-header {
         &-wrap {
             padding: 18px 8px;
@@ -88,6 +90,8 @@
         overflow: auto;
     }
 
+
+    
     
 
 }
