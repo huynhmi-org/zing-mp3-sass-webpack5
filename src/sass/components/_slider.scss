@@ -1,109 +1,296 @@
 .slider {
+    overflow: hidden;
     position: relative;
-    padding-top: calc(33.33333%/2);
-    
-    &-button {
-        height: 55px;
-        width: 55px;
-    
-        border: none;
-        border-radius: 100%;
-    
-        box-shadow: 0px 0px 3px 1px $black-transparent-2;
-        background-color: $white-transparent-2;
-    
-        position: absolute;
-        top: 50%;
 
-        transform: translateY(-50%);
-        z-index: 2;
-        cursor: pointer;
-
-        display: none;
-
-        &:hover {
-            opacity: 0.5;
-            opacity: 0.5;
-        }
-
-        &__icon {
-            font-size: 1.8rem;
-            color: $white;
-        }
-    
-        &--previous {
-            left: 20px;
-        }
-    
-        &--next {
-            right: 20px;
-        }
-    }
-
-    &:hover &-button {
+    &:hover .slide-btn {
         display: block;
+
+        @media only screen and (max-width: $smallBreakpoint) {
+            display: none;
+        }
     }
 }
 
 
 .slide {
     &-list {
-        position: absolute;
-        width: calc(100% + 30px);
-        top: 0;
+        display: flex;
+        margin-left: -12px;
+        margin-right: -12px;
+        position: relative;
 
-        margin-left: -15px;
+        @media only screen and (max-width: $smallBreakpoint) {
+            transform: translateX(-100%);
+        }
+
     }
-    
     &-item {
-        position: absolute;
-        left: 50%;
+        flex: 0 0 33.33333%;
+        max-width: 33.33333%;
+        padding: 0px 12px;
+        position: relative;
+        z-index: 1;
+        
+        animation-duration: 300ms;
+        animation-timing-function: linear;
+        animation-fill-mode: forwards;
 
-        width: 33.33333%;
-        padding-top: calc(33.33333%/2);
 
-        transform: translateX(-50%);
-        transition: all linear 300ms;
+        @media only screen and (max-width: $largeBreakpoint) {
+            flex-basis: 50%;
+            max-width: 50%;
+        }
 
-        visibility: hidden;
-        opacity: 0;
-        z-index: -1;
-
+        @media only screen and (max-width: $smallBreakpoint) {
+            flex-basis: 100%;
+            max-width: 100%;
+        }
 
 
         &__link {
-            @include position(absolute, 0, 0, 0, 0);
+            border-radius: $small-border-radius;
+            overflow: hidden;
+            display: flex;
 
-            display: block;
-            margin: 0 15px;
+            
             & img {
                 @include size(100%);
-                border-radius: $small-border-radius;
+            }
+        }
+
+        &.hide-at-center {
+            position: absolute;
+            left: 50%;
+
+            transform: translateX(-50%);
+            opacity: 0;
+            z-index: -1;
+        }
+
+        &.hide-from-left {
+            z-index: -1;
+            animation-name: hide-from-left;
+        }
+
+        @keyframes hide-from-left {
+            from {
+                transform: translateX(0%);
+                opacity: 1;
+            } 
+            to {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+        }
+
+        &.hide-from-right {
+            animation-name: hide-from-right;
+            z-index: -1;
+        }
+
+        @keyframes hide-from-right {
+            from {
+                transform: translateX(0%);
+                opacity: 1;
+            } 
+            to {
+                transform: translateX(-100%);
+                opacity: -1;
+            }
+        }
+
+        @media only screen and (max-width: $largeBreakpoint) {
+            @keyframes hide-from-right {
+                from {
+                    transform: translateX(0%);
+                    opacity: 1;
+                } 
+                to {
+                    transform: translateX(-50%);
+                    opacity: 0;
+                }
+            }
+        }
+
+        &.move-to-left {
+            animation-name: move-to-left;
+        }
+
+        @keyframes move-to-left {
+            from {
+                transform: translateX(0%);
+            } 
+            to {
+                transform: translateX(-100%);
             }
 
         }
 
-        &--left, &--right, &--center {
-            visibility: visible;
-            z-index: 1;
-            opacity: 1;
+        @media only screen and (max-width: $smallBreakpoint) {
+            @keyframes move-to-left {
+                from {
+                    transform: translateX(100%);
+                } 
+                to {
+                    transform: translateX(0%);
+                }
+    
+            }
         }
 
-        &--left {
-            left: 0;
-            transform: translateX(0%);
-            
+        &.move-to-right {
+            animation-name: move-to-right;
         }
 
-        &--right {
-            left: 100%;
-            transform: translateX(-100%);
+        @keyframes move-to-right {
+            from {
+                transform: translateX(0%);
+            } 
+            to {
+                transform: translateX(100%);
+            }
+
         }
 
-        &--center {
+        @media only screen and (max-width: $smallBreakpoint) {
+            @keyframes move-to-right {
+                from {
+                    transform: translateX(-100%);
+                } 
+                to {
+                    transform: translateX(0%);
+                }
+    
+            }
         }
+
+        &.show-from-right {
+            animation-name: show-from-right;
+        }
+
+        @keyframes show-from-right {
+            from {
+                transform: translateX(0%);
+                z-index: -1;
+                opacity: 0;
+            } 
+            to {
+                transform: translateX(50%);
+                z-index: 1;
+                opacity: 1;
+            }
+        }
+
+        @media only screen and (max-width: $largeBreakpoint) {
+            @keyframes show-from-right {
+                from {
+                    transform: translateX(-50%);
+                    z-index: -1;
+                    opacity: 0;
+                } 
+                to {
+                    transform: translateX(0%);
+                    z-index: 1;
+                    opacity: 1;
+                }
+            }
+        }
+        
+
+        &.show-from-left {
+            animation-name: show-from-left;
+        }
+
+        @keyframes show-from-left {
+            from {
+                transform: translateX(0%);
+                z-index: -1;
+                opacity: 0;
+            } 
+            to {
+                transform: translateX(-150%);
+                z-index: 1;
+                opacity: 1;
+            }
+        }
+
+        @media only screen and (max-width: $largeBreakpoint) {
+            @keyframes show-from-left {
+                from {
+                    transform: translateX(0%);
+                    z-index: -1;
+                    opacity: 0;
+                } 
+                to {
+                    transform: translateX(-100%);
+                    z-index: 1;
+                    opacity: 1;
+                }
+            }
+        }
+
+        
+
     }
 
-    
-}
+    &-btn {
+        @include position(absolute, $top: 50%);
+        @include size(55px);
 
+        transform: translateY(-50%);
+
+        border: none;
+        border-radius: 100%;
+        background-color: $white-transparent-5;
+        z-index: 2;
+
+        box-shadow: 0px 2px 5px 0px $black-transparent-2;
+
+        cursor: pointer;
+
+        display: none;
+
+        &__icon {
+            font-size: 2.6rem;
+            color: $white;
+        }
+
+        &--pre {
+            left: 15px;
+        }
+
+        &--next {
+            right: 15px;
+        }
+
+        &:hover {
+            opacity: 0.7;
+        }
+
+        
+
+        
+    }
+
+    &-dots {
+        @include position(absolute, null, 15px, 10px);
+        z-index: 2;
+        
+        & .dot {
+            @include size(6px);
+            border-radius: 100%;
+            background-color: $white;
+            display: inline-block;
+
+            opacity: 0.5;
+
+            & + .dot {
+                margin-left: 3px;
+            }
+
+            &.active {
+                opacity: 1;
+            }
+        }       
+    }
+}

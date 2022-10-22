@@ -11,63 +11,6 @@ btnMenuSetting.onclick = () => {
 };
 
 
-// //**************** Slide **************** */
-const btnNext = $('.slider-button--next');
-const btnPrevious = $('.slider-button--previous');
-
-const slides = $$('.slide-item');
-
-btnNext.onclick = () => {
-	const [leftIndex, centerIndex, rightIndex] = getCurrentSlideIndex();
-	removeSlidesCurrent(leftIndex, centerIndex, rightIndex);
-	
-	let increaseIndex = rightIndex == slides.length - 1 ? 0 : rightIndex + 1;
-
-	addSlidesCurrent(centerIndex,rightIndex, increaseIndex);
-};
-
-btnPrevious.onclick = () => {
-	const [leftIndex, centerIndex, rightIndex] = getCurrentSlideIndex();
-	removeSlidesCurrent(leftIndex, centerIndex, rightIndex);
-	
-	let increaseIndex = leftIndex == 0 ? slides.length - 1 : leftIndex - 1;
-	
-	addSlidesCurrent(increaseIndex, leftIndex, centerIndex);
-};
-
-// setInterval(function () {
-// 	btnNext.click();
-// }, 6000);
-
-
-function getCurrentSlideIndex() {
-	const left = [...slides].findIndex((slide) =>
-		slide.classList.contains('slide-item--left')
-	);
-	const right = [...slides].findIndex((slide) =>
-		slide.classList.contains('slide-item--right')
-	);
-	const center = [...slides].findIndex((slide) =>
-		slide.classList.contains('slide-item--center')
-	);
-
-	return [left, center, right];
-}
-
-function removeSlidesCurrent(leftIndex, centerIndex, rightIndex) {
-	slides[leftIndex].classList.remove('slide-item--left');
-	slides[centerIndex].classList.remove('slide-item--center');
-	slides[rightIndex].classList.remove('slide-item--right');
-}
-
-function addSlidesCurrent(leftIndex, centerIndex, rightIndex) {
-	slides[leftIndex].classList.add('slide-item--left');
-	slides[centerIndex].classList.add('slide-item--center');
-	slides[rightIndex].classList.add('slide-item--right');
-}
-
-
-
 //**************** Handle Tabs **************** */
 const btnTabs = $$('.tab-btn');
 const tabs = $$('.tab-item');

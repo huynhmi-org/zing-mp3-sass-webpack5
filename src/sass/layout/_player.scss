@@ -14,7 +14,7 @@
         @include position(absolute, null, 10px, -45px);
         @include size(40px);
         cursor: pointer;
-        background: unset;
+        background-color: unset;
         border: unset;
         padding: 5px 10px;
         &__icon {
