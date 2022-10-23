@@ -11,168 +11,120 @@ btnNext.onclick = handleNextSlider;
 btnPre.onclick = handlePreSlider;
 
 
-setInterval(handlePreSlider, 3000);
+setInterval(handleNextSlider, 3000);
 
 function handleNextSlider() {
+    // the first element will become the last element
+    slideList.appendChild(slideList.firstElementChild);
+    
     const slides = slideList.querySelectorAll('.slide-item');
-
+    let count;
+    
     const w = window.innerWidth;
-    // handle animation on pc and tablet
+    // handle animation on pc
     if (w > 1024) {
         const [first, second, third,...rest] = slides;
-        // move all rest's element to center
+        // apply animation
         rest.forEach(el => el.classList.add('hide-at-center'));
-        first.classList.add('hide-from-left');
+        first.classList.add('move-to-left');
         second.classList.add('move-to-left');
-        third.classList.add('move-to-left');
-        
-        const [four] = rest;
-        four.classList.add('show-from-right');
+        third.classList.add('show-from-right');
+        slideList.lastElementChild.classList.add('hide-from-left');
 
-        let i = 0;
-        [...slides].forEach(slide => {
-            slide.addEventListener("animationend", () => {
-                i++;
-                // when the animation is ended
-                if (i === 4) {
-                    // the element first will become the last element
-                    slideList.appendChild(slideList.firstElementChild);
-                    // remove all animation class
-                    [...slides].forEach(slide => slide.className = 'slide-item');
-                }
-            })
-        })
-    // handle animation on mobile
+        count = 4;
+        
+    //  handle animation on tablet
     } else if ( w > 740 && w < 1023) {
         const [first, second,...rest] = slides;
-        // move all rest's element to center
+        // apply animation
         rest.forEach(el => el.classList.add('hide-at-center'));
-        first.classList.add('hide-from-left');
-        second.classList.add('move-to-left');
-        
-        const [third] = rest;
-        third.classList.add('show-from-right');
+        first.classList.add('move-to-left');
+        second.classList.add('show-from-right');
+        slideList.lastElementChild.classList.add('hide-from-left');
 
-        let i = 0;
+        count = 3;
+    
+    // handle animation on the mobile
+    } else {
         [...slides].forEach(slide => {
-            slide.addEventListener("animationend", () => {
-                i++;
-                // when the animation is ended
-                if (i === 3) {
-                    // the element first will become the last element
-                    slideList.appendChild(slideList.firstElementChild);
-                    // remove all animation class
-                    [...slides].forEach(slide => slide.className = 'slide-item');
-                }
-            })
-        })
-    } 
-    else {
-        slideList.appendChild(slideList.firstElementChild);
-        let count = 0;
-        [...slides].forEach(slide => {
-            slide.style.animation =  'move-to-left linear 200ms';
-
-            slide.addEventListener("animationend", () => {
-                count ++;
-
-                if (count === 6) {
-                    [...slides].forEach(slide => slide.style.animation = '');
-                }
-            })
-        })
-
-
-        handleNextDot();
-
-        // slideList.appendChild(slideList.firstElementChild);
-
+            slide.classList.add('move-to-left');
+            
+        });
+        count = slides.length;
     }
-    // 
 
+    // when the animation ended, remove class animation
+    let i = 0;
+    [...slides].forEach(slide => {
+        slide.addEventListener("animationend", () => {
+            i++;
+            if ( i === count) {
+                [...slides].forEach(el => el.className = 'slide-item');
+            }
+        })
+    })
+
+    handleNextDot();
 }
 
 function handlePreSlider() {
+    slideList.insertBefore(slideList.lastElementChild, slideList.firstElementChild);
     const slides = slideList.querySelectorAll('.slide-item');
+    let count;
+
     const w = window.innerWidth;
     if (w > 1024) {
         const [first, second, third,...rest] = slides;
-        // move all rest's element to center
+        // apply animation to element
         rest.forEach(el => el.classList.add('hide-at-center'));
-        first.classList.add('move-to-right');
+        first.classList.add('move-to-left');
         second.classList.add('move-to-right');
-        third.classList.add('hide-from-right');
-        
-        const last = slideList.lastElementChild;
-        last.classList.add('show-from-left');
+        third.classList.add('move-to-right');
+        const [four] = rest;
+        four.classList.add('hide-from-right');
 
-        let i = 0;
-        [...slides].forEach(slide => {
-            slide.addEventListener("animationend", () => {
-                i++;
-                // when the animation is ended
-                if (i === 4) {
-                    // the last element will become the first element
-                    slideList.insertBefore(slideList.lastElementChild, slideList.firstElementChild);
-                    // remove all animation class
-                    [...slides].forEach(slide => slide.className = 'slide-item');
-                }
-            })
-        })
-
+        count = 4;
 
     // handle animation on mobile
-    } else if ( w > 740 && w < 1023) {
+    } 
+    else if ( w > 740 && w < 1023) {
         const [first, second,...rest] = slides;
         // move all rest's element to center
         rest.forEach(el => el.classList.add('hide-at-center'));
-        first.classList.add('move-to-right');
-        second.classList.add('hide-from-right');
+        first.classList.add('show-from-left');
+        second.classList.add('move-to-right');
+        const [third] = rest;
+        third.classList.add('hide-from-right');
         
-        const last = slideList.lastElementChild;
-        last.classList.add('show-from-left');
-
-        let i = 0;
-        [...slides].forEach(slide => {
-            slide.addEventListener("animationend", () => {
-                i++;
-                // when the animation is ended
-                if (i === 3) {
-                    // the element first will become the last element
-                    slideList.insertBefore(last,slideList.firstElementChild);
-                    // remove all animation class
-                    [...slides].forEach(slide => slide.className = 'slide-item');
-                }
-            })
-        })
+        count = 3;
     } else {
-        slideList.insertBefore(slideList.lastElementChild,slideList.firstElementChild);
-        let count = 0;
         [...slides].forEach(slide => {
-            slide.style.animation =  'move-to-right linear 200ms';
-
-            slide.addEventListener("animationend", () => {
-                count ++;
-
-                if (count === 6) {
-                    [...slides].forEach(slide => slide.style.animation = '');
-                }
-            })
+            slide.classList.add('move-to-right');
         })
 
-        handlePreDot();
+        count = slides.length;
     }
-    
+
+    let i = 0;
+    [...slides].forEach(slide => {
+        slide.addEventListener("animationend", () => {
+            i++;
+            if (i === count) {
+                [...slides].forEach(slide => slide.className = 'slide-item');
+            }
+        })
+    })
+
+    handlePreDot();
 }
 
-slider.addEventListener("touchmove", function(e) {
-    console.log(e);
-})
+
 
 let i = 0;
+
 function handleNextDot() {
     slider.querySelector('.dot.active').classList.remove('active');
-    i = i === dots.length ? 0 : i + 1;
+    i = i === dots.length  - 1 ? 0 : i + 1;
     dots[i].classList.add('active');
 }
 
@@ -181,3 +133,5 @@ function handlePreDot() {
     i = i === 0 ? dots.length - 1 : i - 1;
     dots[i].classList.add('active');
 }
+
+// touch event

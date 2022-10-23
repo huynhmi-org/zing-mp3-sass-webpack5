@@ -5,9 +5,9 @@
     &:hover .slide-btn {
         display: block;
 
-        @media only screen and (max-width: $smallBreakpoint) {
-            display: none;
-        }
+        // @media only screen and (max-width: $smallBreakpoint) {
+        //     display: none;
+        // }
     }
 }
 
@@ -74,28 +74,28 @@
 
         @keyframes hide-from-left {
             from {
-                transform: translateX(0%);
+                transform: translateX(-100%);
                 opacity: 1;
             } 
             to {
-                transform: translateX(100%);
+                transform: translateX(0%);
                 opacity: 0;
             }
         }
 
         &.hide-from-right {
-            animation-name: hide-from-right;
             z-index: -1;
+            animation-name: hide-from-right;
         }
 
         @keyframes hide-from-right {
             from {
-                transform: translateX(0%);
+                transform: translateX(50%);
                 opacity: 1;
             } 
             to {
-                transform: translateX(-100%);
-                opacity: -1;
+                transform: translateX(0%);
+                opacity: 0;
             }
         }
 
@@ -118,24 +118,12 @@
 
         @keyframes move-to-left {
             from {
-                transform: translateX(0%);
+                transform: translateX(100%);
             } 
             to {
-                transform: translateX(-100%);
+                transform: translateX(0%);
             }
 
-        }
-
-        @media only screen and (max-width: $smallBreakpoint) {
-            @keyframes move-to-left {
-                from {
-                    transform: translateX(100%);
-                } 
-                to {
-                    transform: translateX(0%);
-                }
-    
-            }
         }
 
         &.move-to-right {
@@ -144,24 +132,12 @@
 
         @keyframes move-to-right {
             from {
-                transform: translateX(0%);
+                transform: translateX(-100%);
             } 
             to {
-                transform: translateX(100%);
+                transform: translateX(0%);
             }
 
-        }
-
-        @media only screen and (max-width: $smallBreakpoint) {
-            @keyframes move-to-right {
-                from {
-                    transform: translateX(-100%);
-                } 
-                to {
-                    transform: translateX(0%);
-                }
-    
-            }
         }
 
         &.show-from-right {
@@ -170,12 +146,12 @@
 
         @keyframes show-from-right {
             from {
-                transform: translateX(0%);
+                transform: translateX(-100%);
                 z-index: -1;
                 opacity: 0;
             } 
             to {
-                transform: translateX(50%);
+                transform: translateX(0%);
                 z-index: 1;
                 opacity: 1;
             }
@@ -203,31 +179,31 @@
 
         @keyframes show-from-left {
             from {
-                transform: translateX(0%);
+                transform: translateX(50%);
                 z-index: -1;
                 opacity: 0;
             } 
             to {
-                transform: translateX(-150%);
+                transform: translateX(0%);
                 z-index: 1;
                 opacity: 1;
             }
         }
 
-        @media only screen and (max-width: $largeBreakpoint) {
-            @keyframes show-from-left {
-                from {
-                    transform: translateX(0%);
-                    z-index: -1;
-                    opacity: 0;
-                } 
-                to {
-                    transform: translateX(-100%);
-                    z-index: 1;
-                    opacity: 1;
-                }
-            }
-        }
+        // @media only screen and (max-width: $largeBreakpoint) {
+        //     @keyframes show-from-left {
+        //         from {
+        //             transform: translateX(0%);
+        //             z-index: -1;
+        //             opacity: 0;
+        //         } 
+        //         to {
+        //             transform: translateX(-100%);
+        //             z-index: 1;
+        //             opacity: 1;
+        //         }
+        //     }
+        // }
 
         
 
@@ -275,6 +251,12 @@
     &-dots {
         @include position(absolute, null, 15px, 10px);
         z-index: 2;
+
+        display: none;
+
+        @media only screen and (max-width: $smallBreakpoint) {
+            display: block;
+        }
         
         & .dot {
             @include size(6px);
