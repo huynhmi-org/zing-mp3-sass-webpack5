@@ -63,7 +63,7 @@ function resetIntCarousel() {
 
 
 //**************** Handle Player **************** */
-import createToastMessage from "./_toastMessage.js";
+import createToastMessage from "./toastMessage.js";
 export const favoriteToast = createToastMessage({
 	position: 'fixed',
     left: '20px',

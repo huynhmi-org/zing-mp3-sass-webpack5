@@ -9,7 +9,126 @@
     transform: translateY(100%);
     @include transition(200ms);
 
-    
+
+    &-mobile {
+        @include position(absolute, 0, 0, 0, 0);
+        background-color: $white;
+        padding: 10px 15px;
+
+        & .player {
+            position: unset;
+            transform: unset;
+            border-top: unset;
+
+            &-header {
+                @include flex-custom($justify: space-between);
+            }
+
+            &-btn {
+                background: unset;
+                border: unset;
+                padding: 10px 0px;
+                
+                &__icon {
+                    font-size: 2rem;
+                }
+
+            }
+
+            &-content {
+                text-align: center; 
+                text-transform: capitalize;
+            }
+
+            &__title {
+                font-size: 1.8rem;
+            }
+
+            &__subtitle {
+                font-size: $baseFontSize;
+            }
+
+            &-switch {
+                text-align: center;
+                margin: 10px 0px 30px;
+                
+                &__dot {
+                    @include size(5px);
+                    display: inline-block;
+                    border-radius: 100%;
+                    background-color: $grey;
+                    &--active {
+                        background-color: $primary;
+                    }
+
+                    
+                }
+
+                
+            }
+
+            &-cd {
+                width: 100%;
+                padding-top: 100%;
+                position: relative;
+                margin:  auto;
+
+                &-inner {
+                    @include position(absolute, 0, $top: 0);
+                    @include size;
+                    border-radius: 100%;
+                }
+
+                &__img {
+                    @include size;
+                    border-radius: 100%;
+                }
+            }
+
+            &-progress {
+                margin: 60px 0px;
+            }
+
+            &-controls {
+                justify-content: space-between;
+                margin-bottom: 40px;
+
+            }
+
+            &-button {
+                &.play-btn {
+                    @include size(60px);
+                    border: 2px solid $black-1;
+
+                    & .player-button__icon {
+                        font-size: 2.6rem;
+                    }
+                }
+
+                &.lyric-btn {
+                    margin-right: auto
+                }
+
+                &.playlist-toggle-btn {
+                    width: auto;
+                    margin-right: 0px;
+                }
+
+                &__text {
+                    margin-right: 10px;
+                    text-transform: uppercase;
+                }
+            }
+
+            &-progress {
+                &__bar {
+                }
+            }
+        }
+    }
+
+
+
     &-toggle-btn {
         @include position(absolute, null, 10px, -45px);
         @include size(40px);
@@ -320,4 +439,6 @@
             filter: brightness(85%);
         }
     }
+
+    
 }

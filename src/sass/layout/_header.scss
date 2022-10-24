@@ -2,7 +2,7 @@
     @include position(fixed,$sidebar-width-on-pc, 0, 0, $zIndex: 3);
     
     background-color: $white;
-    box-shadow: 2px 2px 6px 0px $grey-1;
+    box-shadow: 2px 2px 6px 0px $black-transparent-2;
     
     @include flex-vert;
     padding: 0 40px;

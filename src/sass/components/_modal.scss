@@ -1,0 +1,18 @@
+.modal {
+    @include position(fixed, 0, 0, 0, 0, 10);
+    transform: translateY(100%);
+    @include transition(300ms);
+
+    &--open {
+        transform: translateY(0%);
+    }
+
+    &__overlay {
+        @include position(absolute, 0, 0, 0, 0, 10);
+        background-color: $black-transparent-2;
+    }
+
+    &-body {
+        
+    }
+}
