@@ -1,0 +1,75 @@
+@mixin transition($time) {
+    transition: all linear $time;
+}
+
+@mixin size($all : 100%,$width: $all, $height : $all, $max-h: null, $min-h: null, $max-w: null, $min-w: null) {
+    height: $height;
+    max-height: $max-h;
+    min-width: $min-w;
+
+    width: $width;
+    max-width: $max-w;
+    min-height: $min-h;
+}
+
+@mixin config-border($radius: 100%, $size: 1px, $type: solid, $color: $white) {
+    border-radius: $radius;
+    border: $size $type $color;
+}
+
+@mixin text($size: $baseFontSize, $color: $black, $line-height: 1.5, $align: center, $weight: 300) {
+    font-size: $size;
+    color: $color;
+    line-height: $line-height;
+    font-weight: $weight;
+    text-align: $align;
+}
+
+@mixin backgroundImage ($position: center, $size: cover, $repeat: no-repeat) {
+    background-repeat: $repeat;
+    background-size: $size;
+    background-position: $position;
+}
+
+@mixin limitText ($height, $line) {
+    overflow: hidden;
+    max-height: $height;
+    text-overflow: ellipsis;
+
+    display: -webkit-box;
+    -webkit-line-clamp: $line;
+    -webkit-box-orient: vertical;
+}
+
+@mixin  position ($position, $left: null, $right: null, $top: null, $bottom: null, $zIndex: null) {
+    position: $position;
+    left: $left;
+    right: $right;
+    bottom: $bottom;
+    top: $top;
+    z-index: $zIndex;
+}
+
+@mixin flex-custom ($display: flex, $justify: center, $align: center, $dir: row) {
+    display: flex;
+    flex-direction: $dir;
+    justify-content: $justify;
+    align-items: $align;
+}
+
+@mixin flex-horiz ($direction: row, $justify: center) {
+    display: flex;
+    flex-direction: $direction;
+    justify-content: $justify;
+}
+
+@mixin flex-vert ($direction: row, $align: center) {
+    display: flex;
+    flex-direction: $direction;
+    align-items: $align;
+}
+
+@mixin  flex-column {
+    display: flex;
+    flex-direction: column;
+}

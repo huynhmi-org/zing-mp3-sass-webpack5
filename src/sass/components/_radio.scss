@@ -1,6 +1,32 @@
 .radio {
+    &--active {
+        & .radio-controls {
+            display: flex;
+        }
+        & .radio-btn {
+            &__icon {
+                &--pause {
+                    display: none;
+                }
+                &--play {
+                    display: block;
+                }
+            }
+        }
+    }
 
+    &-item &-label {
+        display: none;
+    }
     
+    &--live &-label {
+        display: block;
+    }
+
+    &--live &-cover-inner {
+        @include config-border(100%,3px, solid, $red);
+    }
+
     &-cover-inner, &-cover__img, &-controls {
         position: absolute;
         top: 0;
@@ -12,7 +38,7 @@
 
         &-inner {
             @include size;
-            @include config-border(100%,3px, solid, $red);
+            @include config-border(100%,3px, solid);
             overflow: hidden;
 
         }
@@ -42,6 +68,7 @@
     &-btn {
         @include size(43px);
         @include text(22px,$white,40px);
+        @include flex-custom;
         
         @include config-border;
         background: none;
@@ -49,6 +76,14 @@
         margin: auto;
         cursor: pointer;
 
+        &__icon {
+            &--pause {
+                display: block;
+            }
+            &--play {
+                display: none;
+            }
+        }
         &:hover &__icon {
             filter:  brightness(85%)
         }
@@ -69,7 +104,7 @@
     
     }
     &-title {
-        font-size: 17px;
+        font-size: 1.7rem;
         text-align: center;
         text-transform: capitalize;
         color: $black;
@@ -85,5 +120,32 @@
 
     & .carousel-btn {
         top: 35%;
+    }
+
+    &-label {
+        font-size: 0.8rem;
+        font-weight: 600;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        color: $white;
+    
+        background-color: $red;
+        border-radius: 3px;
+    
+        padding: 2px 6px 2px;
+        margin-left: 8px;
+    
+        
+        &--center {
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            margin-left: 0px;
+        }
+    
+        &--small {
+            font-size: 0.6rem;
+        }
     }
 }

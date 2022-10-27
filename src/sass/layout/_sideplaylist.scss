@@ -1,0 +1,126 @@
+.side-playlist {
+    @include position(fixed,null,0,0,0, 3);
+
+    width: $side-playlist-width;
+    
+    background-color: $white;
+    box-shadow: -1px 0px 4px 2px $black-transparent-2;
+
+    transform: translateX(calc(100% + 10px));
+    @include transition(500ms);
+
+    &--open {
+        transform: translateX(0%);
+    }
+
+}
+
+
+
+.playlist {
+    @include flex-column;
+    position: relative;
+
+    
+    &-header {
+        &-wrap {
+            padding: 18px 8px;
+        }
+
+        height: 34px;
+        top: 0;
+        @include flex-custom($justify: space-between);
+
+    }
+
+
+    &__heading {
+        font-size: $x-smallFontSize;
+        margin-top: 15px;
+        margin-bottom: 5px;
+    }
+
+    &-switch {
+        height: 100%;
+        padding: 3px 3px;
+
+        border-radius: 34px;
+        background-color: $grey;
+
+
+        &-btn {
+            font-size: $xx-smallFontSize;
+
+            height: 100%;
+            padding: 0px 15px;
+
+            background: none;
+            border-radius: inherit;
+            border: none;
+
+            cursor: pointer;
+
+
+            &--active {
+                background-color: $white;
+                color: $primary-4;
+            }
+
+            &:hover {
+                color: $primary-4;
+            }
+        }
+    }
+
+    &-btn {
+        @include size(34px);
+        border-radius: 100%;
+        border: none;
+        background-color: $grey-transparent-2;
+
+        cursor: pointer;
+        
+        &__icon {
+
+        }
+    }
+
+    &-body {
+        padding-left: 8px;
+        margin-right: 2px;
+        max-height: 100%;
+        overflow: auto;
+    }
+
+
+    
+    
+
+}
+
+.side-playlist .tooltip  {
+
+    &--touch-right {
+        right: -120%;
+    
+    
+        & .tooltip__content::before {
+            left: 61%;
+        }
+    }
+
+}
+
+.playlist-container {
+    display: none;
+    margin-bottom: calc($player-height + 75px);
+    margin-right: 3px;
+    &--active {
+        display: block;
+    }
+
+    & .media {
+        margin-bottom: 5px;
+    }
+}
+

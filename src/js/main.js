@@ -11,63 +11,6 @@ btnMenuSetting.onclick = () => {
 };
 
 
-// //**************** Slide **************** */
-const btnNext = $('.slider-button--next');
-const btnPrevious = $('.slider-button--previous');
-
-const slides = $$('.slide-item');
-
-btnNext.onclick = () => {
-	const [leftIndex, centerIndex, rightIndex] = getCurrentSlideIndex();
-	removeSlidesCurrent(leftIndex, centerIndex, rightIndex);
-	
-	let increaseIndex = rightIndex == slides.length - 1 ? 0 : rightIndex + 1;
-
-	addSlidesCurrent(centerIndex,rightIndex, increaseIndex);
-};
-
-btnPrevious.onclick = () => {
-	const [leftIndex, centerIndex, rightIndex] = getCurrentSlideIndex();
-	removeSlidesCurrent(leftIndex, centerIndex, rightIndex);
-	
-	let increaseIndex = leftIndex == 0 ? slides.length - 1 : leftIndex - 1;
-	
-	addSlidesCurrent(increaseIndex, leftIndex, centerIndex);
-};
-
-setInterval(function () {
-	btnNext.click();
-}, 6000);
-
-
-function getCurrentSlideIndex() {
-	const left = [...slides].findIndex((slide) =>
-		slide.classList.contains('slide-item--left')
-	);
-	const right = [...slides].findIndex((slide) =>
-		slide.classList.contains('slide-item--right')
-	);
-	const center = [...slides].findIndex((slide) =>
-		slide.classList.contains('slide-item--center')
-	);
-
-	return [left, center, right];
-}
-
-function removeSlidesCurrent(leftIndex, centerIndex, rightIndex) {
-	slides[leftIndex].classList.remove('slide-item--left');
-	slides[centerIndex].classList.remove('slide-item--center');
-	slides[rightIndex].classList.remove('slide-item--right');
-}
-
-function addSlidesCurrent(leftIndex, centerIndex, rightIndex) {
-	slides[leftIndex].classList.add('slide-item--left');
-	slides[centerIndex].classList.add('slide-item--center');
-	slides[rightIndex].classList.add('slide-item--right');
-}
-
-
-
 //**************** Handle Tabs **************** */
 const btnTabs = $$('.tab-btn');
 const tabs = $$('.tab-item');
@@ -86,7 +29,7 @@ btnTabs.forEach((btn, index) => {
 	}
 })
 
-//**************** Handle Carousel of New Song **************** */
+//**************** Handle Carousel **************** */
 import carousel from "./carousel.js";
 
 const newSongCarousel = carousel($('#top-new-song-release'));
@@ -101,11 +44,76 @@ topRadioCarousel.handleBtnEvent();
 
 const eventCarousel = carousel($('#events'));
 eventCarousel.handleBtnEvent();
+let intCarousel;
+addEventListener('resize', resetIntCarousel);
+addEventListener('load', resetIntCarousel);
+function resetIntCarousel() {
+	intCarousel ? clearInterval(intCarousel) : false;
+ 	const w = window.innerWidth;
+	if (w > 740) {
+		intCarousel = setInterval(() => {
+			newSongCarousel.handleCarouselNext();
+			newSongCarousel2.handleCarouselNext();
+			topArtistCarousel.handleCarouselNext();
+		}, 5000);
+	} 
 
-setInterval(() => {
-	newSongCarousel.handleCarouselNext();
-	newSongCarousel2.handleCarouselNext();
-	topArtistCarousel.handleCarouselNext();
-}, 5000);
+}
 
+
+//**************** Handle Playlist **************** */
+const btnTogglePlayList = $('.playlist-toggle-btn');
+const sidePlayList = $('.side-playlist');
+let isPlayListOpen = sidePlayList.classList.contains('side-playlist--open');
+
+btnTogglePlayList.onclick = function() {
+	isPlayListOpen = !isPlayListOpen;
+	sidePlayList.classList.toggle('side-playlist--open', isPlayListOpen);
+	this.classList.toggle('playlist-toggle-btn--active', isPlayListOpen);
+}
+
+
+const btnSwitchPlayList = $$('.playlist-switch-btn');
+const containerPlaylist = $$('.playlist-container');
+btnSwitchPlayList.forEach( (btn, index) => {
+	btn.onclick = function() {
+		$('.playlist-switch-btn.playlist-switch-btn--active').classList.remove('playlist-switch-btn--active');
+		this.classList.add('playlist-switch-btn--active');
+
+		$('.playlist-container.playlist-container--active').classList.remove('playlist-container--active');
+		containerPlaylist[index].classList.add('playlist-container--active');
+	}
+})
+
+
+//**************** Handle sidebar toggle on tablet **************** */
+const sidebar = $('.sidebar');
+const btnOpenSidebar = $('#btn-open-sidebar');
+const btnCloseSidebar = $('#btn-close-sidebar');
+
+btnOpenSidebar.onclick = () => {
+	sidebar.classList.add('sidebar--open');
+}
+
+btnCloseSidebar.onclick = () => {
+	sidebar.classList.remove('sidebar--open');
+}
+
+
+
+//**************** Handle sidebar player toggle btn **************** */
+const player = $('.player');
+const btnTogglePlayer = $('.player-toggle-btn');
+let isPlayerOpen = player.classList.contains('player--open');
+btnTogglePlayer.onclick = () => {
+    isPlayerOpen = !isPlayerOpen;
+	player.classList.toggle('player--open', isPlayerOpen);
+    btnTogglePlayer.classList.toggle('player-toggle-btn--open', !isPlayerOpen);
+    
+    $('.sidebar').style.bottom = isPlayerOpen ? '90px': '0px';
+
+	if (!isPlayerOpen) {
+		isPlayListOpen ? btnTogglePlayList.click(): false;
+	}
+}
 

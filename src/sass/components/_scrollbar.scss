@@ -1,0 +1,19 @@
+.has-scroll {
+	overflow-y: auto;
+    &::-webkit-scrollbar {
+		-webkit-appearance: none;
+		width: 4px;
+		border-radius: 4px;
+	
+		background: transparent;
+	}
+	
+	&::-webkit-scrollbar-thumb {
+		-webkit-appearance: none;
+	
+		width: 4px;
+		border-radius: 4px;
+	
+		background-color: $grey-3;
+	}
+}

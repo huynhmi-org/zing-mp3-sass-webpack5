@@ -42,14 +42,20 @@
 
         &__title {
             font-size: $baseFontSize;
+            text-transform: capitalize;
             margin-top: 2px;
+            @include limitText(30px, 1);
+        }
+
+        &__multiply {
+            text-transform: lowercase;
         }
         &__subtitle {
             font-size: $x-smallFontSize;
         }
 
         &__label {
-            font-size: 9px;
+            font-size: $event-FontSize;
             color: $red-2;
 
             text-transform: uppercase;
@@ -65,7 +71,7 @@
         align-items: center;
         
         &__title {
-            font-size: 15px;
+            font-size: $smallFontSize;
             color: $black-2;
         }
         

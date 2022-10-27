@@ -41,7 +41,7 @@
         border-radius: 100%;
         border: none;
 
-        font-size: 18px;
+        font-size: $btn-carousel-FontSize;
         text-align: center;
         line-height: 40px;
 
@@ -73,35 +73,16 @@
         }
     }
     &-list {
-        display: flex;
-        @include transition(250ms)
-
-    }
-    
-    &--no-gutter {
-        margin-left: 0px;
-        margin-right: 0px;
 
     }
 
-    &--no-gutter &-item{
-        padding: 0px;
+    & .row {
+        flex-wrap: unset;
+        @include transition(250ms);
+
     }
 
     &-item {
         flex-shrink: 0;
-        padding: 0 14px;
-        
-        &--col-3 {
-            width: 33.33333%;
-        }
-
-        &--col-2 {
-            width: 20%;
-        }
-
-        &--col-1-4 {
-            width: calc(100% / 7);
-        }
     }
 }

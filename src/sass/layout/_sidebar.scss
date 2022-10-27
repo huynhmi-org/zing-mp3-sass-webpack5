@@ -1,15 +1,23 @@
 .sidebar {
-	position: fixed;
-	top: 0;
-	left: 0;
-	bottom: 0;
-
+	@include position(fixed, 0, null, 0, $player-height);
 	width: $sidebar-width;
 	background-color: $grey;
+	@include transition(200ms);
+	
+	&-pc {
+		height: 100%;
+		@include flex-column;
+	}
 
-	display: flex;
-	flex-direction: column;
+	&-tablet {
+		display: none;
+		& .sidebar-button {
+		}
+	}
 }
+
+
+
 
 .logo {
 	padding: 15px 28px 0px;
@@ -84,51 +92,9 @@
 	z-index: 1;
 }
 
-.radio-label {
-	font-size: 8px;
-	font-weight: 600;
-	letter-spacing: 1px;
-	text-transform: uppercase;
-	color: $white;
-
-	background-color: $red;
-	border-radius: 3px;
-
-	padding: 2px 6px 2px;
-	margin-left: 8px;
-
-	&--center {
-		position: absolute;
-		top: 100%;
-		left: 50%;
-		transform: translate(-50%, -50%);
-		margin-left: 0px;
-	}
-
-	&--small {
-		font-size: 6px;
-	}
-}
-
 .sidebar-scrolldown {
-	overflow-y: auto;
 	margin-right: 3px;
-	&::-webkit-scrollbar {
-		-webkit-appearance: none;
-		width: 4px;
-		border-radius: 4px;
 	
-		background: transparent;
-	}
-	
-	&::-webkit-scrollbar-thumb {
-		-webkit-appearance: none;
-	
-		width: 4px;
-		border-radius: 4px;
-	
-		background-color: $grey-3;
-	}
 }
 
 
@@ -153,7 +119,7 @@
 	}
 	
 	&__desc {
-		font-size: 13px;
+		font-size: $xx-smallFontSize;
 		font-weight: 600;
 		text-align: center;
 		color: $white;
@@ -163,31 +129,39 @@
 }
 
 
+.sidebar-footer {
+	padding: 15px 0px;
+	border-top: 1px solid $grey-2;
+	margin-top: auto
+}
+
 .sidebar-button {
-	$height: 54px;
-	height: $height;
-	width: 100%;
-	
-	line-height: $height;
-	font-size: $x-smallFontSize;
-	font-weight: 600;
-	text-align: center;
+	@include size(100%);
+	@include text($x-smallFontSize, $black-1, $weight: 600);
+	@include flex-custom;
 
 	border: none;
-	border-top: 1px solid $grey-2;
-
-	background: transparent;
-	color: $black-1;
+	background: unset;
 
 	cursor: pointer;
 
-	&__icon {
-		font-size: 20px;
-		color: $black-3;
-		margin-right: 7px;
+	&-toggle {
+		@include size(40px);
+		border-radius: 100%;
+		background: $grey-transparent-1;
+		margin: auto;
 
-		position: relative;
-		top: 1px;
+		display: none;
+	}
+
+	&__icon {
+		font-size: $baseFontSize;
+		color: $black-3;
+
+	}
+
+	&__text {
+		margin-left: 7px;
 	}
 	
 	&:hover {

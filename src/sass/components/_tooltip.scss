@@ -14,6 +14,9 @@
     animation: fadeOut linear 200ms;
 
     z-index: 1;
+
+    left: 50%;
+    transform: translateX(-50%);
     &--above {
         top: calc(-100% - 7px);
 
@@ -24,8 +27,19 @@
         top: 100%;
     }
 
+    &--touch-right {
+        right: 0;
+        left: unset;
+        transform: translateX(0%);
+
+        & .tooltip__content::before {
+            left: 88%;
+        }
+    }
+
 
 }
+
 
 .tooltip__content {
     position: relative;
@@ -33,7 +47,7 @@
     transform: translateX(-100%);
     padding: 5px 10px;
 
-    font-size: 12px;
+    font-size: 1.2rem;
     line-height: $baseLineHeight;
     color: $white-transparent-1;
     white-space: nowrap;
