@@ -1,18 +1,30 @@
 .media {
     display: flex;
     align-items: center;
-    padding: 10px 10px;
+    padding: 5px 10px;
     border-radius: 4px;
     
+    &-current {
+        background-color: $primary;
+        color: $white;
+
+        & .media__title, & .media__subtitle {
+            color: $white;
+        }
+
+        & .media-play-btn {
+            display: flex;
+        }
+    }
     &--active, &--active-primary {
         & .media-play-btn {
             display: flex;
             &__icon {
                 &--play {
-                    display: none;
+                    display: block;
                 }
                 &--pause {
-                    display: block;
+                    display: none;
                 }
             }
         }
@@ -113,6 +125,19 @@
         border-radius: 4px;
         transition: all linear 300ms;
 
+        &__index {
+            font-size: 2rem;
+            color: purple;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            /* text-align: center; */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
         // &--small {
         //     @include size(40px);
         // }

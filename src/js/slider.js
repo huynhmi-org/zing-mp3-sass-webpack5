@@ -64,7 +64,6 @@ function handleNextSlider() {
         })
     })
 
-    handleNextDot();
 }
 
 function handlePreSlider() {
@@ -115,10 +114,10 @@ function handlePreSlider() {
         })
     })
 
-    handlePreDot();
 }
 
 
+// if use dot
 
 let i = 0;
 

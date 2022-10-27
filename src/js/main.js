@@ -61,33 +61,6 @@ function resetIntCarousel() {
 }
 
 
-
-//**************** Handle Player **************** */
-import createToastMessage from "./toastMessage.js";
-export const favoriteToast = createToastMessage({
-	position: 'fixed',
-    left: '20px',
-    bottom: 'calc($player-height + 30px)'
-}, 2000);
-
-const btnFavorites = $$('.media-favorite-btn');
-btnFavorites.forEach( btn => {
-	btn.onclick = function() {
-		const media = this.closest('.media');
-
-		if (media.classList.contains('media--favorite')) {
-			media.classList.remove('media--favorite');
-			favoriteToast('Đã xóa bài hát khỏi thư viện');
-		} else {
-			media.classList.add('media--favorite');
-			favoriteToast('Đã thêm bài hát vào thư viện');
-		}
-	}
-})
-
-
-
-
 //**************** Handle Playlist **************** */
 const btnTogglePlayList = $('.playlist-toggle-btn');
 const sidePlayList = $('.side-playlist');
@@ -101,7 +74,6 @@ btnTogglePlayList.onclick = function() {
 
 
 const btnSwitchPlayList = $$('.playlist-switch-btn');
-console.log(btnSwitchPlayList);
 const containerPlaylist = $$('.playlist-container');
 btnSwitchPlayList.forEach( (btn, index) => {
 	btn.onclick = function() {

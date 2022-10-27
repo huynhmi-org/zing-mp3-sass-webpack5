@@ -20,6 +20,8 @@
 .playlist {
     @include flex-column;
     position: relative;
+
+    
     &-header {
         &-wrap {
             padding: 18px 8px;

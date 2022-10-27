@@ -93,6 +93,10 @@
 		padding-left: 30px;
 		padding-right: 30px;
 	}
+
+	.side-playlist {
+		width: $side-playlist-width-on-tablet;
+	}
     
 
 	.sidebar {
@@ -202,6 +206,10 @@
 		
 	}
 
+	.slide-btn {
+		display: block;
+	}
+
 	.nav {
 		height: $sidebar-height-on-mobile;
 		&-list {
@@ -232,12 +240,6 @@
 					font-weight: 700;
 				}
 			}
-
-			&:hover {
-				color: $black-1;
-			}
-
-			
 
 			&__icon--play {
 				display: none!important;
