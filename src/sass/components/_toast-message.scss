@@ -13,7 +13,7 @@
     justify-content: space-between;
     padding: 10px 15px;
 
-    z-index: 20;
+    z-index: 60;
 
     &__text {
         font-size: $x-smallFontSize;
@@ -32,6 +32,10 @@
         &__icon {
             color: $black-4;
         }
+    }
+
+    @media screen and (max-width: $smallBreakpoint) {
+        width: 80%;
     }
 
 

@@ -402,6 +402,8 @@
         background: none;
         cursor: pointer;
 
+        font-size: $baseFontSize;
+        
         & .media-favorite-btn__icon--love {
             display: none;
         }

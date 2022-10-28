@@ -12,8 +12,8 @@ const progress = $$('.progress-song');
 const volume = $('#progress-volume');
 const volumeBtn = $('.volume-btn');
 const audio = $('.player-audio');
-const timer = $('#current-time');
-const duration = $('#duration');
+const timers = $$('.current-time');
+const durations = $$('.duration');
 
 const preBtns = $$('.btn-pre-song');
 const nextBtns = $$('.btn-next-song');
@@ -163,7 +163,7 @@ let PLAYER = {
         
         audio.onloadeddata = () => {
             this.isPlay ? audio.play() : audio.pause();
-            duration.textContent = this.formatTime(audio.duration);
+            durations.forEach(item => item.textContent = this.formatTime(audio.duration));
         }
 
         audio.onplay = () => {
@@ -189,7 +189,7 @@ let PLAYER = {
                 item.value = time/audio.duration * 100 || 0;
             })
             
-            timer.textContent = this.formatTime(time);
+            timers.forEach(item => item.textContent = this.formatTime(time));
 
             const progressMobile = player.querySelector('.player-progress-on-mobile');
             if (getComputedStyle(progressMobile).display === 'block') {

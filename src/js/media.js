@@ -10,6 +10,7 @@ export default function Track({name, artists, album, preview_url, id}) {
     this.id = id
 }
 
+
 const toast = createToastMessage({
 	position: 'fixed',
     left: '20px',

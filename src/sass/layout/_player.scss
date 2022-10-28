@@ -87,7 +87,12 @@
             }
 
             &-progress {
-                margin: 60px 0px;
+                margin: 50px 0px 30px;
+
+                & .player-progress__time {
+                    margin: 0 5px;
+                    font-size: $baseFontSize;
+                }
             }
 
             &-controls {
