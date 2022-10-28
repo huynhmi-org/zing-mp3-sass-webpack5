@@ -28,6 +28,7 @@
                 background: unset;
                 border: unset;
                 padding: 10px 0px;
+                width: 40px;
                 
                 &__icon {
                     font-size: 2rem;
@@ -38,14 +39,18 @@
             &-content {
                 text-align: center; 
                 text-transform: capitalize;
+                min-height: 100px;
+                flex: 1;
             }
 
             &__title {
                 font-size: 1.8rem;
+                @include limitText(60px, 2);
             }
 
             &__subtitle {
                 font-size: $baseFontSize;
+                @include limitText(50px, 2);
             }
 
             &-switch {
@@ -87,7 +92,7 @@
             }
 
             &-progress {
-                margin: 50px 0px 30px;
+                margin: 20px 0px 20px;
 
                 & .player-progress__time {
                     margin: 0 5px;

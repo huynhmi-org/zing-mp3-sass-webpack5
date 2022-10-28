@@ -102,6 +102,8 @@
 
             @media screen and (max-width: $smallBreakpoint) {
                 display: block;
+                font-size: 2.4rem;
+                background: unset;
             }
         }
     }
