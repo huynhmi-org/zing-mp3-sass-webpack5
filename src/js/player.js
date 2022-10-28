@@ -200,12 +200,12 @@ let PLAYER = {
         audio.onended = () => {
             if (this.currentIndex === this.songs.length - 1 && !this.isRepeat) return;
             // this.isRepeat ? this.handleRepeat() : nextBtn.click();
-            this.cdAnimate.finish();
             if (this.isRepeat) {
                 this.handleRepeat();
             } else {
                 nextBtns.forEach(btn => btn.click());
             }
+            this.cdAnimate.cancel();
         }
 
     },
@@ -309,7 +309,7 @@ let PLAYER = {
     handlePrevious() {
         this.removeMediaActFromTab();
         if ( this.previousIndexs.length ) {
-            this.currentIndex = this.previousIndexs.splice(-1)[0];
+            this.currentIndex = this.previousIndexs.shift();
             this.renderPlayer();
             audio.play();
         }
