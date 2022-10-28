@@ -19,7 +19,7 @@ const preBtns = $$('.btn-pre-song');
 const nextBtns = $$('.btn-next-song');
 const randomBtns = $$('.shuffle-btn');
 const repeatBtns = $$('.repeat-btn');
-const playBtn = $$('.play-btn');
+const playBtns = $$('.play-btn');
 
 const tabs = $('.tabs');
 const modal = $('.modal');
@@ -43,7 +43,7 @@ let PLAYER = {
     },
     cdAnimate: null,
     handleEvent() {
-        playBtn.forEach(btn => {
+        playBtns.forEach(btn => {
             btn.onclick = () => {
                 this.isPlay ? audio.pause() : audio.play();
             }
@@ -309,7 +309,6 @@ let PLAYER = {
         }
     },
     addNewPreviousIndex() {
-        console.log('temp-index',this.tempIndex);
         if (this.tempIndex || this.tempIndex === 0) {
             this.previousIndexs.unshift(this.tempIndex);
             this.tempIndex = false;
@@ -335,9 +334,6 @@ let PLAYER = {
 
     },
     renderList() {
-        console.log('render list');
-        console.log('nexts',this.getNextIndexs());
-        console.log('previous',this.previousIndexs);
         this.renderCurrentSong();
         this.renderPreviousSongs();
         this.renderNextSongs();
@@ -426,7 +422,7 @@ let PLAYER = {
         this.removePrevious();
         this.renderPlayer();
         this.renderList();
-        playBtn.click();
+        audio.play();
     },
     removeMediaActFromTab() {
         const mediaAct = tabs.querySelector('.media.media--active');
