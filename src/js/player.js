@@ -6,24 +6,28 @@ const $$ = document.querySelectorAll.bind(document);
 const playlist = $('#playlist-list');
 const playlistCurrent = $('.playlist-current');
 const player = $('#player');
-const progress = $('#progress-song');
+const playerMobile = $('#player-mobile');
+
+const progress = $$('.progress-song');
 const volume = $('#progress-volume');
 const volumeBtn = $('.volume-btn');
 const audio = $('.player-audio');
 const timer = $('#current-time');
 const duration = $('#duration');
 
-const preBtn = $('#btn-pre-song');
-const nextBtn = $('#btn-next-song');
-const randomBtn = $('.shuffle-btn');
-const repeatBtn = $('.repeat-btn');
-const playBtn = player.querySelector('.play-btn');
+const preBtns = $$('.btn-pre-song');
+const nextBtns = $$('.btn-next-song');
+const randomBtns = $$('.shuffle-btn');
+// const randomMobile = playerMobile.querySelector('.shuffle-btn');
+const repeatBtns = $$('.repeat-btn');
+const playBtn = $$('.play-btn');
 
 const tabs = $('.tabs');
+const modal = $('.modal');
 
 let PLAYER = {
     isPlay: player.classList.contains('player--playing'),
-    isRandom: randomBtn.classList.contains('shuffle-btn--act'),
+    isRandom: true,
     isRepeat: false,
     isMute: volumeBtn.classList.contains('volume-btn--mute'),
     volumePre: volume.value/100,
@@ -38,65 +42,86 @@ let PLAYER = {
             }
         })
     },
+    cdAnimate: null,
     handleEvent() {
-        playBtn.onclick = () => {
-            this.isPlay ? audio.pause() : audio.play();
-        }
-        
-        progress.oninput = function() {
-            const timeChange = this.value/100 * audio.duration;
-            audio.currentTime = timeChange;
-        }
-
-        nextBtn.onclick = () => {
-            /* lưu current index đến  tempotary, sau khi bài hát next loaded, 
-            current index này được add đến list previous song*/
-            this.tempIndex = this.isRepeat !== 1 && this.currentIndex;
-            this.isRandom ? this.handleRandom() : this.handleNext();
-            this.removeMediaActFromTab();
-            this.renderList();
-        };
-
-        preBtn.onclick = () => this.handlePrevious();
-
-        randomBtn.onclick = () => {
-            this.cleanRepeat();
-
-            randomBtn.classList.toggle('shuffle-btn--act');
-            this.isRandom = !this.isRandom;
-
-            this.isRandom ? 
-                this.setContentTooltip(randomBtn, 'Tắt phát xáo trộn') : 
-                this.setContentTooltip(randomBtn, 'Bật phát xáo trộn');
-            
-        }
-
-        repeatBtn.onclick = () => {
-            this.cleanRandom();
-            
-            switch (true) {
-                case repeatBtn.classList.contains('repeat-btn--one'):
-                    this.isRepeat = false;
-                    repeatBtn.className = 'player-button has-tooltip repeat-btn';
-                    this.setContentTooltip(repeatBtn, 'Bật phát lại tất cả bài hát')
-                    break;
-                case repeatBtn.classList.contains('repeat-btn--all'):
-                    this.isRepeat = 1;
-                    repeatBtn.className = 'player-button has-tooltip repeat-btn repeat-btn--one';
-                    this.setContentTooltip(repeatBtn, 'Tắt phát lại bài hát');
-                    break;
-                default:
-                    this.isRepeat = true;
-                    repeatBtn.className = 'player-button has-tooltip repeat-btn repeat-btn--all';
-                    this.setContentTooltip(repeatBtn, 'Bật phát lại một bài hát');
-                    break;
+        playBtn.forEach(btn => {
+            btn.onclick = () => {
+                this.isPlay ? audio.pause() : audio.play();
             }
-        }
+        })
+        
+        progress.forEach(item => {
+            item.oninput = function() {
+                const timeChange = this.value/100 * audio.duration;
+                audio.currentTime = timeChange;
+            }
+        })
+
+        nextBtns.forEach(btn => {
+            btn.onclick = () => {
+                /* lưu current index đến  tempotary, sau khi bài hát next loaded, 
+                current index này được add đến list previous song*/
+                this.tempIndex = this.isRepeat !== 1 && this.currentIndex;
+                this.isRandom ? this.handleRandom() : this.handleNext();
+                this.removeMediaActFromTab();
+                // this.renderList();
+
+            };
+        })
+
+        preBtns.forEach(btn => {
+            btn.onclick = () => {
+                this.handlePrevious();
+                // playerMobile.click();
+            };
+        })
+
+
+        // preBtnMobile.onclick = preBtn.click;
+
+
+        randomBtns.forEach(btn => {
+            btn.onclick = () => {
+                this.cleanRepeat();
+    
+                btn.classList.toggle('shuffle-btn--act');
+                this.isRandom = !this.isRandom;
+    
+                this.isRandom ? 
+                    this.setContentTooltip(btn, 'Tắt phát xáo trộn') : 
+                    this.setContentTooltip(btn, 'Bật phát xáo trộn');
+            }
+        })
+
+        repeatBtns.forEach(btn => {
+            btn.onclick = () => {
+                this.cleanRandom();
+                
+                switch (true) {
+                    case btn.classList.contains('repeat-btn--one'):
+                        this.isRepeat = false;
+                        btn.className = 'player-button has-tooltip repeat-btn';
+                        this.setContentTooltip(btn, 'Bật phát lại tất cả bài hát')
+                        break;
+                    case btn.classList.contains('repeat-btn--all'):
+                        this.isRepeat = 1;
+                        btn.className = 'player-button has-tooltip repeat-btn repeat-btn--one';
+                        this.setContentTooltip(btn, 'Tắt phát lại bài hát');
+                        break;
+                    default:
+                        this.isRepeat = true;
+                        btn.className = 'player-button has-tooltip repeat-btn repeat-btn--all';
+                        this.setContentTooltip(btn, 'Bật phát lại một bài hát');
+                        break;
+                }
+            }
+        })
+        
 
         playlist.onclick = (e) => {
-            this.playMediaFromTab = false;
             const btnPlay = e.target.closest('.media-play-btn');
             if (btnPlay) {
+                this.removeMediaActFromTab();
                 const media = btnPlay.closest('.media');
                 this.tempIndex = this.currentIndex;
                 this.currentIndex = media.dataset.id*1;
@@ -104,7 +129,16 @@ let PLAYER = {
                 this.renderPlayer();
                 audio.play();
             }
+
         }
+
+        $('.side-playlist').onclick = this.closePlaylist;
+        player.onclick = this.openModal;
+
+        playerMobile.onclick = (e) => {
+            this.closeModal(e);
+            this.openPlaylist(e);
+        };
 
         volumeBtn.onclick = () => {
             audio.volume = this.isMute ? this.volumePre : 0;
@@ -135,6 +169,8 @@ let PLAYER = {
         audio.onplay = () => {
             this.isPlay = true;
             player.classList.add('player--playing');
+            playerMobile.classList.add('player--playing');
+            this.cdAnimate.play();
             this.addNewPreviousIndex();
             this.renderList();
         }
@@ -142,12 +178,17 @@ let PLAYER = {
         audio.onpause = () => {
             this.isPlay = false;
             player.classList.remove('player--playing');
+            playerMobile.classList.remove('player--playing');
             this.updatePlayBtnOfMedia();
+            this.cdAnimate.pause();
         }
 
         audio.ontimeupdate = () => {
             const time = audio.currentTime;
-            progress.value = time/audio.duration * 100 || 0;
+            progress.forEach(item => {
+                item.value = time/audio.duration * 100 || 0;
+            })
+            
             timer.textContent = this.formatTime(time);
 
             const progressMobile = player.querySelector('.player-progress-on-mobile');
@@ -158,27 +199,66 @@ let PLAYER = {
 
         audio.onended = () => {
             if (this.currentIndex === this.songs.length - 1 && !this.isRepeat) return;
-            this.isRepeat ? this.handleRepeat() : nextBtn.click();
+            // this.isRepeat ? this.handleRepeat() : nextBtn.click();
+            this.cdAnimate.finish();
+            if (this.isRepeat) {
+                this.handleRepeat();
+            } else {
+                nextBtns.forEach(btn => btn.click());
+            }
         }
 
+    },
+    openModal(e) {
+        const target = e.target.closest('.media-content');
+        target && modal.classList.add('modal--open');
+    },
+    closeModal(e) {
+        const target = e.target.closest('#btn-close-modal');
+        target && modal.classList.remove('modal--open');
+    },
+    openPlaylist(e) {
+        const target = e.target.closest('.player-button.playlist-toggle-btn');
+        target && $('.side-playlist').classList.add('side-playlist--open');
+    },
+    closePlaylist(e) {
+        const target = e.target.closest('#btn-close-side-playlist');
+        target && $('.side-playlist').classList.remove('side-playlist--open');
+    },
+    createCDAnimate() {
+        this.cdAnimate = playerMobile.querySelector('.player-cd-inner').animate(
+            [
+                { transform: 'rotate(0deg)' },
+                { transform: 'rotate(360deg)' }
+            ], 
+            {
+                duration: 5000,
+                iterations: Infinity
+            }
+        )
+        this.cdAnimate.pause();
     },
     cleanRandom() {
         if (this.isRandom) {
             this.isRandom = false;
-            randomBtn.classList.remove('shuffle-btn--act');
-            randomBtn.className = 'player-button has-tooltip shuffle-btn';
-            this.setContentTooltip(randomBtn, 'Bật phát xáo trộn')
+            randomBtns.forEach(btn => {
+                btn.classList.remove('shuffle-btn--act');
+                btn.className = 'player-button has-tooltip shuffle-btn';
+                this.setContentTooltip(btn, 'Bật phát xáo trộn')
+            })
         }
     },
     cleanRepeat() {
         if (this.isRepeat) {
             this.isRepeat = false;
-            repeatBtn.className = 'player-button has-tooltip repeat-btn';
-            this.setContentTooltip(repeatBtn,'Bật phát lại tất cả bài hát');
+            repeatBtns.forEach(btn => {
+                btn.className = 'player-button has-tooltip repeat-btn';
+                this.setContentTooltip(btn,'Bật phát lại tất cả bài hát');
+            })
         }
     },
     setContentTooltip(element, content) {
-        element.querySelector('.tooltip__content').textContent = content;
+        element ?? (element.querySelector('.tooltip__content').textContent = content);
     },
     handleRepeat() {
         switch (this.isRepeat) {
@@ -235,7 +315,7 @@ let PLAYER = {
         }
 
         if (this.previousIndexs.length == 0) {
-            preBtn.classList.add('play-btn--disabled');
+            preBtns.forEach(btn => btn.classList.add('play-btn--disabled'));
         }
     },
     addNewPreviousIndex() {
@@ -246,8 +326,11 @@ let PLAYER = {
         }
 
 
-        if (this.previousIndexs.length > 0 && preBtn.classList.contains('play-btn--disabled')) {
-            preBtn.classList.remove('play-btn--disabled');
+        if (this.previousIndexs.length > 0) {
+            preBtns.forEach(btn => {
+                btn.classList.contains('play-btn--disabled') && btn.classList.remove('play-btn--disabled');
+            })
+            
         }
     },
     updatePlayBtnOfMedia() {
@@ -263,6 +346,8 @@ let PLAYER = {
     },
     renderList() {
         console.log('render list');
+        console.log('nexts',this.getNextIndexs());
+        console.log('previous',this.previousIndexs);
         this.renderCurrentSong();
         this.renderPreviousSongs();
         this.renderNextSongs();
@@ -275,15 +360,13 @@ let PLAYER = {
         this.updatePlayBtnOfMedia();
     },
     renderPreviousSongs() {
-        console.log('re-previous song');
-        console.log('previous-indexs', this.previousIndexs);
         const html = this.previousIndexs.map(index => {
             return UI.createMediaPreviousInPlayList(this.songs[index], index);
         }).join('');
         $('.playlist-previous').innerHTML = html;
     },
     renderNextSongs() {
-        const nextIndexs = this.getNextIndexs();
+        // const nextIndexs = this.getNextIndexs();
         let html = '';
         this.songs.forEach((song, index) => {
             if (index === this.currentIndex || this.previousIndexs.includes(index)) return;
@@ -294,6 +377,7 @@ let PLAYER = {
     renderPlayer(song = this.currentSong) {
         
         if (this.currentIndex || this.currentIndex === 0) {
+            // render player of the pc and tablet
             const media = `
                    <div class="media ${song.vip ? 'media--vip' : ''} media--l">
                        <div class="media-cover">
@@ -301,12 +385,12 @@ let PLAYER = {
                        </div>
                        <div class="media-content">
                            <div class="media-content-header">
-                               <a href="" class="media__title">${song.name}</a>
+                               <span href="" class="media__title">${song.name}</span>
                                <span class="media__vip-label">vip</span>
                            </div>
                            <div class="media-list-subtitle">
                                ${song.artist.map(
-                                   name => `<a href="" class="media__subtitle media__subtitle--link">${name}</a>`
+                                   name => `<span href="" class="media__subtitle media__subtitle--link">${name}</span>`
                                ).join()}
                            </div>
                        </div>
@@ -326,6 +410,14 @@ let PLAYER = {
            `
            player.querySelector('.player-song').innerHTML = media;
            audio.src = song.url;
+
+            // render player of mobile
+            playerMobile.querySelector('.player__title').innerText = song.name;
+            playerMobile.querySelector('.player-cd__img').src = song.cover;
+            playerMobile.querySelector('.player__subtitle').innerText = song.artist;
+
+            this.createCDAnimate();
+
         }
     },
     setSongs(songs) {
@@ -343,10 +435,10 @@ let PLAYER = {
         } else {
             this.songs.unshift(track);
             this.currentIndex = 0;
-            this.renderList();
         }
         this.removePrevious();
         this.renderPlayer();
+        this.renderList();
         playBtn.click();
     },
     removeMediaActFromTab() {

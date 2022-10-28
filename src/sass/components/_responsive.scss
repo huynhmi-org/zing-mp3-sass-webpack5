@@ -389,7 +389,15 @@
 			font-size: 1.5rem;
 		}
 	}
-	
+
+	.player-mobile .player-button.play-btn {
+		@include size(45px);
+
+		& .player-button__icon {
+			font-size: 2rem;
+		}
+	}
+
 	
 }
 

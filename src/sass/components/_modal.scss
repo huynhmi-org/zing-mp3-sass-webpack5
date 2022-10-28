@@ -1,8 +1,8 @@
 .modal {
-    @include position(fixed, 0, 0, 0, 0, 10);
+    @include position(fixed, 0, 0, 0, 0, 30);
     transform: translateY(100%);
     @include transition(300ms);
-
+    display: none;
     &--open {
         transform: translateY(0%);
     }
@@ -14,5 +14,9 @@
 
     &-body {
         
+    }
+
+    @media screen and (max-width: $smallBreakpoint) {
+        display: block;
     }
 }

@@ -3017,7 +3017,7 @@
                             <button class="playlist-switch-btn playlist-switch-btn--active">Danh sách phát</button>
                             <button class="playlist-switch-btn ">Nghe gần đây</button>
                         </div>
-                        <button class="playlist-btn has-tooltip">
+                        <button class="playlist-btn hide-on-mobile has-tooltip ">
                             <i class="playlist-btn__icon fa-solid fa-stopwatch"></i>
                             <span class="tooltip tooltip--touch-right">
                                 <span class="tooltip__content">
@@ -3025,7 +3025,7 @@
                                 </span>
                             </span>
                         </button>
-                        <button class="playlist-btn has-tooltip">
+                        <button class="playlist-btn hide-on-mobile has-tooltip">
                             <i class="playlist-btn__icon fa-solid fa-ellipsis"></i>
                             <span class="tooltip">
                                 <span class="tooltip__content">
@@ -3033,28 +3033,23 @@
                                 </span>
                             </span>
                         </button>
+                        <button class="playlist-btn" id="btn-close-side-playlist">
+                            <i class="playlist-btn__icon fa-solid fa-xmark"></i>
+                        </button>
                     </div>
                 </div>
                 <div class="playlist-body has-scroll">
                     <div class="playlist-container playlist-container--active" id="playlist-list">
-                        <div class="playlist-previous">
-                            
-                        </div>
-                        <div class="playlist-current">
-                            
-                            
-                        </div>
+                        <div class="playlist-previous"></div>
+                        <div class="playlist-current"></div>
                         <h3 class="playlist__heading">
                             Tiếp theo
                         </h3>
-                        <div class="playlist-next">
-                            
-                            
-                        </div>
+                        <div class="playlist-next"></div>
                     </div>
     
                     <div class="playlist-container">
-                        <div class="media media--s">
+                        <!-- <div class="media media--s">
                             <div class="media-cover">
                                 <img src="https://photo-resize-zmp3.zmdcdn.me/w240_r1x1_webp/cover/5/7/5/e/575e6664486827d431cf8dce47312ee3.jpg" alt="Cover" class="media-cover__img">
                                 <button class="media-play-btn">
@@ -3084,38 +3079,8 @@
                                     </span>
                                 </span>
                             </div>
-                        </div>
-                        <div class="media media--s">
-                            <div class="media-cover">
-                                <img src="https://photo-resize-zmp3.zmdcdn.me/w240_r1x1_webp/cover/5/7/5/e/575e6664486827d431cf8dce47312ee3.jpg" alt="Cover" class="media-cover__img">
-                                <button class="media-play-btn">
-                                    <i class="media-play-btn__icon media-play-btn__icon--pause fa-solid fa-play"></i>
-                                    <i class="media-play-btn__icon media-play-btn__icon--play fa-solid fa-pause"></i>
-                                </button>
-                            </div>
-                            <div class="media-content">
-                                <div class="media-content-header">
-                                    <span class="media__title">One Last Time</span>
-                                    <span class="media__vip-label">vip</span>
-                                </div>
-                                <div class="media-list-subtitle">
-                                    <a href="" class="media__subtitle media__subtitle--link">VIZE,</a>
-                                    <a href="" class="media__subtitle media__subtitle--link">R3hab</a>
-                                </div>
-                            </div>
-                            <button class="media-favorite-btn">
-                                <i class="media-favorite-btn__icon media-favorite-btn__icon--love fa-solid fa-heart"></i>
-                                <i class="media-favorite-btn__icon media-favorite-btn__icon--unlove fa-regular fa-heart"></i>
-                            </button>
-                            <div class="media-options has-tooltip">
-                                <i class="media-options__icon fa-solid fa-ellipsis"></i>
-                                <span class="tooltip">
-                                    <span class="tooltip__content">
-                                        Khác
-                                    </span>
-                                </span>
-                            </div>
-                        </div>
+                        </div> -->
+                        <p class="playlist__desc">Trống</p>
                     </div>
     
                     
@@ -3143,7 +3108,7 @@
                                     </span>
                                 </span>
                             </button>
-                            <button class="player-button has-tooltip play-btn--disabled hide-on-mobile" id="btn-pre-song">
+                            <button class="player-button has-tooltip play-btn--disabled hide-on-mobile btn-pre-song">
                                 <i class="player-button__icon fa-solid fa-backward-step"></i>
                                 <span class="tooltip tooltip--above">
                                     <span class="tooltip__content">
@@ -3155,7 +3120,7 @@
                                 <i class="player-button__icon player-button__icon--pause fa-solid fa-play"></i>
                                 <i class="player-button__icon player-button__icon--play fa-solid fa-pause"></i>
                             </button>
-                            <button class="player-button has-tooltip" id="btn-next-song">
+                            <button class="player-button has-tooltip btn-next-song" id="">
                                 <i class="player-button__icon fa-solid fa-forward-step"></i>
                                 <span class="tooltip tooltip--above">
                                     <span class="tooltip__content">
@@ -3175,7 +3140,7 @@
                         </div>
                         <div class="player-progress hide-on-mobile">
                             <span class="player-progress__time current-time" id="current-time">0:00</span>
-                            <input type="range" name="" class="player-progress__bar" value="0" max="100" step="1" id="progress-song">
+                            <input type="range" name="" class="player-progress__bar progress-song" value="0" max="100" step="1" id="">
                             <audio src="" class="player-audio"></audio>
                             <span class="player-progress__time" id="duration">0:00</span>
                         </div>
@@ -3238,12 +3203,12 @@
     </div>
 
     
-    <!-- <div class="modal modal--open">
+    <div class="modal">
         <div class="modal-body">
             <div class="player-mobile">
-                    <div class="player">
+                    <div class="player" id="player-mobile">
                         <header class="player-header">
-                            <button class="player-btn">
+                            <button class="player-btn" id="btn-close-modal">
                                 <i class="player-btn__icon fa-solid fa-angle-down"></i>
                             </button>
                             <div class="player-content">
@@ -3265,21 +3230,20 @@
                             </div>
                         </div>
                         <div class="player-progress">
-                            <input type="range" name="" class="player-progress__bar" value="0" max="100" step="1" id="progress-song">
-                            <audio src="" class="player-audio"></audio>
+                            <input type="range" name="" class="player-progress__bar progress-song" value="0" max="100" step="1" id="progress-song">
                         </div>
                         <div class="player-controls">
                             <button class="player-button shuffle-btn shuffle-btn--act">
                                 <i class="player-button__icon fa-solid fa-shuffle"></i>
                             </button>
-                            <button class="player-button play-btn--disabled">
+                            <button class="player-button play-btn--disabled  btn-pre-song">
                                 <i class="player-button__icon fa-solid fa-backward-step"></i>
                             </button>
                             <button class="player-button play-btn ">
                                 <i class="player-button__icon player-button__icon--pause fa-solid fa-play"></i>
                                 <i class="player-button__icon player-button__icon--play fa-solid fa-pause"></i>
                             </button>
-                            <button class="player-button">
+                            <button class="player-button btn-next-song">
                                 <i class="player-button__icon fa-solid fa-forward-step"></i>
                             </button>
                             <button class="player-button repeat-btn">
@@ -3287,16 +3251,10 @@
                                 <i class="player-button__icon fa-solid fa-repeat"></i>
                             </button>
                         </div>
-                        <div class="player-controls">
-                            <button class="player-button">
-                                <i class="player-button__icon fa-solid fa-heart"></i>
-                            </button>
-                            <button class="player-button lyric-btn">
-                                <i class="player-button__icon fa-solid fa-microphone-lines"></i>
-                            </button>
+                        <div class="player-controls player-controls--last">
                             <button class="player-button playlist-toggle-btn">
-                                <span class="player-button__text">Danh sách phát</span>
                                 <i class="player-button__icon fa-solid fa-sliders"></i>
+                                <span class="player-button__text">Danh sách phát</span>
                             </button>
                         </div>
                     </div>
@@ -3304,7 +3262,7 @@
 
             </div>
         </div>
-    </div> -->
+    </div>
 </body>
 
 </html>

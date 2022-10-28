@@ -13,8 +13,14 @@
         transform: translateX(0%);
 
         @media screen and (max-width: $smallBreakpoint) {
-            transform: translateX(calc(100% + 10px));
+            z-index: 40;
+            left: 0;
+            width: 100%;
         }
+    }
+
+    @media screen and (max-width: $smallBreakpoint) {
+        transition: unset;
     }
 
 }
@@ -35,6 +41,7 @@
         top: 0;
         @include flex-custom($justify: space-between);
 
+       
     }
 
 
@@ -64,7 +71,9 @@
 
             cursor: pointer;
 
-
+            @media screen and (max-width: $x-smallBreakpoint)  {
+                font-size: 1.1rem;
+            }
             &--active {
                 background-color: $white;
                 color: $primary-4;
@@ -87,6 +96,14 @@
         &__icon {
 
         }
+
+        &#btn-close-side-playlist {
+            display: none;
+
+            @media screen and (max-width: $smallBreakpoint) {
+                display: block;
+            }
+        }
     }
 
     &-body {
@@ -97,6 +114,10 @@
     }
 
 
+    &__desc {
+        font-size: $baseFontSize;
+        margin: 0 0;
+    }
     &-current .media {
         &.playing {
             & .media-play-btn {
@@ -156,6 +177,10 @@
 
     & .media {
         margin-bottom: 5px;
+    }
+
+    @media screen and (max-width: $smallBreakpoint) {
+        margin-bottom: 75px;
     }
 }
 
