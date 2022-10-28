@@ -1,7 +1,10 @@
+import UI from "./ui.js";
+
 const $ = document.querySelector.bind(document);
 const $$ = document.querySelectorAll.bind(document);
 
 const playlist = $('#playlist-list');
+const playlistCurrent = $('.playlist-current');
 const player = $('#player');
 const progress = $('#progress-song');
 const volume = $('#progress-volume');
@@ -51,6 +54,7 @@ let PLAYER = {
             this.tempIndex = this.isRepeat !== 1 && this.currentIndex;
             this.isRandom ? this.handleRandom() : this.handleNext();
             this.removeMediaActFromTab();
+            this.renderList();
         };
 
         preBtn.onclick = () => this.handlePrevious();
@@ -96,7 +100,8 @@ let PLAYER = {
                 const media = btnPlay.closest('.media');
                 this.tempIndex = this.currentIndex;
                 this.currentIndex = media.dataset.id*1;
-                this.renderCurrentSong();
+                this.removePrevious();
+                this.renderPlayer();
                 audio.play();
             }
         }
@@ -130,8 +135,8 @@ let PLAYER = {
         audio.onplay = () => {
             this.isPlay = true;
             player.classList.add('player--playing');
-            this.updatePlayBtnOfMedia();
             this.addNewPreviousIndex();
+            this.renderList();
         }
 
         audio.onpause = () => {
@@ -152,6 +157,7 @@ let PLAYER = {
         }
 
         audio.onended = () => {
+            if (this.currentIndex === this.songs.length - 1 && !this.isRepeat) return;
             this.isRepeat ? this.handleRepeat() : nextBtn.click();
         }
 
@@ -183,12 +189,13 @@ let PLAYER = {
                 this.handleIncreaseIndex();
                 break;
         }
-        this.renderCurrentSong();
+        this.renderPlayer();
         audio.play();
     },
     handleRandom() {
         this.currentIndex = this.getRandom();
-        this.renderCurrentSong();
+        this.removePrevious();
+        this.renderPlayer();
         audio.play();
     },
     getRandom() {
@@ -203,9 +210,18 @@ let PLAYER = {
         return number;
     },
     handleNext() {
-        this.handleIncreaseIndex();
-        this.renderCurrentSong();
+        this.currentIndex = this.getNextIndexs()[0];
+        this.renderPlayer();
+        this.renderList();
         audio.play();
+    },
+    getNextIndexs() {
+        const nextIndexs = [];
+        this.songs.forEach((song, index) => {
+            if (index == this.currentIndex || this.previousIndexs.includes(index)) return;
+            nextIndexs.push(index);
+        });
+        return nextIndexs;
     },
     handleIncreaseIndex() {
         this.currentIndex = this.currentIndex === this.songs.length - 1 ? 0 : this.currentIndex + 1;
@@ -213,8 +229,8 @@ let PLAYER = {
     handlePrevious() {
         this.removeMediaActFromTab();
         if ( this.previousIndexs.length ) {
-            this.currentIndex = this.previousIndexs.shift();
-            this.renderCurrentSong();
+            this.currentIndex = this.previousIndexs.splice(-1)[0];
+            this.renderPlayer();
             audio.play();
         }
 
@@ -223,20 +239,20 @@ let PLAYER = {
         }
     },
     addNewPreviousIndex() {
+        console.log('temp-index',this.tempIndex);
         if (this.tempIndex || this.tempIndex === 0) {
             this.previousIndexs.unshift(this.tempIndex);
             this.tempIndex = false;
-            
         }
+
 
         if (this.previousIndexs.length > 0 && preBtn.classList.contains('play-btn--disabled')) {
             preBtn.classList.remove('play-btn--disabled');
-            console.log('remove disabled');
         }
     },
     updatePlayBtnOfMedia() {
-        const mediaCurrent = $('.media-current .media');
-        this.isPlay ? mediaCurrent.classList.add('media--active') : mediaCurrent.classList.remove('media--active');
+        const mediaCurrent = $('.playlist-current').querySelector('.media');
+        mediaCurrent && mediaCurrent.classList.toggle('playing', this.isPlay);
     },
     formatTime(time = 1000) {
         let [m,s] = [parseInt(time/60), (time%60).toFixed(0)*1];
@@ -246,53 +262,37 @@ let PLAYER = {
 
     },
     renderList() {
-        const html = this.songs.length == 0 ? '' : this.songs.map((song, index) => {
-                return `
-                    <div>
-                        <div 
-                            class="
-                                media media--s 
-                                ${song.vip ? 'media--vip' : ''} 
-                                " 
-                                data-id=${index}
-                            >
-                            <div class="media-cover">
-                                <div class="media-cover">
-                                    <img src="${song.cover}" alt="Cover" class="media-cover__img">
-                                </div>
-                                <button class="media-play-btn">
-                                    <i class="media-play-btn__icon media-play-btn__icon--pause fa-solid fa-play"></i>
-                                    <i class="media-play-btn__icon media-play-btn__icon--play fa-solid fa-pause"></i>
-                                </button>
-                            </div>
-                            <div class="media-content">
-                                <div class="media-content-header">
-                                    <span class="media__title">${song.name}</span>
-                                    <span class="media__vip-label">vip</span>
-                                </div>
-                                <div class="media-list-subtitle">
-                                    ${song.artist.map(name => `<a href="" class="media__subtitle media__subtitle--link">${name}</a>`).join(', ')}
-                                </div>
-                            </div>
-                            <button class="media-favorite-btn">
-                                <i class="media-favorite-btn__icon media-favorite-btn__icon--love fa-solid fa-heart"></i>
-                                <i class="media-favorite-btn__icon media-favorite-btn__icon--unlove fa-regular fa-heart"></i>
-                            </button>
-                            <div class="media-options has-tooltip">
-                                <i class="media-options__icon fa-solid fa-ellipsis"></i>
-                                <span class="tooltip">
-                                    <span class="tooltip__content">
-                                        Khác
-                                    </span>
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                `
-        }).join('');
-        playlist.innerHTML = html;
+        console.log('render list');
+        this.renderCurrentSong();
+        this.renderPreviousSongs();
+        this.renderNextSongs();
     },
-    renderCurrentSong(song = this.currentSong) {
+    renderCurrentSong() {
+        if (this.currentIndex || this.currentIndex == 0) {
+            const html = UI.createMediaActiveInPlayList(this.currentSong, this.currentIndex);
+            $('.playlist-current').innerHTML = html;
+        }
+        this.updatePlayBtnOfMedia();
+    },
+    renderPreviousSongs() {
+        console.log('re-previous song');
+        console.log('previous-indexs', this.previousIndexs);
+        const html = this.previousIndexs.map(index => {
+            return UI.createMediaPreviousInPlayList(this.songs[index], index);
+        }).join('');
+        $('.playlist-previous').innerHTML = html;
+    },
+    renderNextSongs() {
+        const nextIndexs = this.getNextIndexs();
+        let html = '';
+        this.songs.forEach((song, index) => {
+            if (index === this.currentIndex || this.previousIndexs.includes(index)) return;
+            html += UI.createNextSongInPlayList(song, index);
+        });
+        $('.playlist-next').innerHTML = html;
+    },
+    renderPlayer(song = this.currentSong) {
+        
         if (this.currentIndex || this.currentIndex === 0) {
             const media = `
                    <div class="media ${song.vip ? 'media--vip' : ''} media--l">
@@ -326,41 +326,42 @@ let PLAYER = {
            `
            player.querySelector('.player-song').innerHTML = media;
            audio.src = song.url;
-   
-           this.updateSongActive();
-
         }
-    },
-    updateSongActive() {
-        let mediaCurrent = $('.media-current');
-        if (mediaCurrent) {
-            mediaCurrent.querySelector('.media').classList.remove('media--active');
-            mediaCurrent.classList.remove('media-current');
-        }
-       
-
-        const medias = playlist.querySelectorAll('.media');
-        [mediaCurrent] = [...medias].filter(media => media.dataset.id == this.currentIndex);
-        mediaCurrent.parentElement.className = 'media-current';
     },
     setSongs(songs) {
         this.songs = songs;
-        this.renderList();
         this.currentIndex = 0;
-        this.renderCurrentSong();
+        this.renderList();
+        this.renderPlayer();
     },
-    playSongFromTabs(track) {
-        this.renderCurrentSong(track);
+    addNewSongToPlayList(track) {
+        const checkTrack = this.songs.findIndex(song => song.id === track.id);
+
+        if (checkTrack > -1) {
+            this.currentIndex = checkTrack;
+
+        } else {
+            this.songs.unshift(track);
+            this.currentIndex = 0;
+            this.renderList();
+        }
+        this.removePrevious();
+        this.renderPlayer();
         playBtn.click();
     },
     removeMediaActFromTab() {
         const mediaAct = tabs.querySelector('.media.media--active');
         mediaAct && mediaAct.classList.remove('media--active');
     },
+    removePrevious() {
+        if (this.previousIndexs.includes(this.currentIndex)) {
+            this.previousIndexs = this.previousIndexs.filter(i => i !== this.currentIndex);
+        }
+    },
     start() {
         this.properties();
         this.renderList();
-        this.renderCurrentSong();
+        this.renderPlayer();
         this.handleEvent();
     }
 

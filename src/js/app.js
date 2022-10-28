@@ -36,16 +36,20 @@ APIController.getToken()
     .then(token => APIController.getPlayList(token, '37i9dQZF1DX5G3iiHaIzdf/tracks?limit=9'))
     .then(data => {
         data = data.items;
-        const html = data.map(item => {
-            const track = {
-                name: item.track.name,
-                images: item.track.album.images,
-                release_date: item.track.album.release_date,
-                artists: item.track.artists,
-                id: item.track.id,
+        const html = data.map(({track}) => {
+            if (track) {
+                track =  {
+                    name: track.name,
+                    images: track.album.images,
+                    release_date: track.album.release_date,
+                    artists: track.artists,
+                    id: track.id
+                };
+    
+                const media = new Media(track);
+                return UI.createMedia(media, 'media--m')
+
             }
-            const media = new Media(track);
-            return UI.createMedia(media)
         }).join('');
 
         document.getElementById('release-songs').innerHTML = `
@@ -61,14 +65,14 @@ APIController.getToken()
     .then(playlist => {
         const tracks = playlist.items
                     .filter(item => item.track.preview_url)
-                    .map(item => {
-                        const track = item.track;
+                    .map(({track}) => {
                         return {
                             name: track.name,
                             vip: false,
                             artist: track.artists.map(artist => artist.name),
                             cover: track.album.images[0].url,
-                            url: track.preview_url
+                            url: track.preview_url,
+                            id: track.id
                         }
                     });
         PLAYER.setSongs(tracks);

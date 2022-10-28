@@ -1,7 +1,14 @@
 import APIController from "./apiController.js";
-import Media from "./app.js";
 import {default as PLAYER} from "./player.js";
 import createToastMessage from "./toastMessage.js";
+
+export default function Track({name, artists, album, preview_url, id}) {
+    this.name = name,
+    this.artist = artists.map(artist => artist.name),
+    this.cover = album.images[0].url,
+    this.url = preview_url,
+    this.id = id
+}
 
 const toast = createToastMessage({
 	position: 'fixed',
@@ -12,6 +19,15 @@ const toast = createToastMessage({
 
 // enabled song in new release
 (() => {
+    const tabs = document.querySelector('.tabs');
+
+    function resetMediaActiveFromTabs(media) {
+        // remove active meida and enable new active media when click
+        const mediaAct = tabs.querySelector('.media.media--active');
+        mediaAct && mediaAct.classList.remove('media--active');
+        media.classList.add('media--active');
+    }
+
     addEventListener('click', (e) => {
         const target = e.target;
         // play music
@@ -25,19 +41,9 @@ const toast = createToastMessage({
                     const url = track.preview_url;
                     if (url) {
                         // set songs temp
-                        track = {
-                            name: track.name,
-                            vip: false,
-                            artist: track.artists.map(artist => artist.name),
-                            cover: track.album.images[0].url,
-                            url: track.preview_url
-                        };
-
-                        // remove active meida and enable new active media when click
-                        const mediaAct = document.querySelector('.media.media--active');
-                        mediaAct && mediaAct.classList.remove('media--active');
-                        media.classList.add('media--active');
-                        PLAYER.playSongFromTabs(track);
+                        track = new Track(track);
+                        resetMediaActiveFromTabs(media);
+                        PLAYER.addNewSongToPlayList(track);
                         
                     } else {
                         toast('Sorry, url is not available to play!');
