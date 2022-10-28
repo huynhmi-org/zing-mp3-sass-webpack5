@@ -18,7 +18,6 @@ const durations = $$('.duration');
 const preBtns = $$('.btn-pre-song');
 const nextBtns = $$('.btn-next-song');
 const randomBtns = $$('.shuffle-btn');
-// const randomMobile = playerMobile.querySelector('.shuffle-btn');
 const repeatBtns = $$('.repeat-btn');
 const playBtn = $$('.play-btn');
 
@@ -59,25 +58,17 @@ let PLAYER = {
 
         nextBtns.forEach(btn => {
             btn.onclick = () => {
-                /* lưu current index đến  tempotary, sau khi bài hát next loaded, 
-                current index này được add đến list previous song*/
                 this.tempIndex = this.isRepeat !== 1 && this.currentIndex;
                 this.isRandom ? this.handleRandom() : this.handleNext();
                 this.removeMediaActFromTab();
-                // this.renderList();
-
             };
         })
 
         preBtns.forEach(btn => {
             btn.onclick = () => {
                 this.handlePrevious();
-                // playerMobile.click();
             };
         })
-
-
-        // preBtnMobile.onclick = preBtn.click;
 
 
         randomBtns.forEach(btn => {
@@ -199,7 +190,6 @@ let PLAYER = {
 
         audio.onended = () => {
             if (this.currentIndex === this.songs.length - 1 && !this.isRepeat) return;
-            // this.isRepeat ? this.handleRepeat() : nextBtn.click();
             if (this.isRepeat) {
                 this.handleRepeat();
             } else {
@@ -362,11 +352,10 @@ let PLAYER = {
     renderPreviousSongs() {
         const html = this.previousIndexs.map(index => {
             return UI.createMediaPreviousInPlayList(this.songs[index], index);
-        }).join('');
+        }).reverse().join('');
         $('.playlist-previous').innerHTML = html;
     },
     renderNextSongs() {
-        // const nextIndexs = this.getNextIndexs();
         let html = '';
         this.songs.forEach((song, index) => {
             if (index === this.currentIndex || this.previousIndexs.includes(index)) return;
@@ -377,7 +366,6 @@ let PLAYER = {
     renderPlayer(song = this.currentSong) {
         
         if (this.currentIndex || this.currentIndex === 0) {
-            // render player of the pc and tablet
             const media = `
                    <div class="media ${song.vip ? 'media--vip' : ''} media--l">
                        <div class="media-cover">
@@ -411,7 +399,6 @@ let PLAYER = {
            player.querySelector('.player-song').innerHTML = media;
            audio.src = song.url;
 
-            // render player of mobile
             playerMobile.querySelector('.player__title').innerText = song.name;
             playerMobile.querySelector('.player-cd__img').src = song.cover;
             playerMobile.querySelector('.player__subtitle').innerText = song.artist;

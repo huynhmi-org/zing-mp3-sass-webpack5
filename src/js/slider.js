@@ -14,17 +14,14 @@ btnPre.onclick = handlePreSlider;
 setInterval(handleNextSlider, 3000);
 
 function handleNextSlider() {
-    // the first element will become the last element
     slideList.appendChild(slideList.firstElementChild);
     
     const slides = slideList.querySelectorAll('.slide-item');
     let count;
     
     const w = window.innerWidth;
-    // handle animation on pc
     if (w > 1024) {
         const [first, second, third,...rest] = slides;
-        // apply animation
         rest.forEach(el => el.classList.add('hide-at-center'));
         first.classList.add('move-to-left');
         second.classList.add('move-to-left');
@@ -33,10 +30,8 @@ function handleNextSlider() {
 
         count = 4;
         
-    //  handle animation on tablet
     } else if ( w > 740 && w < 1023) {
         const [first, second,...rest] = slides;
-        // apply animation
         rest.forEach(el => el.classList.add('hide-at-center'));
         first.classList.add('move-to-left');
         second.classList.add('show-from-right');
@@ -44,7 +39,6 @@ function handleNextSlider() {
 
         count = 3;
     
-    // handle animation on the mobile
     } else {
         [...slides].forEach(slide => {
             slide.classList.add('move-to-left');
@@ -53,7 +47,6 @@ function handleNextSlider() {
         count = slides.length;
     }
 
-    // when the animation ended, remove class animation
     let i = 0;
     [...slides].forEach(slide => {
         slide.addEventListener("animationend", () => {
@@ -74,7 +67,6 @@ function handlePreSlider() {
     const w = window.innerWidth;
     if (w > 1024) {
         const [first, second, third,...rest] = slides;
-        // apply animation to element
         rest.forEach(el => el.classList.add('hide-at-center'));
         first.classList.add('move-to-left');
         second.classList.add('move-to-right');
@@ -84,11 +76,9 @@ function handlePreSlider() {
 
         count = 4;
 
-    // handle animation on mobile
     } 
     else if ( w > 740 && w < 1023) {
         const [first, second,...rest] = slides;
-        // move all rest's element to center
         rest.forEach(el => el.classList.add('hide-at-center'));
         first.classList.add('show-from-left');
         second.classList.add('move-to-right');
@@ -117,8 +107,6 @@ function handlePreSlider() {
 }
 
 
-// if use dot
-
 let i = 0;
 
 function handleNextDot() {
@@ -132,5 +120,3 @@ function handlePreDot() {
     i = i === 0 ? dots.length - 1 : i - 1;
     dots[i].classList.add('active');
 }
-
-// touch event

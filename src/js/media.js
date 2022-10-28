@@ -18,12 +18,10 @@ const toast = createToastMessage({
 }, 2000);
 
 
-// enabled song in new release
 (() => {
     const tabs = document.querySelector('.tabs');
 
     function resetMediaActiveFromTabs(media) {
-        // remove active meida and enable new active media when click
         const mediaAct = tabs.querySelector('.media.media--active');
         mediaAct && mediaAct.classList.remove('media--active');
         media.classList.add('media--active');
@@ -31,7 +29,6 @@ const toast = createToastMessage({
 
     addEventListener('click', (e) => {
         const target = e.target;
-        // play music
         if (target.closest('.media-play-btn') && target.closest('.tabs')) {
             const btn = target.closest('.media-play-btn');
             const media = btn.closest('.media');
@@ -41,7 +38,6 @@ const toast = createToastMessage({
                 .then(track => {
                     const url = track.preview_url;
                     if (url) {
-                        // set songs temp
                         track = new Track(track);
                         resetMediaActiveFromTabs(media);
                         PLAYER.addNewSongToPlayList(track);
@@ -51,7 +47,6 @@ const toast = createToastMessage({
                     }
                 })
                 
-        // show the toast message
         } else if (target.closest('.media-favorite-btn')) {
             const btn = target.closest('.media-favorite-btn');
             console.log(btn);

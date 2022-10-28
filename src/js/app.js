@@ -11,7 +11,6 @@ export default function Media({name, images, release_date, artists, id}) {
     this.id = id
 }
 
-// create release albums
 APIController.getToken()
     .then(token => APIController.getData(token, 'browse/new-releases', 9))
     .then(data => {
@@ -28,10 +27,6 @@ APIController.getToken()
         `
     });
 
-
-
-
-// create release-songs
 APIController.getToken()
     .then(token => APIController.getPlayList(token, '37i9dQZF1DX5G3iiHaIzdf/tracks?limit=9'))
     .then(data => {

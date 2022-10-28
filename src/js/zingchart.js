@@ -282,20 +282,16 @@ function externalTooltipHandler(context) {
     const {chart, tooltip} = context;
     const tooltipElement = getOrCreateTooltipElement(chart);
 
-    // get song while hover on tooltip
     const idSongTop = tooltip.dataPoints[0].dataset.label;
     const [songTop] = songtops.filter(song => song.id === idSongTop);
 
-    // set content to tooltip element (including song's information)
     tooltipElement.innerHTML = createContent(songTop);
 
-    // check if the canvas'tooltip has enable or disabled, then hide/show tooltip element
     if (tooltip.opacity === 0) {
         tooltipElement.style.opacity = 0;
         return;
     }
 
-    // set the tooltipElement's position on the canvas
     const {offsetLeft: positionX, offsetTop: positionY} = chart.canvas;
     setStyleOnElement(tooltipElement, {
         opacity : 1,
