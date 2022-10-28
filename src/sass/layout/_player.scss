@@ -15,6 +15,8 @@
         background-color: $white;
         padding: 10px 15px;
 
+
+
         & .player {
             position: unset;
             transform: unset;
@@ -39,18 +41,17 @@
             &-content {
                 text-align: center; 
                 text-transform: capitalize;
-                min-height: 100px;
                 flex: 1;
             }
 
             &__title {
                 font-size: 1.8rem;
-                @include limitText(60px, 2);
+                @include limitText(30px, 1);
             }
 
             &__subtitle {
                 font-size: $baseFontSize;
-                @include limitText(50px, 2);
+                @include limitText(30px, 1);
             }
 
             &-switch {
@@ -77,6 +78,8 @@
                 padding-top: 100%;
                 position: relative;
                 margin:  auto;
+
+                
 
                 &-inner {
                     @include position(absolute, 0, $top: 0);

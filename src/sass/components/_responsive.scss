@@ -179,6 +179,13 @@
 	}
 }
 
+// SMALL TABLET
+@media screen and (max-width: $smallBreakpoint) and (min-width: $small-tablet) {
+	.player-mobile .player-cd {
+		width: 70%;
+		padding-top: 70%;
+	}
+}
 
 // MOBILE
 @media screen  and (max-width: 739px) {
