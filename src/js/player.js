@@ -58,8 +58,12 @@ let PLAYER = {
 
         nextBtns.forEach(btn => {
             btn.onclick = () => {
-                this.tempIndex = this.isRepeat !== 1 && this.currentIndex;
-                this.isRandom ? this.handleRandom() : this.handleNext();
+                if (this.checkEndPlayList()) {
+                    this.handleRepeat();
+                } else {
+                    this.tempIndex = this.isRepeat !== 1 && this.currentIndex;
+                    this.isRandom ? this.handleRandom() : this.handleNext();
+                }
                 this.removeMediaActFromTab();
             };
         })
@@ -190,29 +194,27 @@ let PLAYER = {
         }
 
         audio.onended = () => {
-            // if (this.currentIndex === this.songs.length - 1 && !this.isRepeat) return;
-            this.cdAnimate.pause();
-            if (this.checkEnd() && !this.isRepeat) {
-                audio.pause();
-                return;
-            };
-            
-            if (this.checkEnd() && this.isRepeat) {
-                this.previousIndexs = [];
-                this.currentIndex = 0;
-                this.renderList();
-                audio.play();
-            }
-            
-            if (this.isRepeat) {
-                this.handleRepeat();
+            if (this.checkEndPlayList() ) {
+                if (this.isRepeat) {
+                    this.handleRepeat();
+                } else {
+                    audio.pause();
+                }
             } else {
-                nextBtns.forEach(btn => btn.click());
+                if (this.isRandom) {
+                    this.handleRandom();
+                } else if (this.isRepeat && this.isRepeat !== true) {
+                    this.handleRepeat();
+                } else {
+                    nextBtns.forEach(btn => btn.click());
+                }
             }
+
+            this.cdAnimate.pause();
         }
 
     },
-    checkEnd() {
+    checkEndPlayList() {
         return this.previousIndexs.length == this.songs.length - 1;
     },
     openModal(e) {
@@ -274,7 +276,10 @@ let PLAYER = {
                 audio.load();
                 break;
             default: 
-                this.handleIncreaseIndex();
+                this.previousIndexs = [];
+                this.currentIndex = 0;
+                this.renderList();
+                audio.play();
                 break;
         }
         this.renderPlayer();
@@ -292,8 +297,9 @@ let PLAYER = {
             number = Math.floor(Math.random() * this.songs.length);
         } while (
             number === this.currentIndex || 
-            number === (this.currentIndex === this.songs.length - 1 ? 0 : this.currentIndex + 1) ||
-            number === (this.currentIndex === 0 ? this.songs.length - 1 : this.currentIndex - 1)
+            // number === (this.currentIndex === this.songs.length - 1 ? 0 : this.currentIndex + 1) ||
+            // number === (this.currentIndex === 0 ? this.songs.length - 1 : this.currentIndex - 1)
+            this.previousIndexs.includes(number)
         );
         return number;
     },

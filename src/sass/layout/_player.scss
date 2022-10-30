@@ -223,6 +223,7 @@
     & .media__title {
         white-space: unset;
         @include limitText(42px, 2);
+        line-height: 1.3;
     }
 
     & .media:hover {

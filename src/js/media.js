@@ -49,7 +49,6 @@ const toast = createToastMessage({
                 
         } else if (target.closest('.media-favorite-btn')) {
             const btn = target.closest('.media-favorite-btn');
-            console.log(btn);
             const media = btn.closest('.media');
             if (media.classList.contains('media--favorite')) {
                 media.classList.remove('media--favorite');
