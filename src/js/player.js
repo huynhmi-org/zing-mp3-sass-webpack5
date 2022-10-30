@@ -131,6 +131,7 @@ let PLAYER = {
             this.openPlaylist(e);
         };
 
+
         volumeBtn.onclick = () => {
             audio.volume = this.isMute ? this.volumePre : 0;
         }
@@ -189,15 +190,30 @@ let PLAYER = {
         }
 
         audio.onended = () => {
-            if (this.currentIndex === this.songs.length - 1 && !this.isRepeat) return;
+            // if (this.currentIndex === this.songs.length - 1 && !this.isRepeat) return;
+            this.cdAnimate.pause();
+            if (this.checkEnd() && !this.isRepeat) {
+                audio.pause();
+                return;
+            };
+            
+            if (this.checkEnd() && this.isRepeat) {
+                this.previousIndexs = [];
+                this.currentIndex = 0;
+                this.renderList();
+                audio.play();
+            }
+            
             if (this.isRepeat) {
                 this.handleRepeat();
             } else {
                 nextBtns.forEach(btn => btn.click());
             }
-            this.cdAnimate.cancel();
         }
 
+    },
+    checkEnd() {
+        return this.previousIndexs.length == this.songs.length - 1;
     },
     openModal(e) {
         const target = e.target.closest('.media-content');
@@ -209,7 +225,9 @@ let PLAYER = {
     },
     openPlaylist(e) {
         const target = e.target.closest('.player-button.playlist-toggle-btn');
-        target && $('.side-playlist').classList.add('side-playlist--open');
+        if (target) {
+            $('.side-playlist').classList.add('side-playlist--open');
+        }
     },
     closePlaylist(e) {
         const target = e.target.closest('#btn-close-side-playlist');

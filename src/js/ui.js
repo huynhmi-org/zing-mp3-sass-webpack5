@@ -21,7 +21,7 @@ const UI = (() => {
                         </div>
                         <div class="media-list-subtitle">
                             ${data.artists.map(artist => 
-                                `<a href="" class="media__subtitle media__subtitle--link">${artist}</a>`    
+                                `<span href="" class="media__subtitle media__subtitle--link">${artist}</span>`    
                                 ).join()
                             }
                         </div>
@@ -59,7 +59,7 @@ const UI = (() => {
                         </div>
                         <div class="media-list-subtitle">
                             ${data.artists.map(artist => 
-                                `<a href="" class="media__subtitle media__subtitle--link">${artist}</a>`    
+                                `<span href="" class="media__subtitle media__subtitle--link">${artist}</span>`    
                                 )
                             }
                         </div>
@@ -79,9 +79,7 @@ const UI = (() => {
         `
     }
 
-    const createPlayList = (data) => {
-        
-    }
+    
 
     const createMediaActiveInPlayList = (song, index) => {
         return `
@@ -99,7 +97,7 @@ const UI = (() => {
                                 <span class="media__vip-label">vip</span>
                             </div>
                             <div class="media-list-subtitle">
-                                ${song.artist.map(name => `<a href="" class="media__subtitle media__subtitle--link">${name}</a>`).join(', ')}
+                                ${song.artist.map(name => `<span href="" class="media__subtitle media__subtitle--link">${name}</span>`).join(', ')}
                             </div>
                         </div>
                         <button class="media-favorite-btn">
@@ -134,7 +132,7 @@ const UI = (() => {
                     <span class="media__vip-label">vip</span>
                 </div>
                 <div class="media-list-subtitle">
-                    ${song.artist.map(name => `<a href="" class="media__subtitle media__subtitle--link">${name}</a>`).join(', ')}
+                    ${song.artist.map(name => `<span href="" class="media__subtitle media__subtitle--link">${name}</span>`).join(', ')}
                 </div>
                 </div>
                 <button class="media-favorite-btn">
@@ -169,7 +167,7 @@ const UI = (() => {
                     <span class="media__vip-label">vip</span>
                 </div>
                 <div class="media-list-subtitle">
-                    ${song.artist.map(name => `<a href="" class="media__subtitle media__subtitle--link">${name}</a>`).join(', ')}
+                    ${song.artist.map(name => `<span href="" class="media__subtitle media__subtitle--link">${name}</span>`).join(', ')}
                 </div>
                 </div>
                 <button class="media-favorite-btn">
