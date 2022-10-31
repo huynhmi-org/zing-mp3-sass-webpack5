@@ -3,10 +3,12 @@
     transform: translateY(100%);
     @include transition(300ms);
     display: none;
+    z-index: -1;
 
     &--open {
         transform: translateY(0%);
         height: 100vh;
+        z-index: 30;
     }
 
     &__overlay {
