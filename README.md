@@ -12,3 +12,7 @@ App is with Responsive HTML and Pure Javascript.
 - Discover Page
 - Play/Pause music from playlist
 - Random/Repeat
+
+
+
+Link web: https://mp3zingclone.netlify.app/
