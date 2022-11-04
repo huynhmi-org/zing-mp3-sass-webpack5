@@ -20,9 +20,7 @@ const UI = (() => {
                             <span class="media__vip-label">vip</span>
                         </div>
                         <div class="media-list-subtitle">
-                            ${data.artists.map(artist => 
-                                `<span href="" class="media__subtitle media__subtitle--link">${artist}</span>`    
-                                ).join()
+                            ${data.artists.join(', ')
                             }
                         </div>
                         <span class="media__subtitle">Hôm nay</span>
@@ -57,10 +55,8 @@ const UI = (() => {
                             <span class="media__title">${data.title}</span>
                             <span class="media__vip-label">vip</span>
                         </div>
-                        <div class="media-list-subtitle">
-                            ${data.artists.map(artist => 
-                                `<span href="" class="media__subtitle media__subtitle--link">${artist}</span>`    
-                                )
+                        <div class="media__subtitle">
+                            ${data.artists.join(', ')
                             }
                         </div>
                         <span class="media__subtitle">Hôm nay</span>
@@ -96,8 +92,8 @@ const UI = (() => {
                                 <span class="media__title">${song.name}</span>
                                 <span class="media__vip-label">vip</span>
                             </div>
-                            <div class="media-list-subtitle">
-                                ${song.artist.map(name => `<span href="" class="media__subtitle media__subtitle--link">${name}</span>`).join(', ')}
+                            <div class="media__subtitle">
+                                ${song.artist.join(', ')}
                             </div>
                         </div>
                         <button class="media-favorite-btn">
@@ -126,14 +122,14 @@ const UI = (() => {
                         <i class="media-play-btn__icon media-play-btn__icon--play fa-solid fa-pause"></i>
                     </button>
                 </div>
-            <div class="media-content">
-                <div class="media-content-header">
-                    <span class="media__title">${song.name}</span>
-                    <span class="media__vip-label">vip</span>
-                </div>
-                <div class="media-list-subtitle">
-                    ${song.artist.map(name => `<span href="" class="media__subtitle media__subtitle--link">${name}</span>`).join(', ')}
-                </div>
+                <div class="media-content">
+                    <div class="media-content-header">
+                        <span class="media__title">${song.name}</span>
+                        <span class="media__vip-label">vip</span>
+                    </div>
+                    <div class="media__subtitle">
+                        ${song.artist.join(', ')}
+                    </div>
                 </div>
                 <button class="media-favorite-btn">
                     <i class="media-favorite-btn__icon media-favorite-btn__icon--love fa-solid fa-heart"></i>
@@ -161,14 +157,14 @@ const UI = (() => {
                         <i class="media-play-btn__icon media-play-btn__icon--play fa-solid fa-pause"></i>
                     </button>
                 </div>
-            <div class="media-content">
-                <div class="media-content-header">
-                    <span class="media__title">${song.name}</span>
-                    <span class="media__vip-label">vip</span>
-                </div>
-                <div class="media-list-subtitle">
-                    ${song.artist.map(name => `<span href="" class="media__subtitle media__subtitle--link">${name}</span>`).join(', ')}
-                </div>
+                <div class="media-content">
+                    <div class="media-content-header">
+                        <span class="media__title">${song.name}</span>
+                        <span class="media__vip-label">vip</span>
+                    </div>
+                    <div class="media__subtitle">
+                        ${song.artist.join(', ')}
+                    </div>
                 </div>
                 <button class="media-favorite-btn">
                     <i class="media-favorite-btn__icon media-favorite-btn__icon--love fa-solid fa-heart"></i>

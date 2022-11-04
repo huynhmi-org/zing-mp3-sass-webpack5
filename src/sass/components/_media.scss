@@ -282,7 +282,9 @@
         // text-overflow: ellipsis;
     }
 
-    &__title, &-list-subtitle,&__subtitle {
+    &__subtitle,
+    &__title, 
+    &-list-subtitle {
         @include limitText(21px, 1);
     }
 
@@ -297,7 +299,7 @@
     }
 
     &__subtitle {
-        display: block;
+        // display: inherit;
         &--link {
             display: inline-block;
 

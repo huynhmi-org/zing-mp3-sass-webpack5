@@ -386,6 +386,7 @@ let PLAYER = {
     renderPlayer(song = this.currentSong) {
         
         if (this.currentIndex || this.currentIndex === 0) {
+
             const media = `
                    <div class="media ${song.vip ? 'media--vip' : ''} media--l">
                        <div class="media-cover">
@@ -396,10 +397,8 @@ let PLAYER = {
                                <span href="" class="media__title">${song.name}</span>
                                <span class="media__vip-label">vip</span>
                            </div>
-                           <div class="media-list-subtitle">
-                               ${song.artist.map(
-                                   name => `<span href="" class="media__subtitle media__subtitle--link">${name}</span>`
-                               ).join()}
+                           <div class="media__subtitle">
+                               ${song.artist.join(', ')}
                            </div>
                        </div>
                        <button class="media-favorite-btn">
@@ -416,13 +415,15 @@ let PLAYER = {
                        </div>
                    </div>
            `
+
            player.querySelector('.player-song').innerHTML = media;
            audio.src = song.url;
 
             playerMobile.querySelector('.player__title').innerText = song.name;
             playerMobile.querySelector('.player-cd__img').src = song.cover;
-            playerMobile.querySelector('.player__subtitle').innerText = song.artist;
+            playerMobile.querySelector('.player__subtitle').innerText = song.artist.join(', ');
 
+            // console.log(song.artist.join(', '));
             this.createCDAnimate();
 
         }
