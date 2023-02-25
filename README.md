@@ -44,9 +44,10 @@ Project is built using pure Html, Css, Javascript.
 ## Feature
 - Discover page
 - Sidebar
+- Slider, carousel, tabs
 - Select to play the song in the side-playlist, and "Mới phát hành" Section
 - Show error message if the song cannot play
-- Play, pause, next, previous, random, repeat
+- Play, pause, next, previous, random and repeat
 - Fully responsive on tablets and mobile devices
 
 ## Link demo: 
