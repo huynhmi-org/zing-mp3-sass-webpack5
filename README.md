@@ -7,7 +7,7 @@ Project is built with pure Html, Css, Javascript.
 - Html, Css, Scss
 - Javascript, Fetch API
 - Webpack
-### Backend
+### Back-end
 - Spotify API
 - Deploy on Netlify
 
