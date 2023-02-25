@@ -1,5 +1,10 @@
 # zing-mp3-sass-webpack5 🎶
-
+Made by
+ <a href="https://github.com/HuynhMi">
+      Huynh Mi
+ </a> and  <a href="https://github.com/hagonin">
+      Ha Gonin
+    </a>
 ## General Information
 Project is built using pure Html, Css, Javascript.
 ## Technology
