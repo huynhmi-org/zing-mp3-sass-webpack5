@@ -1,7 +1,7 @@
 # zing-mp3-sass-webpack5 🎶
 
 ## General Information
-Project is built with pure Html, Css, Javascript.
+Project is built using pure Html, Css, Javascript.
 ## Technology
 ### Front-end:
 - Html, Css, Scss
